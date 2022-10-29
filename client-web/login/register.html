@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Login Hanoi</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="forms-container">
+        <div class="signin-signup">
+          <form role="form" novalidate id="registerForm" class="sign-in-form">
+            <h2 class="title">Création de compte</h2>
+            <div class="input-field">
+              <i class="fas fa-user"></i>
+              <input type="text" name="login" placeholder="Nom d'utilisateur" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-envelope"></i>
+              <input type="email" name="email" placeholder="Email" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" name="mot_de_passe" placeholder="Mot de passe" />
+            </div>
+            <div class="input-field">
+              <i class="fas fa-lock"></i>
+              <input type="password" placeholder="Confirmer le mot de passe" />
+            </div>
+            <input type="submit" class="btn" value="S'inscrire" onclick="sendDSL()" />
+            <p class="social-text">Si vous avez deja un compte, cela n'est plus nescessaire de s'enregistrer 👌</p>
+            <div class="social-media">
+              <div>
+                <h3 class="">J'AI DEJA UN COMPTE,
+                  <a href="login.html">Se connecter</a>
+                </h3>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <div class="panels-container">
+        <div class="panel left-panel">
+          <div class="content">
+            <h3>INSCRIPTION AU JEU DE LA TOUR D'HANOI</h3>
+          </div>
+          <img src="img/register.svg" class="image" alt="" />
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript" src="services/register.service.js"></script>
+  </body>
+</html>
