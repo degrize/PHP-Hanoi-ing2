@@ -1,12 +1,15 @@
 <?php
-header('Content-type: text/javascript');
-include_once('../domaines/Joueur.php');
+header('Content-type: text/javascript'); // on precise qu'il est possible de faire du Js dans PHP
+
+// on importe nos modules
+include_once('../domains/Joueur.php');
 include_once('../repository/joueur.repository.php');
 include_once('../mappers/joueur.mapper.php');
 
 $joueur = new Joueur();
 $joueurRepository = new JoueurRepository();
 
+// on recupere la tache que nous voulons executer
 $mehode = $_GET['methode'];
 $rep = false;
 

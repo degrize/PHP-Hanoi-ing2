@@ -1,4 +1,6 @@
 <?php
+include_once('../domains/Joueur.php');
+
 function convertJsonToClass($joueur) {
     $joueurMapper = new Joueur();
     $joueurMapper->setLogin("$joueur->{'login'}");

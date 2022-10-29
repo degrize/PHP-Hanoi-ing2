@@ -1,10 +1,13 @@
-<?php 
-   
-   //On établie la connexion à la base de données
-   $con = mysqli_connect("localhost","root","","hanoi_db");
-   //on verifie la connexion
-   if(!$con) {
-    die('Erreur :'.mysqli_connect_error()) ;
-   }
-  
-?>
+<?php
+class ConnectionDB {
+    public $db;
+    public function __construct() {
+        try {
+            $this->db = new PDO('mysql:host=localhost;dbname=hanoi_db', 'root', '');
+        }
+        catch(Exception $e) {
+            $this->db = null;
+            die('Erreur : '.$e->getMessage());
+        }
+    }
+}
