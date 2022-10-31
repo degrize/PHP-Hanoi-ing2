@@ -11,9 +11,9 @@ class Joueur {
     private $modifie_le;
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getId()
+    public function getId(): int
     {
         return $this->id;
     }
@@ -59,9 +59,9 @@ class Joueur {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getMotDePasse()
+    public function getMotDePasse(): string
     {
         return $this->mot_de_passe;
     }
@@ -101,7 +101,7 @@ class Joueur {
     /**
      * @param mixed $est_suspendu
      */
-    public function setEstSuspendu($est_suspendu)
+    public function setEstSuspendu(bool $est_suspendu)
     {
         $this->est_suspendu = $est_suspendu;
     }

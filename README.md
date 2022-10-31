@@ -25,8 +25,8 @@ CREATE TABLE hanoi_joueur(
     login varchar(255), 
     mot_de_passe varchar(255), 
     photo varchar(255), 
-    est_suspendu boolean, 
-    cree_le date, 
+    est_suspendu boolean DEFAULT FALSE, 
+    cree_le date DEFAULT CURRENT_TIMESTAMP;, 
     modifie_le date,
     CONSTRAINT ux_joueur_email UNIQUE (email),
     CONSTRAINT ux_joueur_login UNIQUE (login)

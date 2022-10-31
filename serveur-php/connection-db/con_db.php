@@ -3,7 +3,8 @@ class ConnectionDB {
     public $db;
     public function __construct() {
         try {
-            $this->db = new PDO('mysql:host=localhost;dbname=hanoi_db', 'root', '');
+            $this->db = new PDO('mysql:host=localhost;dbname=hanoi_db', 'root', '',
+            array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
         }
         catch(Exception $e) {
             $this->db = null;

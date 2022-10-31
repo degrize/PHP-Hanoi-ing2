@@ -18,27 +18,38 @@
             <h2 class="title">Création de compte</h2>
             <div class="input-field">
               <i class="fas fa-user"></i>
-              <input type="text" name="login" placeholder="Nom d'utilisateur" />
+              <input type="text" id="login" name="login" placeholder="Pseudo" />
             </div>
+            <span class="tooltip">
+              Le pseudo ne peut pas faire moins de 4 caractères
+            </span>
             <div class="input-field">
               <i class="fas fa-envelope"></i>
-              <input type="email" name="email" placeholder="Email" />
+              <input required type="email" id="email" name="email" placeholder="Email" />
             </div>
+            <span class="tooltip">
+              Renseignez une addresse email valide
+            </span>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" name="mot_de_passe" placeholder="Mot de passe" />
+              <input type="password" id="pwd1" name="pwd1" placeholder="Mot de passe" />
             </div>
+            <span class="tooltip">
+              Le mot de passe ne doit pas faire moins de 4 caractères
+            </span>
             <div class="input-field">
               <i class="fas fa-lock"></i>
-              <input type="password" placeholder="Confirmer le mot de passe" />
+              <input type="password" id="pwd2" name="pwd2" placeholder="Confirmer le mot de passe" />
             </div>
-            <input type="submit" class="btn" value="S'inscrire" onclick="sendDSL()" />
+            <span class="tooltip">
+              La confirmation doit être identique à celui d'origine
+            </span>
+            <input type="submit" class="btn" value="S'inscrire" />
             <p class="social-text">Si vous avez deja un compte, cela n'est plus nescessaire de s'enregistrer 👌</p>
             <div class="social-media">
               <div>
-                <h3 class="">J'AI DEJA UN COMPTE,
-                  <a href="login.html">Se connecter</a>
-                </h3>
+                <h3 class="">J'AI DEJA UN COMPTE</h3>
+                <h4><a href="login.html">Se connecter</a></h4>
               </div>
             </div>
           </form>
@@ -50,10 +61,12 @@
           <div class="content">
             <h3>INSCRIPTION AU JEU DE LA TOUR D'HANOI</h3>
           </div>
-          <img src="img/register.svg" class="image" alt="" />
+          <img src="../img/register.svg" class="image" alt="" />
         </div>
       </div>
     </div>
-    <script type="text/javascript" src="services/register.service.js"></script>
+
+    <!-- Notre service -->
+    <script type="text/javascript" src="../services/register.service.js"></script>
   </body>
 </html>
