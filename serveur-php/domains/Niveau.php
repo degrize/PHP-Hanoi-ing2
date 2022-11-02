@@ -1,18 +1,14 @@
 <?php
 
-class Joueur {
+class Niveau {
     private $id;
-    private $email;
-    private $login;
-    private $mot_de_passe;
-    private $photo;
-    private $est_suspendu;
-    private $piece;
-    private $cree_le;
-    private $modifie_le;
-    private $niveaux; // la relation entre joueur et Niveau
-    private $logs; // la relation entre joueur et Logs
-    private $authorities; // la relation entre joueur et Authority
+    private $titre;
+    private $description;
+    private $deplacement_max;
+    private $temps_max;
+    private $nbre_disque;
+    private $gain;
+    private $joueurs; // la relation entre Niveau et joueur
 
     /**
      * @return int
@@ -33,180 +29,115 @@ class Joueur {
     /**
      * @return mixed
      */
-    public function getEmail()
+    public function getTitre()
     {
-        return $this->email;
+        return $this->titre;
     }
 
     /**
-     * @param mixed $email
+     * @param mixed $titre
      */
-    public function setEmail($email)
+    public function setTitre($titre)
     {
-        $this->email = $email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLogin()
-    {
-        return $this->login;
-    }
-
-    /**
-     * @param mixed $login
-     */
-    public function setLogin($login)
-    {
-        $this->login = $login;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMotDePasse(): string
-    {
-        return $this->mot_de_passe;
-    }
-
-    /**
-     * @param mixed $mot_de_passe
-     */
-    public function setMotDePasse($mot_de_passe)
-    {
-        $this->mot_de_passe = $mot_de_passe;
+        $this->titre = $titre;
     }
 
     /**
      * @return mixed
      */
-    public function getPhoto()
+    public function getDescription()
     {
-        return $this->photo;
+        return $this->description;
     }
 
     /**
-     * @param mixed $photo
+     * @param mixed $description
      */
-    public function setPhoto($photo)
+    public function setDescription($description)
     {
-        $this->photo = $photo;
+        $this->description = $description;
     }
 
     /**
      * @return mixed
      */
-    public function getEstSuspendu()
+    public function getDeplacementMax()
     {
-        return $this->est_suspendu;
+        return $this->deplacement_max;
     }
 
     /**
-     * @param mixed $est_suspendu
+     * @param mixed $deplacement_max
      */
-    public function setEstSuspendu(bool $est_suspendu)
+    public function setDeplacementMax($deplacement_max)
     {
-        $this->est_suspendu = $est_suspendu;
+        $this->deplacement_max = $deplacement_max;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTempsMax()
+    {
+        return $this->temps_max;
+    }
+
+    /**
+     * @param mixed $temps_max
+     */
+    public function setTempsMax($temps_max)
+    {
+        $this->temps_max = $temps_max;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getNbreDisque()
+    {
+        return $this->nbre_disque;
+    }
+
+    /**
+     * @param mixed $nbre_disque
+     */
+    public function setNbreDisque($nbre_disque)
+    {
+        $this->nbre_disque = $nbre_disque;
     }
 
     /**
      * @return double
      */
-    public function getPiece(): float
+    public function getGain(): float
     {
-        return $this->piece;
+        return $this->gain;
     }
 
     /**
-     * @param mixed $piece
+     * @param mixed $gain
      */
-    public function setPiece($piece)
+    public function setGain($gain)
     {
-        $this->piece = $piece;
-    }
-
-
-
-    /**
-     * @return mixed
-     */
-    public function getCreeLe()
-    {
-        return $this->cree_le;
-    }
-
-    /**
-     * @param mixed $cree_le
-     */
-    public function setCreeLe($cree_le)
-    {
-        $this->cree_le = $cree_le;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getModifieLe()
-    {
-        return $this->modifie_le;
-    }
-
-    /**
-     * @param mixed $modifie_le
-     */
-    public function setModifieLe($modifie_le)
-    {
-        $this->modifie_le = $modifie_le;
+        $this->gain = $gain;
     }
 
     /**
      * @return array
      */
-    public function getNiveaux(): array
+    public function getJoueurs(): array
     {
-        return $this->niveaux;
+        return $this->joueurs;
     }
 
     /**
-     * @param mixed $niveaux
+     * @param mixed $joueurs
      */
-    public function setNiveaux($niveaux)
+    public function setJoueurs(array $joueurs)
     {
-        $this->niveaux = $niveaux;
+        $this->joueurs = $joueurs;
     }
 
-    /**
-     * @return Logs[]
-     */
-    public function getLogs(): array
-    {
-        return $this->logs;
-    }
-
-    /**
-     * @param mixed $logs
-     */
-    public function setLogs($logs)
-    {
-        $this->logs = $logs;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAuthorities()
-    {
-        return $this->authorities;
-    }
-
-    /**
-     * @param mixed $authorities
-     */
-    public function setAuthorities($authorities)
-    {
-        $this->authorities = $authorities;
-    }
 
 
     public function __toString()

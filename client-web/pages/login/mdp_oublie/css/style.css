@@ -12,7 +12,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #4070f4;
+  background: var(--bg-color);
 }
 .container {
   position: relative;
@@ -21,15 +21,21 @@ body {
   padding: 25px;
   border-radius: 8px;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .container header {
   font-size: 17px;
   font-weight: 600;
   text-align: center;
   color: #333;
+  margin-bottom: 8px;
 }
 .container form {
   margin-top: 30px;
+  width: 100%;
 }
 form .field {
   margin-bottom: 20px;
@@ -84,12 +90,21 @@ form .input-field {
   color: #fff;
   font-size: 16px;
   font-weight: 400;
-  background-color: #4070f4;
+  background-color: var(--bg-color);
   cursor: pointer;
   transition: all 0.3s ease;
 }
 .button input:hover {
-  background-color: #0e4bf1;
+  background-color: var(--bg-color-hover);
+}
+
+.btn-submit.loaderBtn {
+  opacity: .7;
+  cursor: wait;
+}
+
+.btn-submit.loaderBtn:hover {
+  background-color: var(--bg-color);
 }
 
 .banner-info {
@@ -106,3 +121,4 @@ form .input-field {
   display: block;
   color: #c6002e;
 }
+

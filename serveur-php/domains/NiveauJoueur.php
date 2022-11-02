@@ -1,213 +1,76 @@
 <?php
+include_once('../domains/Joueur.php');
+include_once('../domains/Niveau.php');
 
-class Joueur {
-    private $id;
-    private $email;
-    private $login;
-    private $mot_de_passe;
-    private $photo;
-    private $est_suspendu;
-    private $piece;
-    private $cree_le;
-    private $modifie_le;
-    private $niveaux; // la relation entre joueur et Niveau
-    private $logs; // la relation entre joueur et Logs
-    private $authorities; // la relation entre joueur et Authority
+class NiveauJoueur {
+    private $niveau;
+    private $joueur;
+    private $deplacement;
+    private $temps;
 
     /**
-     * @return int
+     * @return Niveau
      */
-    public function getId(): int
+    public function getNiveau(): Niveau
     {
-        return $this->id;
+        return $this->niveau;
     }
 
     /**
-     * @param mixed $id
+     * @param Niveau $niveau
      */
-    public function setId($id)
+    public function setNiveau(Niveau $niveau)
     {
-        $this->id = $id;
+        $this->niveau = $niveau;
     }
 
     /**
-     * @return mixed
+     * @return Joueur
      */
-    public function getEmail()
+    public function getJoueur()
     {
-        return $this->email;
+        return $this->joueur;
     }
 
     /**
-     * @param mixed $email
+     * @param Joueur $joueur
      */
-    public function setEmail($email)
+    public function setJoueur(Joueur $joueur)
     {
-        $this->email = $email;
+        $this->joueur = $joueur;
     }
 
     /**
      * @return mixed
      */
-    public function getLogin()
+    public function getDeplacement()
     {
-        return $this->login;
+        return $this->deplacement;
     }
 
     /**
-     * @param mixed $login
+     * @param mixed $deplacement
      */
-    public function setLogin($login)
+    public function setDeplacement($deplacement)
     {
-        $this->login = $login;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMotDePasse(): string
-    {
-        return $this->mot_de_passe;
-    }
-
-    /**
-     * @param mixed $mot_de_passe
-     */
-    public function setMotDePasse($mot_de_passe)
-    {
-        $this->mot_de_passe = $mot_de_passe;
+        $this->deplacement = $deplacement;
     }
 
     /**
      * @return mixed
      */
-    public function getPhoto()
+    public function getTemps()
     {
-        return $this->photo;
+        return $this->temps;
     }
 
     /**
-     * @param mixed $photo
+     * @param mixed $temps
      */
-    public function setPhoto($photo)
+    public function setTemps($temps)
     {
-        $this->photo = $photo;
+        $this->temps = $temps;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getEstSuspendu()
-    {
-        return $this->est_suspendu;
-    }
-
-    /**
-     * @param mixed $est_suspendu
-     */
-    public function setEstSuspendu(bool $est_suspendu)
-    {
-        $this->est_suspendu = $est_suspendu;
-    }
-
-    /**
-     * @return double
-     */
-    public function getPiece(): float
-    {
-        return $this->piece;
-    }
-
-    /**
-     * @param mixed $piece
-     */
-    public function setPiece($piece)
-    {
-        $this->piece = $piece;
-    }
-
-
-
-    /**
-     * @return mixed
-     */
-    public function getCreeLe()
-    {
-        return $this->cree_le;
-    }
-
-    /**
-     * @param mixed $cree_le
-     */
-    public function setCreeLe($cree_le)
-    {
-        $this->cree_le = $cree_le;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getModifieLe()
-    {
-        return $this->modifie_le;
-    }
-
-    /**
-     * @param mixed $modifie_le
-     */
-    public function setModifieLe($modifie_le)
-    {
-        $this->modifie_le = $modifie_le;
-    }
-
-    /**
-     * @return array
-     */
-    public function getNiveaux(): array
-    {
-        return $this->niveaux;
-    }
-
-    /**
-     * @param mixed $niveaux
-     */
-    public function setNiveaux($niveaux)
-    {
-        $this->niveaux = $niveaux;
-    }
-
-    /**
-     * @return Logs[]
-     */
-    public function getLogs(): array
-    {
-        return $this->logs;
-    }
-
-    /**
-     * @param mixed $logs
-     */
-    public function setLogs($logs)
-    {
-        $this->logs = $logs;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAuthorities()
-    {
-        return $this->authorities;
-    }
-
-    /**
-     * @param mixed $authorities
-     */
-    public function setAuthorities($authorities)
-    {
-        $this->authorities = $authorities;
-    }
-
 
     public function __toString()
     {

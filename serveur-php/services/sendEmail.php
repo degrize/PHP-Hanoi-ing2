@@ -8,7 +8,7 @@ class SendEmail {
     public $name = "Jeu d'Hanoi STIC";  // Le nom du JEU
     public $from = "mdegrize@gmail.com";  // Le mail de l'admin du jeu
     public $password = "lzjpafzeudpqjzdj";  // Le mot de passe App-GOOGLE
-    public $to = null;  // mail of reciever
+    public $to = null;  // mail du receveur
     public $subject = null;
     public $message = null;
 

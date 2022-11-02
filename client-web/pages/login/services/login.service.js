@@ -1,5 +1,5 @@
 let joueurs;
-import("../models/joueur.js").then(Class => {
+import("../../../models/joueur.js").then(Class => {
     joueurs = Class.Joueur;
 });
 
@@ -7,7 +7,7 @@ const div_info = document.querySelector(".login_error__success");
 
 function reponseServeur(reponse) {
     if (reponse) {
-        window.location.href="../../Panel/index.html"
+        window.location.href="../../Panel/vue/index.html"
     }
     else {
         div_info.innerHTML = "erreur d'authentification verifier vos informations";
@@ -39,6 +39,15 @@ function reponseRegsiter() {
 }
 reponseRegsiter();
 
+function reponsePanel() {
+    alert("Success")
+    if ($_GET("connection") == "false") {
+        div_info.innerHTML = "Pour des mesures de sécurités Nous avons redémarré votre session. réidentifiez vous ";
+        div_info.className = "login_error__success success_register";
+    }
+}
+reponsePanel();
+
 (function() { // On utilise une IEF pour ne pas polluer l'espace global
 
     let registerForm = document.getElementById('loginForm'),
@@ -59,6 +68,14 @@ reponseRegsiter();
         const myForm = document.getElementById('loginForm'),
             inputs = document.getElementsByTagName('input'),
             inputsLength = inputs.length;
+
+        for (let i = 0 ; i < inputsLength ; i++) {
+            if (inputs[i].type === 'text' || inputs[i].type === 'email' || inputs[i].type === 'password') {
+                inputs[i].onkeyup = function() {
+                    div_info.style.display = "none";
+                };
+            }
+        }
 
         myForm.onsubmit = function() {
             connection();//On effecteur son enregistrement

@@ -1,8 +1,11 @@
-let joueurs;
-import("../models/joueur.js").then(Class => {
-    joueurs = Class.Joueur;
+let joueur;
+import("../../../models/joueur.js").then(Class => {
+    joueur = new Class.Joueur;
+
+    // On envoie les infos à notre controller-PHP
+    joueur.sendToPHP("findAllLogin");
+    joueur.sendToPHP("findAllEmail");
 });
-let joueur = new joueurs();
 let emailList;
 let loginList;
 
@@ -14,10 +17,6 @@ function reponseServeur(reponse) {
 
 
 (function() { // On utilise une IEF pour ne pas polluer l'espace global
-
-    // On envoie les infos à notre controller-PHP
-    joueur.sendToPHP("findAllLogin");
-    joueur.sendToPHP("findAllEmail");
 
     let registerForm = document.getElementById('registerForm'),
         emailInput = registerForm.querySelector('#email'),

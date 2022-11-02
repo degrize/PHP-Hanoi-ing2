@@ -1,18 +1,17 @@
 <?php
 
-class Joueur {
+class Logs {
     private $id;
-    private $email;
-    private $login;
-    private $mot_de_passe;
-    private $photo;
-    private $est_suspendu;
-    private $piece;
+    private $joueur_id;
+    private $information;
     private $cree_le;
-    private $modifie_le;
-    private $niveaux; // la relation entre joueur et Niveau
-    private $logs; // la relation entre joueur et Logs
-    private $authorities; // la relation entre joueur et Authority
+
+    public function __construct($joueur_id, $information) {
+        $this->joueur_id = $joueur_id;
+        $this->information = $information;
+        $this->cree_le = date("Y-m-d H:i:s"); // today
+        // 2001-03-10 17:16:18 (le format DATETIME de MySQL)
+    }
 
     /**
      * @return int
@@ -31,102 +30,35 @@ class Joueur {
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getEmail()
-    {
-        return $this->email;
+    public function getJoueurId(): int {
+        return $this->joueur_id;
     }
 
     /**
-     * @param mixed $email
+     * @param mixed $joueur_id
      */
-    public function setEmail($email)
+    public function setJoueurId($joueur_id)
     {
-        $this->email = $email;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLogin()
-    {
-        return $this->login;
-    }
-
-    /**
-     * @param mixed $login
-     */
-    public function setLogin($login)
-    {
-        $this->login = $login;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMotDePasse(): string
-    {
-        return $this->mot_de_passe;
-    }
-
-    /**
-     * @param mixed $mot_de_passe
-     */
-    public function setMotDePasse($mot_de_passe)
-    {
-        $this->mot_de_passe = $mot_de_passe;
+        $this->joueur_id = $joueur_id;
     }
 
     /**
      * @return mixed
      */
-    public function getPhoto()
+    public function getInformation()
     {
-        return $this->photo;
+        return $this->information;
     }
 
     /**
-     * @param mixed $photo
+     * @param mixed $information
      */
-    public function setPhoto($photo)
+    public function setInformation($information)
     {
-        $this->photo = $photo;
+        $this->information = $information;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getEstSuspendu()
-    {
-        return $this->est_suspendu;
-    }
-
-    /**
-     * @param mixed $est_suspendu
-     */
-    public function setEstSuspendu(bool $est_suspendu)
-    {
-        $this->est_suspendu = $est_suspendu;
-    }
-
-    /**
-     * @return double
-     */
-    public function getPiece(): float
-    {
-        return $this->piece;
-    }
-
-    /**
-     * @param mixed $piece
-     */
-    public function setPiece($piece)
-    {
-        $this->piece = $piece;
-    }
-
-
 
     /**
      * @return mixed
@@ -144,71 +76,6 @@ class Joueur {
         $this->cree_le = $cree_le;
     }
 
-    /**
-     * @return mixed
-     */
-    public function getModifieLe()
-    {
-        return $this->modifie_le;
-    }
-
-    /**
-     * @param mixed $modifie_le
-     */
-    public function setModifieLe($modifie_le)
-    {
-        $this->modifie_le = $modifie_le;
-    }
-
-    /**
-     * @return array
-     */
-    public function getNiveaux(): array
-    {
-        return $this->niveaux;
-    }
-
-    /**
-     * @param mixed $niveaux
-     */
-    public function setNiveaux($niveaux)
-    {
-        $this->niveaux = $niveaux;
-    }
-
-    /**
-     * @return Logs[]
-     */
-    public function getLogs(): array
-    {
-        return $this->logs;
-    }
-
-    /**
-     * @param mixed $logs
-     */
-    public function setLogs($logs)
-    {
-        $this->logs = $logs;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAuthorities()
-    {
-        return $this->authorities;
-    }
-
-    /**
-     * @param mixed $authorities
-     */
-    public function setAuthorities($authorities)
-    {
-        $this->authorities = $authorities;
-    }
-
-
     public function __toString()
     {
         $attributes = [];
@@ -217,7 +84,7 @@ class Joueur {
         return \json_encode($attributes, JSON_UNESCAPED_UNICODE);
     }
 
-    public function getAttributes() {
+    public function getAttributes(): array {
         return \get_object_vars($this);
     }
 

@@ -1,6 +1,6 @@
 // On importe notre classe ainsi que les méthodes qui lui sont associées
 let joueur;
-import("../../models/joueur.js").then(Class => {
+import("../../../../models/joueur.js").then(Class => {
   joueur = new Class.Joueur; // l'instance de la classe
 
   // On envoie les infos à notre controller-PHP
@@ -11,14 +11,19 @@ import("../../models/joueur.js").then(Class => {
 let emailList; // la liste des emails
 
 const div_info = document.querySelector(".banner-info");
+let div_loader = document.getElementById("loader");
 const form = document.querySelector("form"),
     emailField = form.querySelector(".email-field"),
-    emailInput = emailField.querySelector(".email");
+    emailInput = emailField.querySelector(".email"),
+    btnSubmit = form.querySelector('.btn-submit');
 let text_error = emailField.querySelector(".error-text");
 
 function reponseServeur(reponse) {
+  div_loader.style.display = "none";
+  btnSubmit.value="Envoyer le mail";
+  btnSubmit.classList.remove("loaderBtn")
   if (reponse) {
-    div_info.innerHTML = "Le mail a bien été envoyer. Veuillez verifier votre messagerie";
+    div_info.innerHTML = "Le mail a bien été envoyer. Veuillez verifier votre boîte messagerie";
     div_info.className = "banner-info success-email"
     form.reset();
   }
@@ -30,14 +35,12 @@ function reponseServeur(reponse) {
 
 
 (function() { // On utilise une IEF pour ne pas polluer l'espace global
-
   function sendEmail() {
     joueur.email = (emailInput.value).toLowerCase();
     // On envoie les infos à notre controller-PHP
     joueur.sendToPHP("retrievePassword")
 
   }
-
   // Email Validation
   function checkEmail() {
     const emaiPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
@@ -73,7 +76,10 @@ function reponseServeur(reponse) {
     emailInput.addEventListener("keyup", checkEmail);
 
     if (!emailField.classList.contains("invalid")) {
-      console.log("envoi de la requte au serveur");
+      console.log("envoi de la requête au serveur");
+      div_loader.style.display = "flex";
+      btnSubmit.value = "Patienter...";
+      btnSubmit.classList.add("loaderBtn")
       sendEmail();
       /*location.href = form.getAttribute("action");*/
     }

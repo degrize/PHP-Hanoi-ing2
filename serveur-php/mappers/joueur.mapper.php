@@ -9,6 +9,7 @@ function convertJsonToClass($joueur): Joueur
     $joueurMapper->setMotDePasse($joueur->{'mot_de_passe'});
     $joueurMapper->setPhoto($joueur->{'photo'});
     $joueurMapper->setEstSuspendu($joueur->{'est_suspendu'});
+    $joueurMapper->setPiece($joueur->{'piece'});
     $joueurMapper->setCreeLe($joueur->{'cree_le'});
     $joueurMapper->setModifieLe($joueur->{'modifie_le'});
 

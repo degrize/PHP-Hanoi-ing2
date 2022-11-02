@@ -339,6 +339,10 @@ a:hover {
     left: 50%;
   }
 
+  form #loginForm {
+    top: -400px;
+  }
+
   .panels-container {
     grid-template-columns: 1fr;
     grid-template-rows: 1fr 2fr 1fr;

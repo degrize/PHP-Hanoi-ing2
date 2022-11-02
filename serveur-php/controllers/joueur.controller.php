@@ -1,10 +1,13 @@
 <?php
 header('Content-type: text/javascript'); // on precise qu'il est possible de faire du Js dans PHP
-
+session_start();
 // on importe nos modules
 include_once('../domains/Joueur.php');
 include_once('../repository/joueur.repository.php');
 include_once('../mappers/joueur.mapper.php');
+include_once('../connection-db/con_db.php');
+
+//$db = (new ConnectionDB())->db;
 
 $joueur = new Joueur();
 $joueurRepository = new JoueurRepository();
@@ -18,6 +21,12 @@ switch ($mehode) {
     case "connection":
         $rep = $joueurRepository->connection($joueur);
         echo 'reponseServeur('. $rep .');';
+        break;
+    case "joueurConnecte":
+        if (isset($_SESSION['joueur_id'])) {
+            $joueur = JoueurRepository::findById($_SESSION['joueur_id']);
+        }
+        echo "reponseServeur($joueur);";
         break;
 
     case "save":

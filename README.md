@@ -26,8 +26,9 @@ CREATE TABLE hanoi_joueur(
     mot_de_passe varchar(255), 
     photo varchar(255), 
     est_suspendu boolean DEFAULT FALSE, 
-    cree_le date DEFAULT CURRENT_TIMESTAMP;, 
-    modifie_le date,
+    piece DOUBLE NULL DEFAULT 0.0,
+    cree_le DATETIME, 
+    modifie_le DATETIME,
     CONSTRAINT ux_joueur_email UNIQUE (email),
     CONSTRAINT ux_joueur_login UNIQUE (login)
 ) 
@@ -63,7 +64,8 @@ CREATE TABLE hanoi_niveau(
     description varchar(255),
     deplacement_max int,
     temps_max int,
-    nbre_disque int
+    nbre_disque int,
+    gain DOUBLE NULL DEFAULT 0.0
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8
 ;
@@ -97,7 +99,7 @@ CREATE TABLE hanoi_logs(
     id bigint AUTO_INCREMENT,
     joueur_id bigint NOT NULL,
     information varchar(255),
-    cree_le date,
+    cree_le DATETIME,
     CONSTRAINT hanoi_logs_pkey PRIMARY KEY (id),
     CONSTRAINT fk_hanoi_logs__joueur_id FOREIGN KEY (joueur_id)
     	REFERENCES hanoi_joueur (id) MATCH SIMPLE
