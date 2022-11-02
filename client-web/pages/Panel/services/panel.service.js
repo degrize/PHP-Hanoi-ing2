@@ -1,7 +1,6 @@
 let joueur;
 import("../../../models/joueur.js").then(Class => {
     joueur = new Class.Joueur;
-    console.log("op")
     // On envoie les infos à notre controller-PHP
     joueur.sendToPHP("joueurConnecte")
 });
@@ -13,9 +12,17 @@ function reponseServeur(reponse) {
         return false;
     }
 
+    const playeur = new Player(joueur);
 
 }
 
-(function() { // On utilise une IEF pour ne pas polluer l'espace global
 
-}) ();
+class Player {
+    joueur_pseudo = document.querySelector(".joueur_pseudo");
+    joueur_email = document.querySelector(".joueur_email");
+    constructor(joueur) {
+        this.joueur_pseudo.innerHTML = joueur.login;
+        this.joueur_email.innerHTML = joueur.email;
+    }
+
+}

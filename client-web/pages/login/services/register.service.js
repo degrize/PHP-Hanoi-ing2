@@ -1,7 +1,6 @@
 let joueur;
 import("../../../models/joueur.js").then(Class => {
     joueur = new Class.Joueur;
-
     // On envoie les infos à notre controller-PHP
     joueur.sendToPHP("findAllLogin");
     joueur.sendToPHP("findAllEmail");
