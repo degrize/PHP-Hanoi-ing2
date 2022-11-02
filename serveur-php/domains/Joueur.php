@@ -10,7 +10,7 @@ class Joueur {
     private $piece;
     private $cree_le;
     private $modifie_le;
-    private $niveaux; // la relation entre joueur et Niveau
+    private $niveauJoueurs; // la relation entre joueur et Niveau
     private $logs; // la relation entre joueur et Logs
     private $authorities; // la relation entre joueur et Authority
 
@@ -163,17 +163,17 @@ class Joueur {
     /**
      * @return array
      */
-    public function getNiveaux(): array
+    public function getNiveauJoueurs(): array
     {
-        return $this->niveaux;
+        return $this->niveauJoueurs;
     }
 
     /**
-     * @param mixed $niveaux
+     * @param mixed $niveauJoueurs
      */
-    public function setNiveaux($niveaux)
+    public function setNiveauJoueurs($niveauJoueurs)
     {
-        $this->niveaux = $niveaux;
+        $this->niveauJoueurs = $niveauJoueurs;
     }
 
     /**

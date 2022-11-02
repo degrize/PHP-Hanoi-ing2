@@ -8,15 +8,14 @@ include_once('../repository/joueur.repository.php');
 
 class NiveauJoueurRepository {
     private static $db;
-    public function __construct() {
-        self::$db = ConnectionDB::getDb();
+    public function __construct($pdo_db) {
+        self::$db = $pdo_db; // variable depuis la classe CONECTIONDB
     }
 
     public function save(NiveauJoueur $niveauJoueur): bool {
         $rep = false;
         $niveau_id = $niveauJoueur->getNiveau()->getId();
         $joueur_id = $niveauJoueur->getJoueur()->getId();
-
         if ($niveau_id && $joueur_id) {
             $req = self::$db->prepare('
                 INSERT INTO hanoi_rel_niveau_joueur(niveau_id, joueur_id,
@@ -31,7 +30,7 @@ class NiveauJoueurRepository {
             $rep = true;
         }
 
-        return true;
+        return $rep;
     }
 
     public function edit(NiveauJoueur $niveauJoueur): string
@@ -39,7 +38,6 @@ class NiveauJoueurRepository {
         $rep = false;
         $niveau_id = $niveauJoueur->getNiveau()->getId();
         $joueur_id = $niveauJoueur->getJoueur()->getId();
-
         if ($niveau_id && $joueur_id) {
             $req = self::$db->prepare('
             UPDATE hanoi_rel_niveau_joueur SET 
@@ -72,8 +70,7 @@ class NiveauJoueurRepository {
         $req = self::$db->query("SELECT * FROM hanoi_rel_niveau_joueur where joueur_id =" . $joueur->getId() . ";");
         while ($donnees = $req->fetch()) {
             $niveauJoueur = new NiveauJoueur();
-            $niveauJoueur->setNiveau(NiveauRepository::findById($donnees['niveau_id']));
-            $niveauJoueur->setJoueur(JoueurRepository::findById($donnees['joueur_id']));
+            $niveauJoueur->setNiveau((new NiveauRepository(self::$db ))->findById($donnees['niveau_id']));
             $niveauJoueur->setDeplacement($donnees['deplacement']);
             $niveauJoueur->setTemps($donnees['temps']);
 
@@ -89,8 +86,8 @@ class NiveauJoueurRepository {
         $req = self::$db->query("SELECT * FROM hanoi_rel_niveau_joueur where niveau_id =" . $niveau->getId() . ";");
         while ($donnees = $req->fetch()) {
             $niveauJoueur = new NiveauJoueur();
-            $niveauJoueur->setNiveau(NiveauRepository::findById($donnees['niveau_id']));
-            $niveauJoueur->setJoueur(JoueurRepository::findById($donnees['joueur_id']));
+            $niveauJoueur->setNiveau((new NiveauRepository(self::$db ))->findById($donnees['niveau_id']));
+            $niveauJoueur->setJoueur((new JoueurRepository(self::$db ))->findById($donnees['joueur_id']));
             $niveauJoueur->setDeplacement($donnees['deplacement']);
             $niveauJoueur->setTemps($donnees['temps']);
 
@@ -106,13 +103,12 @@ class NiveauJoueurRepository {
         $niveau_id = $niveau->getId();
         $joueur_id = $joueur->getId();
         $niveauJoueur = new NiveauJoueur();
-
         if ($niveau_id && $joueur_id) {
             $req = self::$db->query("SELECT * FROM hanoi_rel_niveau_joueur 
                                         WHERE niveau_id = $niveau_id AND joueur_id = $joueur_id;");
             while ($donnees = $req->fetch()) {
-                $niveauJoueur->setNiveau(NiveauRepository::findById($donnees['niveau_id']));
-                $niveauJoueur->setJoueur(JoueurRepository::findById($donnees['joueur_id']));
+                $niveauJoueur->setNiveau((new NiveauRepository(self::$db ))->findById($donnees['niveau_id']));
+                $niveauJoueur->setJoueur((new JoueurRepository(self::$db ))->findById($donnees['joueur_id']));
                 $niveauJoueur->setDeplacement($donnees['deplacement']);
                 $niveauJoueur->setTemps($donnees['temps']);
             }
@@ -127,8 +123,8 @@ class NiveauJoueurRepository {
         $req = self::$db->query("SELECT * FROM hanoi_rel_niveau_joueur");
         while ($donnees = $req->fetch()) {
             $niveauJoueur = new NiveauJoueur();
-            $niveauJoueur->setNiveau(NiveauRepository::findById($donnees['niveau_id']));
-            $niveauJoueur->setJoueur(JoueurRepository::findById($donnees['joueur_id']));
+            $niveauJoueur->setNiveau((new NiveauRepository(self::$db ))->findById($donnees['niveau_id']));
+            $niveauJoueur->setJoueur((new JoueurRepository(self::$db ))->findById($donnees['joueur_id']));
             $niveauJoueur->setDeplacement($donnees['deplacement']);
             $niveauJoueur->setTemps($donnees['temps']);
 

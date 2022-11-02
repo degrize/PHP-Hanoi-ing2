@@ -17,7 +17,7 @@
     --box2-color: #FFE6AC;
     --box3-color: #E7D1FC;
     --title-icon-color: #fff;
-    
+
     /* ====== Transition ====== */
     --tran-05: all 0.5s ease;
     --tran-03: all 0.3s ease;
@@ -72,11 +72,19 @@ main {
     justify-content: center;
 }
 
+h1 {
+    color: #426696;
+    font-weight: 600;
+    font-size: 1rem;
+    opacity: 0.8;
+}
+
+
 .glass {
     background: white;
-    max-height: 90vh;
-    min-height: 90vh;
-    width: 70%;
+    max-height: 79vh;
+    min-height: 79vh;
+    width: 60%;
     background: linear-gradient(
             to right bottom,
             rgba(255, 255, 255, 0.7),
@@ -154,13 +162,25 @@ main {
     color: #65dfc9;
 }
 
-.nav_link.active {
-    color: var(--box1-color);
+.links h2 {
+    color: #658ec6;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.links .nav_link.active h2 {
+    color: #000000;
+    opacity: 1;
+    font-weight: bold;
 }
 
 
 .games {
     flex: 2;
+}
+
+.user img {
+    width: 50px;
 }
 
 .pro {
@@ -184,7 +204,7 @@ main {
 
 /* GAMES */
 .status {
-    margin-bottom: 3rem;
+    margin-bottom: 1rem;
 }
 
 .status input {
@@ -216,14 +236,14 @@ main {
     );
     border-radius: 1rem;
     margin: 1rem 0rem;
-    padding: 1rem;
+    padding: .3rem;
     box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.212);
     justify-content: space-between;
     align-items: center;
 }
 
 .games .card img {
-    max-width: 70px;
+    max-width: 40px;
 }
 
 .games .card .card-info {
@@ -239,7 +259,7 @@ main {
 .progress {
     background: linear-gradient(to right top, #65dfc9, #6cdbeb);
     width: 100%;
-    height: 15%;
+    height: 10px;
     border-radius: 1rem;
     position: relative;
     overflow: hidden;
@@ -250,7 +270,7 @@ main {
     height: 100%;
     background: rgb(236, 236, 236);
     position: absolute;
-    left: 60%;
+    left: 20%;
 }
 .card-info {
     display: flex;
@@ -267,6 +287,10 @@ main {
     font-size: 11px;
 }
 
+.card-info p {
+    font-size: 11px;
+}
+
 .percentage {
     font-weight: bold;
     background: linear-gradient(to right top, #65dfc9, #6cdbeb);
@@ -274,14 +298,12 @@ main {
     -webkit-text-fill-color: transparent;
 }
 
-.games div div.status h1 {
-    margin-bottom: 10px;
-}
-
 .games >label {
     display: none;
-    opacity: 0;
     transition: 4s ease-in;
+    color: #658ec6;
+    font-weight: 500;
+    opacity: 0.8;
 }
 
 .games label.active {
@@ -320,15 +342,15 @@ form.sign-in-form {
 .title {
     font-size: 2.2rem;
     color: #444;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
 }
 
 .input-field {
     max-width: 380px;
-    width: 100%;
+    width: 70%;
     background-color: #99cacc;
     margin: 10px 0;
-    height: 55px;
+    height: 35px;
     border-radius: 55px;
     display: grid;
     grid-template-columns: 15% 85%;
@@ -350,7 +372,7 @@ form.sign-in-form {
     border: none;
     line-height: 1;
     font-weight: 600;
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: #333;
 }
 

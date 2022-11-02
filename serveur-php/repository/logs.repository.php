@@ -1,17 +1,13 @@
 <?php
-include_once('../domains/Joueur.php');
-include_once('../connection-db/con_db.php');
-include_once('../services/sendEmail.php');
 
 class LogsRepository {
     private static $db;
-    public function __construct() {
-        self::$db = ConnectionDB::getDb();
+    public function __construct($pdo_db) {
+        self::$db = $pdo_db;
     }
 
-    public static function save(Logs $log): bool
+    public function save(Logs $log): bool
     {
-        self::$db = ConnectionDB::getDb();
         $log->setId(null);
         $req = self::$db->prepare('
             INSERT INTO hanoi_logs(joueur_id, information, cree_le) 

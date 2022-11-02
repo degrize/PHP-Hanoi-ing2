@@ -6,10 +6,9 @@ include_once('../connection-db/con_db.php');
 
 class NiveauRepository {
     private static $db;
-    public function __construct() {
-        self::$db = ConnectionDB::getDb();
+    public function __construct($pdo_db) {
+        self::$db = $pdo_db;
     }
-
     public function save(Niveau $niveau): bool
     {
         $niveau->setId(null);
@@ -64,10 +63,10 @@ class NiveauRepository {
         return $rep;
     }
 
-    public static function findById($id): Niveau
+    public function findById($id): Niveau
     {
         $niveau = new Niveau();
-        $req = self::$db->query("SELECT * FROM hanoi_niveau where id = $id");
+        $req = self::$db->query("SELECT * FROM hanoi_niveau where id =" . $id);
         while ($donnees = $req->fetch()) {
             $niveau->setId($donnees['id']);
             $niveau->setTitre($donnees['titre']);
@@ -76,7 +75,8 @@ class NiveauRepository {
             $niveau->setTempsMax($donnees['temps_max']);
             $niveau->setNbreDisque($donnees['nbre_disque']);
             $niveau->setGain($donnees['gain']);
-            $niveau->setJoueurs(self::findAllJoueurByNiveauId($niveau->getId()));
+            // A ne pas decommenter!
+            //$niveau->setJoueurs($this->findAllJoueurByNiveauId($niveau->getId()));
         }
         $req->closeCursor();
         return $niveau;
@@ -96,7 +96,9 @@ class NiveauRepository {
             $niveau->setTempsMax($donnees['temps_max']);
             $niveau->setNbreDisque($donnees['nbre_disque']);
             $niveau->setGain($donnees['gain']);
-            $niveau->setJoueurs(self::findAllJoueurByNiveauId($niveau->getId()));
+
+            echo 'findAllNiveau(' . $niveau . ');';
+           // $niveau->setJoueurs($this->findAllJoueurByNiveauId($niveau->getId()));
 
             $niveauList[] = $niveau;
         }
@@ -104,13 +106,13 @@ class NiveauRepository {
         return $niveauList;
     }
 
-    public static function findAllJoueurByNiveauId($niveau_id): array
+    public function findAllJoueurByNiveauId($niveau_id): array
     {
         $joueursList = array();
         if ($niveau_id) {
             $req = self::$db->query("SELECT joueur_id FROM hanoi_rel_niveau_joueur where niveau_id = $niveau_id");
             while ($donnees = $req->fetch()) {
-                $joueur = JoueurRepository::findById($donnees['joueur_id']);
+                $joueur = (new JoueurRepository(self::$db))->findById($donnees['joueur_id']);
                 $joueursList[] = $joueur;
             }
             $req->closeCursor();

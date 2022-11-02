@@ -6,12 +6,15 @@ import("../../../models/joueur.js").then(Class => {
 const div_info = document.querySelector(".login_error__success");
 
 function reponseServeur(reponse) {
+    console.log(reponse);
     if (reponse) {
         window.location.href="../../Panel/vue/index.html"
     }
     else {
+        console.log("nonon")
         div_info.innerHTML = "erreur d'authentification verifier vos informations";
         div_info.className = "login_error__success error_login"
+        div_info.style.display = "block";
     }
 }
 
@@ -35,15 +38,16 @@ function reponseRegsiter() {
     if ($_GET("register")) {
         div_info.innerHTML = "Votre enregistrement à la plateforme a reussie connectez-vous maintenant.";
         div_info.className = "login_error__success success_register";
+        div_info.style.display = "block";
     }
 }
 reponseRegsiter();
 
 function reponsePanel() {
-    alert("Success")
     if ($_GET("connection") == "false") {
         div_info.innerHTML = "Pour des mesures de sécurités Nous avons redémarré votre session. réidentifiez vous ";
         div_info.className = "login_error__success success_register";
+        div_info.style.display = "block";
     }
 }
 reponsePanel();

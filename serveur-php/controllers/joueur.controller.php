@@ -7,10 +7,8 @@ include_once('../repository/joueur.repository.php');
 include_once('../mappers/joueur.mapper.php');
 include_once('../connection-db/con_db.php');
 
-//$db = (new ConnectionDB())->db;
-
 $joueur = new Joueur();
-$joueurRepository = new JoueurRepository();
+$joueurRepository = new JoueurRepository($pdo_db); // la variable exite
 $joueur = convertJsonToClass(json_decode($_GET['data']));
 
 // on recupere la tache que nous voulons executer
@@ -20,11 +18,11 @@ $rep = false;
 switch ($mehode) {
     case "connection":
         $rep = $joueurRepository->connection($joueur);
-        echo 'reponseServeur('. $rep .');';
+        echo "reponseServeur($rep);";
         break;
     case "joueurConnecte":
         if (isset($_SESSION['joueur_id'])) {
-            $joueur = JoueurRepository::findById($_SESSION['joueur_id']);
+            $joueur = $joueurRepository->findById($_SESSION['joueur_id']);
         }
         echo "reponseServeur($joueur);";
         break;

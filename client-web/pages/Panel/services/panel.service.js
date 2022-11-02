@@ -5,15 +5,31 @@ import("../../../models/joueur.js").then(Class => {
     joueur.sendToPHP("joueurConnecte")
 });
 
+let niveau;
+import("../../../models/niveau.js").then(Class => {
+    niveau = new Class.Niveau;
+    // On envoie les infos à notre controller-PHP
+    niveau.sendToPHP("findAll")
+});
+
+let niveauList = [];
+
+function findAllNiveau(reponse) {
+    niveauList.push(reponse);
+}
+
+function showAllLevel() {
+
+}
+
 function reponseServeur(reponse) {
     joueur = reponse;
     if (joueur.id == null) {
         window.location.href="../../login/vue/login.html?connection=false"
         return false;
     }
-
+    console.log(joueur)
     const playeur = new Player(joueur);
-
 }
 
 

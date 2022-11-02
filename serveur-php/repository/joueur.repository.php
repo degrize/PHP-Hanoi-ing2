@@ -1,15 +1,15 @@
 <?php
 include_once('../domains/Joueur.php');
-include_once('../domains/Niveau.php');
 include_once('../domains/Logs.php');
 include_once('../services/sendEmail.php');
 include_once('../repository/logs.repository.php');
 include_once('../repository/niveau.repository.php');
+include_once('../repository/niveau-joueur.repository.php');
 
 class JoueurRepository {
     private static $db;
-    public function __construct() {
-        self::$db = ConnectionDB::getDb();
+    public function __construct($pdo_db) {
+        self::$db = $pdo_db;
     }
 
     public function save(Joueur $joueur): bool {
@@ -73,7 +73,7 @@ class JoueurRepository {
         self::findById($id);
     }*/
 
-    public static function findById($id): Joueur
+    public function findById($id): Joueur
     {
         $joueur = new Joueur();
         $req = self::$db->query("SELECT * FROM hanoi_joueur where id = $id");
@@ -87,6 +87,7 @@ class JoueurRepository {
             $joueur->setPiece($donnees['piece']);
             $joueur->setCreeLe($donnees['cree_le']);
             $joueur->setModifieLe($donnees['modifie_le']);
+            $joueur->setNiveauJoueurs((new NiveauJoueurRepository(self::$db))->findAllByJoueur($joueur));
         }
         $req->closeCursor();
         return $joueur;
@@ -127,7 +128,6 @@ class JoueurRepository {
             $joueur->setPiece($donnees['piece']);
             $joueur->setCreeLe($donnees['cree_le']);
             $joueur->setModifieLe($donnees['modifie_le']);
-            $joueur->setNiveaux($this->findAllNiveauByJoueurId($joueur->getId()));
 
             $joueursList[] = $joueur;
         }
@@ -135,13 +135,13 @@ class JoueurRepository {
         return $joueursList;
     }
 
-    public function findAllNiveauByJoueurId(int $joueur_id): array
+    public function findAllNiveauByJoueurId($joueur_id): array
     {
         $niveauList = array();
         $req = self::$db->query("SELECT niveau_id FROM hanoi_rel_niveau_joueur where joueur_id = ". $joueur_id);
         while ($donnees = $req->fetch()) {
-            $niveau = NiveauRepository::findById($donnees['niveau_id']);
-            $niveauList[] = $niveau;
+            //$niveau = NiveauRepository::findById($donnees['niveau_id']);
+            //$niveauList[] = $niveau;
         }
         $req->closeCursor();
         return $niveauList;
@@ -202,12 +202,13 @@ class JoueurRepository {
         $rep = "false";
         $req = self::$db->query("SELECT mot_de_passe FROM hanoi_joueur where email = '$email'");
         while ($donnees = $req->fetch()) {
+            echo "console.log($joueur);";
             $pwd_hashed  = $donnees['mot_de_passe'];
             if (password_verify($this->encode_password($pwd), $pwd_hashed)) {
                 $rep = "true";
-                $log = new Logs($joueur->getId(), "connexion au jeu");
+                /*$log = new Logs($joueur->getId(), "connexion au jeu");
                 echo "console.log($log);";
-                LogsRepository::save($log);
+                // (new LogsRepository(self::$db))->save($log);*/
                 $_SESSION['joueur_id'] = $joueur->getId();
             }
         }
