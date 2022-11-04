@@ -33,7 +33,7 @@ switch ($mehode) {
         break;
     case "edit":
         $rep = $joueurRepository->edit($joueur);
-        echo 'reponseServeur('.$joueur.');';
+        echo 'reponseServeurEdit('.$joueur.');';
         break;
     case "delete":
         $rep = $joueurRepository->delete($joueur);
@@ -54,6 +54,10 @@ switch ($mehode) {
         $loginList = $joueurRepository->findAllLogin();
         echo 'loginList = '.json_encode($loginList).';';
         break;
+    case "checkLastPwd":
+        $rep = $joueurRepository->checkLastPwd($joueur);
+        echo 'var_checkLastPwd = ' . json_encode($rep) . ';';
+        break;
     case "retrievePassword":
         try {
             $rep = $joueurRepository->retrievePassword($joueur);
@@ -61,6 +65,13 @@ switch ($mehode) {
             echo 'reponseServeur('. false .');';
         }
         echo 'reponseServeur('.$rep.');';
+        break;
+    case "changeAvatar":
+        $rep = $joueurRepository->changeAvatar($joueur);
+        if ($rep) {
+            $rep = $joueurRepository->findById($joueur->getId());
+        }
+        echo "reponseServeur($rep);";
         break;
 
     default:

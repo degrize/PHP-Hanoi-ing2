@@ -396,12 +396,13 @@ form.sign-in-form {
     grid-template-columns: 15% 85%;
     padding: 0 0.4rem;
     position: relative;
+    align-items: center;
 }
 
-.input-field i {
+.card form .input-field i {
     text-align: center;
-    line-height: 55px;
-    color: #acacac;
+    line-height: 75px;
+    color: #1369d9;
     transition: 0.5s;
     font-size: 1.1rem;
 }
@@ -423,7 +424,7 @@ form.sign-in-form {
 
 .btn {
     width: 100%;
-    background-color: #5995fd;
+    background-image: var(--level-color);
     border: none;
     outline: none;
     height: 35px;
@@ -437,9 +438,18 @@ form.sign-in-form {
 }
 
 .btn:hover {
-    background-color: #4d84e2;
+    background-image: var(--level-color);
 }
 
+
+.tooltip {
+    display: inline-block;
+    position: relative;
+    top: -5px;
+    font-size: 13px;
+    color: red;
+    border: none;
+}
 
 /* BTN BUY*/
 .button{

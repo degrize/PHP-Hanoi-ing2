@@ -1,5 +1,5 @@
 export class Joueur {
-    id;
+    id = 1;
     email = "";
     login = "";
     mot_de_passe = "";

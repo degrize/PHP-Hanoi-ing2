@@ -4,12 +4,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
+    <!--CSS AVATAR -->
+    <link rel="stylesheet" href="avatar/assets/css/styles.css">
+    <link rel="stylesheet" href="avatar/assets/css/slider.css">
+    <!--=============== BOXICONS ===============-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
+
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="style.css">
-     
+
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+
+    <!--ICONS-->
+    <script src="../../../assets/icons/all.js"></script> <!-- Font Awesome-->
+
 
     <title>Panel User</title>
 </head>
@@ -20,9 +31,10 @@
             <div class="dashboard">
                 <a class="nav_link" id="editProfile">
                     <div class="user">
-                        <img src="./Images/man8.png" width="100px" title="Modifier votre profile"/>
+                        <img id="joueur_photo" src="./avatar/assets/img/man8.png" width="100px" title="Modifier votre profile"/>
                         <h3 class="joueur_pseudo"></h3>
                         <p class="joueur_email"></p>
+                        <h1>Editer</h1>
                     </div>
                 </a>
                 <div class="links">
@@ -164,28 +176,127 @@
                         <h1>Editer votre profile</h1>
                     </div>
                     <div class="cards form-card">
-                        <div class="card">
-                            <form action="#" class="sign-in-form">
-                                <div class="input-field">
-                                    <i class="fas fa-user"></i>
-                                    <input type="text" placeholder="Nom d'utilisateur" />
+                        <div class="">
+                            <section class="modal container">
+                                <button class="modal__button" id="open-modal">
+                                    Choix de l'avatar
+                                </button>
+
+                                <div class="modal__container" id="modal-container">
+                                    <div class="modal__content">
+                                        <div class="modal__close close-modal" title="Close">
+                                            <i class='fa fa-window-close'></i>
+                                        </div>
+
+                                        <div>
+                                            <!--<img src="assets/img/star-trophy.png" alt="" class="modal__img">-->
+
+                                            <div class="slideshow-container">
+
+                                                <!-- Full-width images with number and caption text -->
+                                                <div class="mySlides fade">
+                                                    <img src="avatar/assets/img/man8.png" id="man8" class="modal__img">
+                                                </div>
+                                                <div class="mySlides fade">
+                                                    <img src="avatar/assets/img/man1.png" id="man1" class="modal__img">
+                                                </div>
+                                                <div class="mySlides fade">
+                                                    <img src="avatar/assets/img/man3.png" id="man3" class="modal__img">
+                                                </div>
+                                                <div class="mySlides fade">
+                                                    <img src="avatar/assets/img/woman1.png" id="woman1" class="modal__img">
+                                                </div>
+                                                <div class="mySlides fade">
+                                                    <img src="avatar/assets/img/woman2.png" id="woman2" class="modal__img">
+                                                </div>
+                                                <div class="mySlides fade">
+                                                    <img src="avatar/assets/img/man4.png" id="man4" class="modal__img">
+                                                </div>
+                                                <div class="mySlides fade">
+                                                    <img src="avatar/assets/img/man2.png" id="man2" class="modal__img">
+                                                </div>
+                                                <div class="mySlides fade">
+                                                    <img src="avatar/assets/img/woman7.png" id="woman7" class="modal__img">
+                                                </div>
+                                                <div class="mySlides fade">
+                                                    <img src="avatar/assets/img/woman3.png" id="woman3" class="modal__img">
+                                                </div>
+                                                <div class="mySlides fade">
+                                                    <img src="avatar/assets/img/woman4.png" id="woman4" class="modal__img">
+                                                </div>
+                                                <div class="mySlides fade">
+                                                    <img src="avatar/assets/img/man11.png" id="man11" class="modal__img">
+                                                </div>
+                                                <div class="mySlides fade">
+                                                    <img src="avatar/assets/img/man13.png" id="man13" class="modal__img">
+                                                </div>
+                                                <div class="mySlides fade">
+                                                    <img src="avatar/assets/img/man5.png" id="man5" class="modal__img">
+                                                </div>
+                                                <div class="mySlides fade">
+                                                    <img src="avatar/assets/img/man7.png" id="man7" class="modal__img">
+                                                </div>
+                                                <div class="mySlides fade">
+                                                    <img src="avatar/assets/img/man10.png" id="man10" class="modal__img">
+                                                </div>
+                                                <div class="mySlides fade">
+                                                    <img src="avatar/assets/img/woman5.png" id="woman5" class="modal__img">
+                                                </div>
+
+                                                <!-- Next and previous buttons -->
+                                                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                                                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                                            </div>
+                                        </div>
+
+                                        <h1 class="modal__title">AVATAR</h1>
+                                        <p class="modal__description">je clic pour choisir ce avatar</p>
+
+                                        <button id="choose_avatar" class="modal__button modal__button-width">
+                                            Appliquer
+                                        </button>
+
+                                    </div>
                                 </div>
+                            </section>
+                        </div>
+                        <div class="card">
+                            <form action="#" id="editForm" class="sign-in-form">
+                                <div class="input-field">
+                                    <i class="fas fa-user pm" ></i>
+                                    <input type="text" placeholder="Pseudo" id="login" required />
+                                </div>
+                                <span class="tooltip">
+                                  Le pseudo ne peut pas faire moins de 4 caractères
+                                </span>
                                 <div class="input-field">
                                     <i class="fas fa-envelope"></i>
-                                    <input type="email" placeholder="Email" />
+                                    <input type="email" placeholder="Email" id="email" required />
                                 </div>
+                                <span class="tooltip">
+                                  Renseignez une addresse email valide
+                                </span>
                                 <div class="input-field">
                                     <i class="fas fa-lock"></i>
-                                    <input type="password" placeholder="Ancien mot de passe" />
+                                    <input type="password" placeholder="Ancien mot de passe" id="lastPwd" required />
                                 </div>
+                                <span class="tooltip">
+                                  Il doit être identique à celui d'origine
+                                </span>
                                 <div class="input-field">
                                     <i class="fas fa-lock"></i>
-                                    <input type="password" placeholder="Nouveau mot de passe" />
+                                    <input type="password" placeholder="Nouveau mot de passe" id="newPwd" />
                                 </div>
+                                <span class="tooltip">
+                                  Le mot de passe ne doit pas faire moins de 4 caractères
+                                </span>
                                 <div class="input-field">
                                     <i class="fas fa-lock"></i>
-                                    <input type="password" placeholder="Confirmer le mot de passe" />
+                                    <input type="password" placeholder="Confirmer le mot de passe" id="confPwd" />
                                 </div>
+                                <span class="tooltip">
+                                  La confirmation doit être identique à celui du nouveau
+                                </span>
                                 <input type="submit" class="btn" value="Modifier" />
                             </form>
                         </div>
@@ -198,8 +309,13 @@
     <div class="circle1"></div>
     <div class="circle2"></div>
 
-    <!--Le JAVASCRIPT -->
+    <!--Le JAVASCRIPT MAIN -->
     <script src="script.js"></script>
+    <!--=============== AVATAR JS ===============-->
+    <script src="avatar/assets/js/main.js"></script>
+    <script src="avatar/assets/js/slider.js"></script>
+
+    <!--Notre service -->
     <script type="text/javascript" src="../services/panel.service.js"></script>
 </body>
 </html>

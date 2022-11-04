@@ -30,8 +30,6 @@ function reponseServeur(reponse) {
         joueur.mot_de_passe = mdpInput.value;
         joueur.photo = "loginInput.value";
         joueur.est_suspendu = false;
-        joueur.cree_le = "2022-09-03";
-        joueur.modifie_le = "2022-09-03";
         // On envoie les infos à notre controller-PHP
         joueur.sendToPHP("save")
 

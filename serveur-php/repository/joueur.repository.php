@@ -13,6 +13,9 @@ class JoueurRepository {
     }
 
     public function save(Joueur $joueur): bool {
+        $joueur->setCreeLe(date("Y-m-d H:i:s")); // today
+        $joueur->setModifieLe(date("Y-m-d H:i:s")); // today
+        $joueur->setPhoto("man1"); // today
         $req = self::$db->prepare('
             INSERT INTO hanoi_joueur(
                 email,login, mot_de_passe, photo, est_suspendu, piece, cree_le, modifie_le) 
@@ -35,6 +38,7 @@ class JoueurRepository {
     {
         $rep = false;
         if ($joueur->getId()) {
+            $joueur->setModifieLe(date("Y-m-d H:i:s")); // today
             $req = self::$db->prepare('
             UPDATE hanoi_joueur SET 
                 email = :email,login = :login, mot_de_passe = :mot_de_passe, photo = :photo,
@@ -52,8 +56,11 @@ class JoueurRepository {
                 'id' => $joueur->getId(),
             ));
             $rep = true;
+            $log = new Logs($joueur->getId(), "EDIT du Joueur");
+            echo "console.log('AJout des Logs');";
+            (new LogsRepository(self::$db))->save($log);
         }
-        return $rep;
+        return $joueur;
     }
 
     public function delete(Joueur $joueur): string
@@ -65,6 +72,9 @@ class JoueurRepository {
                 'id' => $joueur->getId(),
             ));
             $rep = true;
+            $log = new Logs($joueur->getId(), "Supression du joueur");
+            echo "console.log('AJout des Logs');";
+            (new LogsRepository(self::$db))->save($log);
         }
         return $rep;
     }
@@ -183,6 +193,31 @@ class JoueurRepository {
         return $mot_de_passe;
     }
 
+    public function changeAvatar(Joueur $joueur): bool {
+        $rep = false;
+        if ($joueur->getId() != null) {
+            $req = self::$db->prepare('
+            UPDATE hanoi_joueur SET photo = :photo WHERE id = :id');
+            $req->execute(array(
+                'photo' => $joueur->getPhoto(),
+                'id' => $joueur->getId()
+            ));
+            $rep = true;
+        }
+        return $rep;
+    }
+
+    public function checkLastPwd(Joueur $joueur): bool
+    {
+        $rep = false;
+        $pwd_hashed  = $joueur->getMotDePasse();
+        $pwd = $joueur->getLogin(); // on stock la saisie de l'utilisateur ici
+        if (password_verify($this->encode_password($pwd), $pwd_hashed)) {
+            $rep = true;
+        }
+        return $rep;
+    }
+
     public function hash_password(string $pwd): string {
         $pepper = "c1isvFdxMDdmjOlvxpecFw";
         $pwd_peppered = hash_hmac("sha256", $pwd, $pepper);
@@ -200,19 +235,15 @@ class JoueurRepository {
         $pwd = $joueur->getMotDePasse();
         $joueur = $this->findByEmail($joueur->getEmail());
         $rep = "false";
-        $req = self::$db->query("SELECT mot_de_passe FROM hanoi_joueur where email = '$email'");
-        while ($donnees = $req->fetch()) {
-            echo "console.log($joueur);";
-            $pwd_hashed  = $donnees['mot_de_passe'];
-            if (password_verify($this->encode_password($pwd), $pwd_hashed)) {
-                $rep = "true";
-                /*$log = new Logs($joueur->getId(), "connexion au jeu");
-                echo "console.log($log);";
-                // (new LogsRepository(self::$db))->save($log);*/
-                $_SESSION['joueur_id'] = $joueur->getId();
-            }
+        $pwd_hashed  = $joueur->getMotDePasse();
+        if (password_verify($this->encode_password($pwd), $pwd_hashed)) {
+            $rep = "true";
+            $log = new Logs($joueur->getId(), "connexion au jeu");
+            echo "console.log('AJout des Logs');";
+            (new LogsRepository(self::$db))->save($log);
+            $_SESSION['joueur_id'] = $joueur->getId();
         }
-        $req->closeCursor();
+
         return $rep;
     }
 
