@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="css/style.css">
+    <title> Paiement de pieces du jeu </title>
+
+</head>
+<body>
+
+<div class="container">
+
+    <form action="https://www.paypal.com/fr/home">
+
+        <div class="row">
+
+            <div class="col">
+
+                <h3 class="title">ADRESSE DE FACTURATION</h3>
+
+                <div class="inputBox">
+                    <span>Pseudo :</span>
+                    <input type="text" placeholder="le lion">
+                </div>
+                <div class="inputBox">
+                    <span>email :</span>
+                    <input type="email" placeholder="example@domaine.com">
+                </div>
+                <div class="inputBox">
+                    <span>addresse :</span>
+                    <input type="text" placeholder="rue - localité">
+                </div>
+                <div class="inputBox">
+                    <span>ville :</span>
+                    <input type="text" placeholder="Yamoussoukro">
+                </div>
+
+                <div class="flex">
+                    <div class="inputBox">
+                        <span>Pays :</span>
+                        <input type="text" placeholder="Côte d'Ivoire">
+                    </div>
+                    <div class="inputBox">
+                        <span>code postal :</span>
+                        <input type="text" placeholder="123 456">
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col">
+
+                <h3 class="title">
+                    <span>Coin Hanoi</span>
+                    Paiement
+                </h3>
+
+                <div class="inputBox">
+                    <span>cartes acceptées :</span>
+                    <img src="images/card_img.png" alt="">
+                </div>
+                <div class="inputBox">
+                    <span>Nom sur la carte :</span>
+                    <input type="text" placeholder="M. Kouassi jean">
+                </div>
+                <div class="inputBox">
+                    <span>Numéro de Carte de Crédit :</span>
+                    <input type="number" placeholder="1111-2222-3333-4444">
+                </div>
+                <div class="inputBox">
+                    <span>mois exp :</span>
+                    <input type="text" placeholder="Decembre">
+                </div>
+
+                <div class="flex">
+                    <div class="inputBox">
+                        <span>année exp :</span>
+                        <input type="number" placeholder="2022">
+                    </div>
+                    <div class="inputBox">
+                        <span>CVV :</span>
+                        <input type="text" placeholder="1234">
+                    </div>
+                </div>
+
+            </div>
+    
+        </div>
+
+        <input type="submit" value="Passer à la caisse" class="submit-btn">
+
+    </form>
+
+</div>    
+    
+</body>
+</html>
