@@ -8,7 +8,7 @@ export class Joueur {
     piece = 0;
     cree_le = "";
     modifie_le = "";
-    niveaux = [];
+    niveauJoueurs = [];
     logs = [];
     authorities = [];
 

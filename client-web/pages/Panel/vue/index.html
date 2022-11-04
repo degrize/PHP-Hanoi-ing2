@@ -20,16 +20,16 @@
             <div class="dashboard">
                 <a class="nav_link" id="editProfile">
                     <div class="user">
-                        <img src="./Images/login-.png" width="100px" title="Modifier votre profile"/>
+                        <img src="./Images/man8.png" width="100px" title="Modifier votre profile"/>
                         <h3 class="joueur_pseudo"></h3>
                         <p class="joueur_email"></p>
                     </div>
                 </a>
                 <div class="links">
-                    <a href="">
+                    <a href="../../choix_SE/index.html">
                         <div class="link">
-                            <img src="./images/twitch.png" alt="" />
-                            <h2>Demarrer</h2>
+                            <img src="./images/upcoming.png" alt="" />
+                            <h2>Jouer</h2>
                         </div>
                     </a>
                     <a class="nav_link active" id="profile">
@@ -40,20 +40,20 @@
                     </a>
                     <a class="nav_link" id="joueurLigne">
                         <div class="link">
-                            <img src="./images/upcoming.png" alt="" />
-                            <h2>Joueurs (en ligne)</h2>
+                            <img src="./images/twitch.png" alt="" />
+                            <h2>Achats (Coins)</h2>
                         </div>
                     </a>
                     <a class="nav_link" id="meilleursScores">
                         <div class="link">
                             <img src="./images/library.png" alt="" />
-                            <h2>Scores</h2>
+                            <h2>Meilleurs scores</h2>
                         </div>
                     </a>
                 </div>
                 <div class="pro">
-                    <h2><u>Professeur:</u> M. KONAN KAN</h2>
-                    <img src="./images/controller.png" alt="" />
+                    <h2><u>Coins:</u> <span id="joueur_coin"></span></h2>
+                    <img src="./images/coin.png" width="80px" alt="" />
                 </div>
             </div>
 
@@ -62,59 +62,15 @@
                     <div class="status">
                         <h1>PROGRESSION DE JEU</h1>
                     </div>
-                    <div class="cards">
-                        <div class="card">
+                    <div class="cards" id="progessionLevel">
+                        <div class="card level">
                             <img src="./images/assassins.png" alt="" />
                             <div class="card-info">
-                                <p>PS5 Version</p>
-                                <div class="progress"></div>
-                            </div>
-                            <h2 class="percentage">60%</h2>
-                        </div>
-                        <div class="card">
-                            <img width="70px" src="./images/sackboy.png" alt="" />
-                            <div class="card-info">
-                                <p>Niveau 5</p>
-                                <div class="progress"></div>
-                            </div>
-                            <h2 class="percentage">60%</h2>
-                        </div>
-                        <div class="card">
-                            <img src="./images/spiderman.png" alt="" />
-                            <div class="card-info">
-                                <div class="progress"></div>
-                            </div>
-                            <h2 class="percentage">60%</h2>
-                        </div>
-                        <div class="card">
-                            <img src="./images/assassins.png" alt="" />
-                            <div class="card-info">
-                                <p>PS5 Version</p>
-                                <div class="progress"></div>
-                            </div>
-                            <h2 class="percentage">60%</h2>
-                        </div>
-                        <div class="card">
-                            <img src="./images/assassins.png" alt="" />
-                            <div class="card-info">
-                                <p>PS5 Version</p>
-                                <div class="progress"></div>
-                            </div>
-                            <h2 class="percentage">60%</h2>
-                        </div>
-                        <div class="card">
-                            <img src="./images/assassins.png" alt="" />
-                            <div class="card-info">
-                                <p>PS5 Version</p>
-                                <div class="progress"></div>
-                            </div>
-                            <h2 class="percentage">60%</h2>
-                        </div>
-                        <div class="card">
-                            <img src="./images/assassins.png" alt="" />
-                            <div class="card-info">
-                                <p>PS5 Version</p>
-                                <div class="progress"></div>
+                                <p class="level-title"></p>
+                                <!--<div class="progress"></div>-->
+                                <div class="progress">
+                                    <div class="progress-done" data-done="70"></div>
+                                </div>
                             </div>
                             <h2 class="percentage">60%</h2>
                         </div>
@@ -122,32 +78,47 @@
                 </label>
                 <label for="joueurLigne" class="">
                     <div class="status">
-                        <h1>LES JOUEURS CONNECTÉS</h1>
+                        <h1>ACHETEZ DANS LE JEU</h1>
                     </div>
                     <div class="cards">
                         <div class="card">
-                            <img src="./images/assassins.png" alt="" />
+                            <img src="./images/coins_gold.png" alt="" />
                             <div class="card-info">
                                 <div class="info_user">
-                                    <h4>Sackboy | </h4>
-                                    <h5>mdegrize@gmail.com</h5>
+                                    <h2>100000 Coins </h2>
                                 </div>
-                                <p>Veteran</p>
-
                             </div>
-                            <h4 class="percentage">il y a 2 heures</h4>
+                            <a class="button" href="../../payment/index.html">
+                                <i class="fa-solid fa-circle-notch icon spinner"></i>
+                                <span class="btn-text" user-selcect="none">Acheter</span>
+                            </a>
                         </div>
                         <div class="card">
-                            <img width="70px" src="./images/sackboy.png" alt="" />
+                            <img src="./images/coins_gold2.png" alt="" />
                             <div class="card-info">
                                 <div class="info_user">
-                                    <h4>Sackboy | </h4>
-                                    <h5>mdegrize@gmail.com</h5>
+                                    <h2>10000 Coins </h2>
                                 </div>
-                                <p>Veteran</p>
                             </div>
-                            <h4 class="percentage">il y a 7 minutes</h4>
+                            <a class="button" href="../../payment/index.html">
+                                <i class="fa-solid fa-circle-notch icon spinner"></i>
+                                <span class="btn-text" user-selcect="none">Acheter</span>
+                            </a>
                         </div>
+
+                        <div class="card">
+                            <img src="./images/coins_bronze.png" alt="" />
+                            <div class="card-info">
+                                <div class="info_user">
+                                    <h2>4000 Coins </h2>
+                                </div>
+                            </div>
+                            <a class="button" href="../../payment/index.html">
+                                <i class="fa-solid fa-circle-notch icon spinner"></i>
+                                <span class="btn-text" user-selcect="none">Acheter</span>
+                            </a>
+                        </div>
+
                     </div>
                 </label>
 
@@ -167,8 +138,8 @@
 
                             </div>
                             <div>
-                                <h3 class="percentage">60 minutes</h3>
-                                <h3 class="percentage">30 deplacements</h3>
+                                <h5 class="percentage">60 minutes</h5>
+                                <h5 class="percentage">30 deplacements</h5>
                             </div>
                         </div>
                         <div class="card">
@@ -181,8 +152,8 @@
                                 <p>debutant</p>
                             </div>
                             <div>
-                                <h3 class="percentage">60 minutes</h3>
-                                <h3 class="percentage">30 deplacements</h3>
+                                <h5 class="percentage">60 minutes</h5>
+                                <h5 class="percentage">30 deplacements</h5>
                             </div>
                         </div>
                     </div>
@@ -192,7 +163,7 @@
                     <div class="status">
                         <h1>Editer votre profile</h1>
                     </div>
-                    <div class="cards">
+                    <div class="cards form-card">
                         <div class="card">
                             <form action="#" class="sign-in-form">
                                 <div class="input-field">
@@ -215,7 +186,7 @@
                                     <i class="fas fa-lock"></i>
                                     <input type="password" placeholder="Confirmer le mot de passe" />
                                 </div>
-                                <input type="submit" class="btn" value="S'inscrire" />
+                                <input type="submit" class="btn" value="Modifier" />
                             </form>
                         </div>
                     </div>
