@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="description" content="Jeux de tour d'hanoi">
+	<title></title>
+	<link rel="stylesheet" type="text/css" href="css/bar_4.css">
+</head>
+<body>
+
+	<!-- Les son sound-->
+
+	<audio id="music2" loop="" autoplay>
+		<!-- lorsqu l'utilisayeur place un disque -->
+		<source src="sounds/bg_music.mp3"></source>
+	</audio>
+	<audio id="disqueClick">
+		<!-- au click d'un disque -->
+		<source src="sounds/click_tap_button.mp3" ></source>
+	</audio>
+	<audio id="bouton">
+		<!-- au click d'un bouton -->
+		<source src="sounds/click_tap_button.mp3"></source>
+	</audio>
+	<audio id="pasDeplacer">
+		<!-- lorsque essai de placer un disque superieur sur un inferieur  -->
+		<source src="sounds/pasDeplacer.mp3"></source>
+	</audio>
+	<audio id="disqueMouseUp">
+		<!-- lorsqu l'utilisayeur place un disque -->
+		<source src="sounds/disqueMouseUp.mp3"></source>
+	</audio>
+	<audio id="cramer">
+		<!-- au click d'un disque -->
+		<source src="sounds/boutonNone.mp3" ></source>
+	</audio>
+
+
+
+<!-- JEU  -->
+	<div class="jeu">
+
+		<div class="TopGame">
+			<div>
+				<div class="text">tour d’Hanoï</div>
+				<div class="niveau">Niveau</div>
+				<div class="coins">Coins</div>
+			</div>
+			<div class="imgMusic">
+				<a href="#sic1" onclick="play('sound')" title="SFX sound"> <img src="images/sound_effet.png"></a>
+				<a href="#sic2" onclick="play('music')" title="MUSIC"> <img src="images/musicPlayer.png"></a>
+
+			</div>
+			<div class="time">00:00</div>
+
+		</div>
+
+		<div class="toursAndDiscs">
+			<section class="tours">
+				<!-- Positionnement des tours -->
+				<span></span>
+				<span></span>
+				<span></span>
+			</section>
+
+			<section class="disk">
+				<!-- Positionnements des differents disque -->
+			</section>
+		</div>
+
+		<div class="bottomGame">
+			<div class="nombreDisques">
+				<button class="plus" onclick="tourHanoiMain.incrementDisques()">+</button>
+				<span class="nombres">disques</span>
+				<button class="moins" onclick="tourHanoiMain.decrementDisques()">-</button>
+			</div>
+
+			<div class="circle">
+				<div class="deplacement"> </div>
+				<div class="text-deplacement">
+					<p>LE deplacement</p>
+				</div>
+			</div>
+		</div>
+
+		<section class="victoire">&times
+			<a href="#" class="modal_close" onclick="tourHanoiMain.incrementDisques()">&times;</a>
+			<div class="winner">
+
+				<aside>
+					<img src="images/winner.jpg">
+					<p class="message">
+						
+					</p>
+				</aside>
+			</div>
+		</section>
+
+
+	</div>
+
+	
+	<script type="text/javascript" src="js/jeu.js">
+		/*
+			Vous decouvrez dans ce fichier javascript tout le coeur du programme
+		*/
+	</script>
+
+	<script type="text/javascript" src="js/text_circle.js">
+		/*
+			Vous decouvrez dans ce fichier le script du text en cercle
+		*/
+	</script>
+</body>
+</html>

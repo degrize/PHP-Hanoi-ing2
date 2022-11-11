@@ -8,19 +8,15 @@
     <!--CSS AVATAR -->
     <link rel="stylesheet" href="avatar/assets/css/styles.css">
     <link rel="stylesheet" href="avatar/assets/css/slider.css">
-    <!--=============== BOXICONS ===============-->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
+    <!--CSS NOTiFICATION -->
+    <link rel="stylesheet" href="notification/notification.css">
 
     <!----======== CSS ======== -->
     <link rel="stylesheet" href="style.css">
 
-    <!----===== Iconscout CSS ===== -->
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-
     <!--ICONS-->
     <script src="../../../assets/icons/all.js"></script> <!-- Font Awesome-->
-
 
     <title>Panel User</title>
 </head>
@@ -70,6 +66,22 @@
             </div>
 
             <div class="games" id="contentBloc">
+
+                <!-- La notification lorsque le profil est modifié -->
+                <div class="toast">
+                    <div class="toast-content">
+                        <i class="fas fa-solid fa-check check"></i>
+
+                        <div class="message">
+                            <span class="text text-1">Succès</span>
+                            <span class="text text-2">Modification enregistrée</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-xmark close"></i>
+
+                    <div class="progress"></div>
+                </div>
+
                 <label for="profile" class="active">
                     <div class="status">
                         <h1>PROGRESSION DE JEU</h1>
@@ -84,7 +96,7 @@
                                     <div class="progress-done" data-done="70"></div>
                                 </div>
                             </div>
-                            <h2 class="percentage">60%</h2>
+                            <h2 class="percentage">0%</h2>
                         </div>
                     </div>
                 </label>
@@ -179,7 +191,8 @@
                         <div class="">
                             <section class="modal container">
                                 <button class="modal__button" id="open-modal">
-                                    Choix de l'avatar
+                                     AVATAR
+                                    <i class='fa fa-user'></i>
                                 </button>
 
                                 <div class="modal__container" id="modal-container">
@@ -311,11 +324,15 @@
 
     <!--Le JAVASCRIPT MAIN -->
     <script src="script.js"></script>
-    <!--=============== AVATAR JS ===============-->
-    <script src="avatar/assets/js/main.js"></script>
-    <script src="avatar/assets/js/slider.js"></script>
+
+    <!-- LA NOtiFICATION -->
+    <script src="notification/notification.js"></script>
 
     <!--Notre service -->
     <script type="text/javascript" src="../services/panel.service.js"></script>
+
+    <!--=============== AVATAR JS ===============-->
+    <script src="avatar/assets/js/main.js"></script>
+    <script src="avatar/assets/js/slider.js"></script>
 </body>
 </html>

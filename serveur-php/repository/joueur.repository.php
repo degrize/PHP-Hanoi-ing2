@@ -34,7 +34,7 @@ class JoueurRepository {
         return true;
     }
 
-    public function edit(Joueur $joueur): string
+    public function edit(Joueur $joueur): bool
     {
         $rep = false;
         if ($joueur->getId()) {
@@ -60,7 +60,7 @@ class JoueurRepository {
             echo "console.log('AJout des Logs');";
             (new LogsRepository(self::$db))->save($log);
         }
-        return $joueur;
+        return $rep;
     }
 
     public function delete(Joueur $joueur): string

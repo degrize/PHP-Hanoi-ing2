@@ -3,3 +3,26 @@
     --bg-color: #4070f4;
     --bg-color-hover: #1048e1;
 }
+
+
+:root{
+    /* ===== Colors ===== */
+    --primary-color: linear-gradient(to right top, #65dfc9, #6cdbeb);
+    --level-color: linear-gradient(to right top, #65dfc9, #6cdbeb);
+    --green-color: #65dfc9;
+    --level-off-color: #c3c9ce;
+    --panel-color: #FFF;
+    --text-color: #000;
+    --black-light-color: #707070;
+    --border-color: #e6e5e5;
+    --toggle-color: #DDD;
+    --box1-color: #4DA3FF;
+    --box2-color: #FFE6AC;
+    --box3-color: #E7D1FC;
+    --title-icon-color: #fff;
+
+    /* ====== Transition ====== */
+    --tran-05: all 0.5s ease;
+    --tran-03: all 0.3s ease;
+    --tran-03: all 0.2s ease;
+}

@@ -33,7 +33,10 @@ switch ($mehode) {
         break;
     case "edit":
         $rep = $joueurRepository->edit($joueur);
-        echo 'reponseServeurEdit('.$joueur.');';
+        if ($rep) {
+            $joueur = $joueurRepository->findById($_SESSION['joueur_id']);
+            echo 'reponseServeurEdit('.$joueur.');';
+        }
         break;
     case "delete":
         $rep = $joueurRepository->delete($joueur);

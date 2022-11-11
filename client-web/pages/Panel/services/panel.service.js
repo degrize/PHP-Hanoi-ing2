@@ -29,7 +29,7 @@ function changeAvatar() {
     let joueurI = new joueurClass();
     joueurI.id = parseInt(joueur.id);
     if (avatarChoisi == null) {
-        joueurI.photo = "man8";
+        joueurI.photo = "man8"; // L 'avatar par defaut
     } else {
         joueurI.photo = avatarChoisi;
     }
@@ -100,7 +100,9 @@ function reponseServeur(reponse) {
     const playeur = new Player(joueur);
 }
 function reponseServeurEdit(reponse) {
-    window.location.href="../../Panel/vue/index.html"
+    /*window.location.href="../../Panel/vue/index.html"*/
+    reponseServeur(reponse);
+    showNotification(); // on affiche la notification
 }
 
 
@@ -326,6 +328,7 @@ let loginList;
             deactivateTooltips();
         };
     })();
+
 // Maintenant que tout est initialisé, on peut désactiver les « tooltips »
     deactivateTooltips();
 

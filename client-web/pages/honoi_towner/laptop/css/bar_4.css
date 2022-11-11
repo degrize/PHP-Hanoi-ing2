@@ -1,0 +1,350 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+/*CSS JEU*/
+
+body {
+	padding: 0;
+	margin: 0;
+	font-family: Geomanist;
+	background-size: 100%;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	width: 100%;
+	height: 100vh;
+	background: linear-gradient(57deg, #82c0e1, #80cbc4);
+	background-size: 400% 400%;
+	position: relative;
+	animation: bouge 7s ease-in-out infinite;
+}
+
+.image {
+	filter: brightness(0.8);
+}
+
+
+@keyframes bouge{
+	0%{
+		background-position: 0 50%;
+	}
+	50%{
+		background-position: 100% 50%;
+	}
+	100%{
+		background-position: 0 50%;
+	}
+}
+
+
+.jeu {
+	display: flex;
+	flex-direction: column;
+
+}
+.TopGame {
+	display: flex;
+	justify-content: space-between;
+	padding: 10px;
+	align-items: center;
+}
+
+.text, .niveau {
+	font-size: 2em;
+	font-weight: 900;
+	color: #2c3e50;
+	top: 1%;
+	left: 1%;
+
+}
+.niveau{
+	text-transform: unset;
+	top: 7%;
+	font-weight: 100;
+	color: rgba(0, 0, 0, .4);
+}
+a{
+	text-decoration: none;
+	box-sizing: border-box;
+}
+
+/*LE TIMMER*/
+.time{
+	top: 20px; right: 2%;
+	font-size: 2em;
+	font-weight: 500;
+	color: #2c3e50;
+	opacity: .6;
+
+}
+
+/*LA VICTOIRE*/
+.victoire{
+	background-color: rgba(0, 0, 0, .8);
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	z-index: 99999999;
+
+	user-select: none;
+	outline: none;
+
+	visibility: hidden;
+	opacity: 0;
+}
+.winner{
+	position: absolute;
+	width: 30%;
+	height: 25%;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -110%);
+
+
+}
+.winner aside img{
+	width: 100%;
+	height: 300px;
+	border-radius: 20px;
+
+}
+.winner aside{
+	background-color: #fff;
+	font-weight: 600;
+	color: green;
+	border-radius: 20px;
+	box-shadow: 40px 30px 80px 50px rgba(0, 0, 0, .3) inset;
+}
+.winner aside p{
+	font-size: 1.3em;
+	margin: 5px;	
+	padding: 0;
+	text-align: center;
+
+}
+
+.modal_close{
+	position: relative;
+	top: 20px; left: 1%;
+	font-size: 2.3em;
+	border-radius: 60%;
+
+	user-select: none;
+	
+	outline: none;
+}
+
+/*LES TOURS*/
+
+
+.toursAndDiscs {
+	min-height: 300px;
+
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.tours{
+	max-width: 1000px;
+	height: 300px;
+	position: relative;
+	z-index: 0;
+	margin: auto;
+	display: flex;
+	justify-content: space-around;
+
+}
+
+/**/
+
+.imgMusic{
+	display: inline-block;
+	right: 35%;
+	top: 30px;
+}
+.imgMusic a{
+	margin: 10px;
+}
+
+.tours span{
+	width: 20px;
+	height: 100%;
+	background: url(../images/tour1.png);
+	border-radius: 6px;
+	border-top-right-radius: 20px; 
+	border-top-left-radius: 20px; 
+
+}
+
+
+.disque
+{
+	
+	height: 28px;
+	display: inline-block;
+	vertical-align: middle;
+	position: absolute;
+	background: #00c6a7;
+	text-align: center;
+	border-radius: 46%;
+	transform: perspective(2000px) rotate(0deg) skew(5deg) translate(0,0);
+	border-top-left-radius: 20%;
+	border-top-right-radius: 20%;
+	
+	border-bottom: 5px solid #ccc;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	
+	color: transparent;
+	
+}
+.disque{
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 10;
+	cursor: move;
+	transition-property: color, background-color, box-shadow;
+	transition-timing-function: ease-in;
+	transition-duration: 150ms;
+	
+}
+.disque:active {
+	width: 25px;
+	height: 25px;
+	box-shadow:  inset 0  0  0 #fff, inset 0 0 0 #03a9f4, inset 0 0 0 #03a9f4,
+	0 0 0 #03a9f4, 0 0 0 #03a9f4, 0 0 0 #03a9f4, 0 0 13px #424242;
+}
+
+/* La partie Ajouter / Effacer un disque */
+
+.bottomGame {
+	display: flex;
+	gap: 100px;
+	align-items: center;
+	justify-content: center;
+	box-shadow:  inset 0  0  0 #fff, inset 0 0 0 #03a9f4, inset 0 0 0 #03a9f4,
+	0 0 0 #03a9f4, 0 0 0 #03a9f4, 0 0 0 #03a9f4, 0 0 13px #424242;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.nombreDisques{
+	cursor: pointer;
+	text-align: center;
+	width: 120px;
+}
+
+.nombreDisques button
+{
+	background-color: #ffa000;
+	color: #fff;
+	border: #ffa000 solid 1px;
+	padding: 27px;
+	padding-top: 20px;
+	padding-bottom: 20px;
+
+	border-radius: 50%;
+	box-shadow:  inset 0  0  0 #fff, inset 0 0 0 #03a9f4, inset 0 0 0 #03a9f4,
+	0 0 0 #03a9f4, 0 0 0 #03a9f4, 0 0 0 #03a9f4, 0 0 13px #424242;
+
+	font-size: 1.2em;
+	text-align: center;
+
+	transition-property: color, background-color, box-shadow;
+	transition-timing-function: ease-in;
+	transition-duration: 150ms;
+	cursor: pointer;
+	user-select: none;
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	outline: none;
+}
+
+.nombreDisques button.moins {
+	transform: translateX(30px);
+}
+
+
+.nombreDisques button:active
+{
+	padding: 17px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 0.6em;
+}
+
+.nombreDisques span {
+	background-color: white;
+	color: #2c3e50;
+	position: relative;
+	top: 10px;
+	padding-right: 15px;
+	padding-left: 15px;
+	border-radius: 10px;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+/*LE NOMBRE DE DEPLACEMENT*/
+
+.circle {
+	position: relative;
+	width: 130px;
+	height: 130px;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.circle .deplacement {
+	text-align: center;
+	border-radius: 50%;
+	z-index: 9999;
+	font-size: 1.7em;
+	text-transform: uppercase;
+	font-weight: bolder;
+	color: #ffa000;
+	width: 70px;
+	padding-top: 16px;
+	padding-bottom: 16px;
+
+	background: white;
+	box-shadow: inset 0 0 0 #fff, inset 0 0 0 #03a9f4, inset 0 0 0 #03a9f4,
+	0 0 0 #03a9f4, 0 0 0 #03a9f4, 0 0 0 #03a9f4, 0 0 13px #424242;
+}
+
+.circle .text-deplacement {
+	position: absolute;
+	font-family: Consolas;
+	color: #100f0f;
+	font-size: 1.2rem;
+	font-weight: bold;
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	animation: rotatetext 10s linear infinite;
+}
+
+@keyframes rotatetext {
+	0% {
+		transform: rotate(360deg);
+	}
+	100% {
+		transform: rotate(0deg);
+	}
+}
+.circle .text-deplacement span {
+	position: absolute;
+	left: 50%;
+	font-size: 1em;
+	transform-origin: 0 64px;
+
+}
+
