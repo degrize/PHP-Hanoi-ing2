@@ -399,13 +399,13 @@
 
 							
 							addEvent(elements[i], 'touchstart', function(evt){
-								var disqueClickSound = document.querySelector('#disqueClick');//le son du click
+								const disqueClickSound = document.querySelector('#disqueClick');//le son du click
 								if (jouer){
 									disqueClickSound.play();
 								}
-								
-								e = evt.touches[0];
-								mousemoveLeftClick = e.clientX;//la valeur du curseur au click
+
+								const e = evt.touches[0];
+								const mousemoveLeftClick = e.clientX;//la valeur du curseur au click
 								
 
 								var s = storage;

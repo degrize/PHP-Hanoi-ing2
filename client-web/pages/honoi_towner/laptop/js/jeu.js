@@ -1,112 +1,44 @@
-function handle(evnt){
-    tourHanoiMain.supprimerDisques();//on supprime tout les disques
-    tourHanoiMain.showVictoire(false);
-    tourHanoiMain.launch();//on relance le programme principale
-    return true;
-}
-window.onresize = handle;
-
-var nombreDisques = 3;//on commence avec 3 disques
-var nombreDisquesMax = 8;//le nombre minimum de disque
-var nombreDisquesMin = 3;//le nombre minimum de disque
-var intervalID;
-var jouer = true, jouer2 = false;
-
-var colorsDisques = ["green" ,"white", "orange", "blue", 'rgba(83,212,224,0.99)', "#ab3232", "darkblue", "#de38db"];
-
-function reprendre(){
-    var jeu = document.querySelector('.jeu');
-    var page2h = document.querySelector('.globalee');
-
-    jeu.style.display = 'block';
-    page2h.style.display = 'none';
-
-}
-
-
-var elem = document.documentElement;
-
-/* Function tour ouvrir fullscreen mode */
-function ouvrirPlienEcran() {
-    if (elem.requestFullscreen) {//ON OUVRE LE PLEIN ECRAN
-        elem.requestFullscreen();
-    }
-
-    if (document.exitFullscreen) {//ON FERME LE PLEIN ECRAN
-        document.exitFullscreen();
-    }
-}
-
-
-
-function play(son){
-    if (son == 'music') {
-        var music2 = document.querySelector('#music2');//le son d
-
-        if (jouer2) {
-            jouer2 = false;
-            music2.pause();
-
-        }else{
-            music2.play();
-            jouer2 = true;
-        }
-        return jouer2;
-    }
-    else{
-        if (jouer) {
-            jouer = false;
-        }else{
-            jouer = true;
-        }
-        return jouer;
-    }
-
-}
-
-var tourHanoiMain = {
+const tourHanoiMain = {
     launch : function () {
 
-        var rebours = true, secondes = 0;
-        var tempsRebours = document.querySelector('.time');//pour le compte a rebous
+        let rebours = true, secondes = 0;
+        let tempsRebours = document.querySelector('.time');//pour le compte a rebous
         tempsRebours.innerHTML = "00:00";//on initialise le compte a rebous
 
-        var tourX = [], tourY = [], tourH;
-        var distanceEntreDisque = 0, distanceDivision = 0;//pour un petit ecran ecran
-        var nombreDeplacement = 0;
+        let tourX = [], tourY = [], tourH;
+        let distanceEntreDisque = 0, distanceDivision = 0;//pour un petit ecran ecran
+        let nombreDeplacement = 0;
 
-        var deplacement = document.querySelector('.deplacement');
+        const deplacement = document.querySelector('.deplacement');
         deplacement.innerHTML = nombreDeplacement;
 
-        var tempsRebours = document.querySelector('.time');//pour le compte a rebous
+        tempsRebours = document.querySelector('.time');//pour le compte a rebous
 
         function ajouterDisque(nbreDisques){
-            var ParentDisque = document.querySelector('.disk');
-            var val = nombreDisques;
+            const ParentDisque = document.querySelector('.disk');
+            let val = nombreDisques;
 
-            for (var i = 0; i < nombreDisques; i++){
+            for (let i = 0; i < nombreDisques; i++){
                 val -=1;
-                var newDisque = document.createElement('div');
-                var valueDisque = document.createTextNode(val);
-
+                const newDisque = document.createElement('div');
+                const valueDisque = document.createTextNode(val);
 
                 newDisque.setAttribute('class', 'disque');
                 newDisque.setAttribute('id', 'd' + (i+1));//on insert les attributs
 
-                newDisque.appendChild(valueDisque);//on ajout les valeurs
-                ParentDisque.appendChild(newDisque);//on ajout l'elemnt creer au HTML
+                newDisque.appendChild(valueDisque);//on ajoute les valeurs
+                ParentDisque.appendChild(newDisque);//on ajoute l'elemnt creer au HTML
             }
         }
-        ajouterDisque(nombreDisques);//on applel la fonction qui permettra l'ajout des disques
-
+        ajouterDisque(nombreDisques);//on appelle la fonction qui permettra l'ajout des disques
 
         // On regle ici la tour
         function toursPosition(){
-            var tours = document.getElementsByTagName('span'),
+            const tours = document.getElementsByTagName('span'),
                 toursLen = tours.length;
 
             tourH = tours[0].offsetHeight;//la hauteur d'une tour
-            for (var i = 0; i < toursLen; i++){
+            for (let i = 0; i < toursLen; i++){
                 //pour La position de chaque tour
                 tourX.push(getOffset(tours[i]).left + 10);
                 tourY.push(getOffset(tours[i]).top + tourH - 70);
@@ -116,27 +48,27 @@ var tourHanoiMain = {
         }
 
         function reset(nbreDisques){
-            toursPosition();//Initalasation des tours
-            var smallScreen = false;
-            var maxDisqueWidth = 280;
+            toursPosition();//Initialisation des tours
+            let smallScreen = false;
+            let maxDisqueWidth = 280;
             if (distanceEntreDisque < 230) {//pour la responsibilite de l'application
                 maxDisqueWidth = 160;
                 smallScreen = true;
             }
 
-            var nombres = document.querySelector('.nombres');
+            const nombres = document.querySelector('.nombres');
             nombres.innerHTML =  nombreDisques;
 
-            var niveau = document.querySelector('.niveau');
+            const niveau = document.querySelector('.niveau');
             niveau.innerHTML = "Niveau : " + nombreDisques;
 
 
-            var zIndex = 10; //on initialise l'indexe à 10
-            var disques = [];	//contients les disque
+            let zIndex = 10; //on initialise l'indexe à 10
+            let disques = [];	//contients les disques
             disques =  DisquesZone(0, 1300);
-            var disquesLen = disques.length;
-            var top_fak = 10;
-            for (var i = 0; i < disquesLen; i++){
+            const disquesLen = disques.length;
+            let top_fak = 10;
+            for (let i = 0; i < disquesLen; i++){
 
                 disques[i].style.left = tourX[0] + 'px';
                 disques[i].style.top = tourY[0] + top_fak + 'px';
@@ -148,7 +80,7 @@ var tourHanoiMain = {
 
                 // POUR LA RESPONSIBILITE DU JEU IL S'ADAPTE A TOUT ECRAN
 
-                if (smallScreen) {//Si est sur un  petit ecran alors
+                if (smallScreen) {//Si est sur un petit ecran alors
                     if (disquesLen == 3){
                         maxDisqueWidth -= 50;
                     }else if (disquesLen == 4) {
@@ -175,24 +107,21 @@ var tourHanoiMain = {
                         maxDisqueWidth -= 50;
                     }
                 }
-
-
             }
-            tourY[1] = parseInt(disques[0].style.top) + 24;
             tourY[0] = parseInt(disques[disquesLen - 1].style.top);
+            tourY[1] = parseInt(disques[0].style.top) + 24;
             tourY[2] = tourY[1];
+            minDisqueTour = tourY[1] - 24;
 
             main();//on appel maintenant le programme principal
-
         }
-
         function getOffset(element){//Notre fonction qui calcule le positionnement complet
-            var top = 0, left = 0;
+            let top = 0, left = 0;
             do{
                 top += element.offsetTop;
                 left += element.offsetLeft;
             }while (element = element.offsetParent);//Tantque l' "element" reçoit un "offsetParent"
-            // Valide alors on additionne les valeurs de offsets
+            // Valide alors on additionne les valeurs d'offsets
 
             return {//On retourne un objet Cela nous permet de retourner deux valeurs calculées
                 top : top,
@@ -200,48 +129,41 @@ var tourHanoiMain = {
             };
         }
 
-
-
-        function addEvent(element, event, func){//une fonction pour gerer les evenements sur tout les navigateurs
+        function addEvent(element, event, func){//une fonction pour gerer les evenements sur tous les navigateurs
             if (element.attachEvent) {
                 element.attachEvent('on' + event, func);
             }
             else{
                 element.addEventListener(event, func, true);
-
             }
         }
 
-
         function DisquesZone(zone, limZonze){//La fonction de tourHanoi
-            var elements = document.getElementsByTagName('div'),
+            const elements = document.getElementsByTagName('div'),
                 elementsLength = elements.length;
-            var disqueElements = [];
+            const disqueElements = [];
 
-            for (var i = 0; i < elementsLength; i++){
+            for (let i = 0; i < elementsLength; i++){
                 if (elements[i].className === 'disque') {
 
                     if (getOffset(elements[i]).left > zone - 10 &&
                         getOffset(elements[i]).left < limZonze) {
                         disqueElements.push(elements[i]);
                     }
-
-
                 }
-
             }
             return disqueElements;
         }
 
         function verifSelection(zone, finZonze){
-            var disques = [], disquesLen = 0;
+            let disques = [], disquesLen = 0;
             disques = DisquesZone(zone, finZonze);
             disquesLen = disques.length;
-            var elem;//Pour le verre vide du tri bulle
+            let elem;//Pour le verre vide du tri bulle
 
-            for (var i = 0; i < disquesLen - 1; i++){//Un algorithme de
+            for (let i = 0; i < disquesLen - 1; i++){//Un algorithme de
                 //tri de bulle pour varefier si l'element est selectionable ou non
-                for (var j = (i + 1) ; j < disquesLen; j++){
+                for (let j = (i + 1) ; j < disquesLen; j++){
                     if (parseInt(disques[i].innerHTML) > parseInt(disques[j].innerHTML)){
                         elem = disques[i];
                         disques[i] = disques[j];
@@ -249,21 +171,19 @@ var tourHanoiMain = {
                     }
                 }//on a le disque elu
             }
-
             return disques[0];
-
         }
 
         // Pour verifier si le disque depose est inferieur
         function verifmouseUp(target, elements, zonniqu, lastZonnick, limZonnickA, limZonnickB){
-            var disquesZoneTour = [];
+            const disquesZoneTour = [];
 
-            var valeurDisqueMove = target.innerHTML;//La valeur du disque en mouvement
+            let valeurDisqueMove = target.innerHTML;//La valeur du disque en mouvement
             valeurDisqueMove = parseInt(valeurDisqueMove, 10);
-            var zonne = true;//si true alors il est inferieur
+            let zonne = true;//si true alors il est inferieur
 
-            zonnick = zonniqu;
-            for (var i = 0; i < elements.length; i++){
+            let zonnick = zonniqu;
+            for (let i = 0; i < elements.length; i++){
                 if (elements[i].className === 'disque') {
                     if (getOffset(elements[i]).left < limZonnickB && getOffset(elements[i]).left > limZonnickA){
                         var valeurDisqueZone = elements[i].innerHTML;
@@ -279,99 +199,83 @@ var tourHanoiMain = {
             if (!zonne){
                 zonnick = lastZonnick;
             }
-
             return zonnick;
-
-
-
-
         }
 
         function verifGagne(){
-            var tour3disques = DisquesZone(tourX[2], 1400);
-            var messageWin = document.querySelector('.message');
-
+            const tour3disques = DisquesZone(tourX[2], 1400);
+            const messageWin = document.querySelector('.message');
 
             if (tour3disques.length == nombreDisques){
-                //si tout les disques sont dans la 3eme tour alors Gagné
+                //si tous les disques sont dans la 3ᵉ tour alors Gagné
 
                 clearInterval(intervalID);
                 messageWin.innerHTML = "FELICITATION UTILISATEUR VOUS AVEZ TERMINE LA PARTIE AVEC\
 						deplacement : " + nombreDeplacement + "<br> temps : " + tempsRebours.innerHTML;
                 setTimeout(function(){
-
                     tourHanoiMain.showVictoire(true);
                 }, 100);
-
-
             }
         }
 
-
-        var storage = {};//contient l'objet div en cours de deplacement
+        let storage = {};//contient l'objet div en cours de deplacement
 
         //LE PROGRAMME PRINCIPAL
         function main(){
-            var zonnique = 0, lastZonnique = 0, continuer = true, limZonniqueA = 0;
-            var limZonniqueB = 0;
-            var entA = true, entB = true, entC = true;
-            var posX = tourX[0], posY = tourY[0];
+            let zonnique = 0, lastZonnique = 0, continuer = true, limZonniqueA = 0;
+            let limZonniqueB = 0;
+            const entA = true, entB = true, entC = true;
+            let posX = tourX[0], posY = tourY[0];
+            let mousemoveLeftClick;
+            let target;
+            let valeurTargetLeft;
+            let mousemoveLeftUp;//la valeur du curseur au relachement
+            let differenceParcour;
+            let erreur = false;
+            let disqueDownZoneB, disqueDownZoneA, disqueDownZoneC;
+            let lastZonne;
+            let s;
+            let disqueClickSound;
 
+            const input = document.getElementById('input');
 
-
-
-
-            var input = document.getElementById('input');
-
-
-
-            var elements = document.getElementsByTagName('div'),
+            const elements = document.getElementsByTagName('div'),
                 elementsLength = elements.length;
 
-
-            for (var i = 0; i < elementsLength; i++){
+            for (let i = 0; i < elementsLength; i++){
                 if (elements[i].className === 'disque') {
 
-
-
                     addEvent(elements[i], 'mousedown', function(e){
-                        var disqueClickSound = document.querySelector('#disqueClick');//le son du click
+                        disqueClickSound = document.querySelector('#disqueClick');//le son du click
                         if (jouer){
                             disqueClickSound.play();
                         }
-
-
                         mousemoveLeftClick = e.clientX;//la valeur du curseur au click
-
-
-                        var s = storage;
+                        s = storage;
 
                         s.target = e.target || event.srcElement;
                         s.offsetX = e.clientX - s.target.offsetLeft;
                         s.offsetY = e.clientY - s.target.offsetTop;
 
-
-
                         if (continuer){
-                            var lastZonne = parseInt(getOffset(s.target).left);
+                            lastZonne = parseInt(getOffset(s.target).left + "");
 
                             if (lastZonne > 0 && lastZonne < tourX[1] - distanceDivision){
                                 lastZonnique = 1;
+                                enablePosY = true; // on autorise l'emplacecement du disque sur la tour ciblé
                             }
                             else if (lastZonne > tourX[1] - distanceDivision && lastZonne < tourX[2] - distanceDivision){
                                 lastZonnique = 2;
+                                enablePosY = true; // on autorise l'emplacecement du disque sur la tour ciblé
                             }
                             if (lastZonne > tourX[2] - distanceDivision){
                                 lastZonnique = 3;
+                                enablePosY = true; // on autorise l'emplacecement du disque sur la tour ciblé
                             }
-
                         }
                         continuer = false;
 
-
-
-
-                        //Intruction pour deplacer que le disque inferieur //
+                        //Instruction pour deplacer que le disque inferieur //
                         disqueDownZoneB = verifSelection(parseInt(tourX[1]), parseInt(tourX[2]));
                         disqueDownZoneA = verifSelection(parseInt(tourX[0]), parseInt(tourX[1]));
                         disqueDownZoneC = verifSelection(parseInt(tourX[2]), 1200);
@@ -379,274 +283,232 @@ var tourHanoiMain = {
                             s.target !== disqueDownZoneB){
                             storage = {};//On vide les deplacements
                         }
-
-
                     });
 
                     addEvent(elements[i], 'mouseup', function(e){// lors du relachement du disque
 
+                        target = e.target;
+                        mousemoveLeftUp = e.clientX;//la valeur du curseur au relachement
+                        differenceParcour = mousemoveLeftClick - mousemoveLeftUp;
+                        erreur = false;
 
-                        var target = storage.target;
-
-                        var mousemoveLeftUp = e.clientX;//la valeur du curseur au relachement
-
-                        var differenceParcour = mousemoveLeftClick - mousemoveLeftUp;
-
-                        var erreur = false;
-
-                        if (zonnique == lastZonnique){
+                        if (zonnique === lastZonnique){
                             if (differenceParcour > distanceDivision || differenceParcour < (-distanceDivision)){
-
-                                erreur = true;//faut deplacement donc erreur
+                                erreur = true;//il faut deplacement donc erreur
                             }
-
                         }
+                        if (enablePosY && enable2PosY) { // on autorise lorsque c'est l'utilisateur qui relache le disque
+                            if (zonnique === 1){//lors du deplacement et le disque se trouve dans la 1ʳᵉ zone
 
-
-                        if (zonnique == 1){//lors du deplacement et le disque se touve dans la 1ère zone
-
-                            if (differenceParcour > distanceDivision || differenceParcour < (-distanceDivision)){
-
-
-
-                                if (lastZonnique == 1){
-                                    tourY[0] += 0;
-
-
-                                }else{
-                                    tourY[0] -= 24;
+                                if (differenceParcour > distanceDivision || differenceParcour < (-distanceDivision)){
+                                    if (lastZonnique === 1){
+                                        tourY[0] += 0;
+                                    }else{
+                                        tourY[0] -= 24;
+                                    }
+                                    if (lastZonnique === 2){
+                                        tourY[1] += 24;
+                                    }
+                                    if (lastZonnique === 3){
+                                        tourY[2] +=24;
+                                    }
+                                    if (!erreur) {
+                                        nombreDeplacement += 1;
+                                    }
                                 }
-
-                                if (lastZonnique == 2){
-                                    tourY[1] += 24;
+                                posX = tourX[0];
+                                if ( tourY[0] >= minDisqueTour) {
+                                    tourY[0] = minDisqueTour;
                                 }
-                                if (lastZonnique == 3){
-                                    tourY[2] +=24;
-                                }
-                                if (!erreur) {
-                                    nombreDeplacement += 1;
-                                }
-
+                                posY = tourY[0];
+                                target.style.left = posX + 'px';
+                                target.style.top = posY + 'px';
 
                             }
+                            if (zonnique === 2){//lors du deplacement et le disque se trouve dans la 2ᵉ zone
 
 
+                                if (differenceParcour > distanceDivision || differenceParcour < (-distanceDivision)){
 
-
-                            posX = tourX[0];
-                            posY = tourY[0];
-                            target.style.left = posX + 'px';
-                            target.style.top = posY + 'px';
-
-                        }
-                        if (zonnique == 2){//lors du deplacement et le disque se touve dans la 2ème zone
-
-
-                            if (differenceParcour > distanceDivision || differenceParcour < (-distanceDivision)){
-
-                                if (lastZonnique == 1){
-                                    tourY[0] += 24;
-                                }
-                                if (lastZonnique == 3){
-                                    tourY[2] +=24;
-                                }
-                                if (lastZonnique == 2){
-                                    tourY[1] += 0;
-                                }else{
-                                    tourY[1] -= 24;
-                                }
-                                if (!erreur) {
-                                    nombreDeplacement += 1;
+                                    if (lastZonnique === 1){
+                                        tourY[0] += 24;
+                                    }
+                                    if (lastZonnique === 3){
+                                        tourY[2] +=24;
+                                    }
+                                    if (lastZonnique === 2){
+                                        tourY[1] += 0;
+                                    }else{
+                                        tourY[1] -= 24;
+                                    }
+                                    if (!erreur) {
+                                        nombreDeplacement += 1;
+                                    }
                                 }
 
+                                posX = tourX[1];
+                                if ( tourY[1] >= minDisqueTour) {
+                                    tourY[1] = minDisqueTour;
+                                }
+                                posY = tourY[1];
+                                target.style.left = posX + 'px';
+                                target.style.top = posY + 'px';
                             }
-
-                            posX = tourX[1];
-                            posY = tourY[1];
-                            target.style.left = posX + 'px';
-                            target.style.top = posY + 'px';
-                        }
-                        if (zonnique == 3){//Ici c'est la zone 3
+                            if (zonnique === 3){//Ici, c'est la zone 3
 
 
-                            if (differenceParcour > distanceDivision || differenceParcour < (-distanceDivision)){
+                                if (differenceParcour > distanceDivision || differenceParcour < (-distanceDivision)){
 
-                                if (lastZonnique == 1){
-                                    tourY[0] += 24;
-                                }
-                                if (lastZonnique == 2){
-                                    tourY[1] +=24;
-                                }
-                                if (lastZonnique == 3){
-                                    tourY[2] += 0;
-                                }else{
-                                    tourY[2] -= 24;
+                                    if (lastZonnique === 1){
+                                        tourY[0] += 24;
+                                    }
+                                    if (lastZonnique === 2){
+                                        tourY[1] +=24;
+                                    }
+                                    if (lastZonnique === 3){
+                                        tourY[2] += 0;
+                                    }else{
+                                        tourY[2] -= 24;
+                                    }
+                                    if (!erreur) {
+                                        nombreDeplacement += 1;
+                                    }
                                 }
 
-                                if (!erreur) {
-                                    nombreDeplacement += 1;
+                                posX = tourX[2];
+                                if ( tourY[2] >= minDisqueTour) {
+                                    tourY[2] = minDisqueTour;
                                 }
-
+                                posY = tourY[2];
+                                target.style.left = posX + 'px';
+                                target.style.top = posY + 'px';
                             }
-
-                            posX = tourX[2];
-                            posY = tourY[2];
-                            target.style.left = posX + 'px';
-                            target.style.top = posY + 'px';
                         }
+                        enablePosY = false;
+                        enable2PosY = false;
+
                         if (jouer) {
                             if (erreur){
-                                var pasDeplacerSound = document.querySelector('#pasDeplacer');
+                                const pasDeplacerSound = document.querySelector('#pasDeplacer');
                                 pasDeplacerSound.currentTime = 0;
                                 pasDeplacerSound.play();
                             }else{
-                                var disqueMouseUpSound = document.querySelector('#disqueMouseUp');
+                                const disqueMouseUpSound = document.querySelector('#disqueMouseUp');
                                 disqueMouseUpSound.currentTime = 0.2;
                                 disqueMouseUpSound.play();
                             }
                         }
 
-
                         continuer = true;
                         zonnique = 0;
                         storage = {};//on vide le deplacement
-                        var deplacement = document.querySelector('.deplacement');
+                        const deplacement = document.querySelector('.deplacement');
                         deplacement.innerHTML = nombreDeplacement;
 
                         verifGagne();
 
-
-
-
-
-
-
                     });
-
-
                 }
-
             }
 
-
-
             addEvent(document, 'mousemove', function(e){//permet le suivi du mouvement
-                var target = storage.target;
-
-
+                target = storage.target;
+                let tempsCompte;
                 if (target) {
-
-
                     target.style.top = e.clientY - storage.offsetY + 'px';
                     target.style.left = e.clientX - storage.offsetX + 'px';
 
-                    var valeurTargetLeft = parseInt(target.style.left);
+                    valeurTargetLeft = parseInt(target.style.left);
+                    enable2PosY = true; // on autorise l'emplacecement du disque sur la tour ciblé
 
-                    if (valeurTargetLeft > (-100) && valeurTargetLeft < tourX[1] - distanceDivision){
-                        //Si le curseur est dans la zone de la  1ere tour alors
+                    if (valeurTargetLeft > (-100) && valeurTargetLeft < tourX[1] - distanceDivision) {
+                        //Si le curseur est dans la zone de la 1ʳᵉ tour alors
                         zonnique = 1;
                         limZonniqueA = 0;
                         limZonniqueB = tourX[1] - distanceDivision;
 
-                    }
-                    else if (valeurTargetLeft > (tourX[1] - distanceDivision) && valeurTargetLeft < tourX[2] - distanceDivision){
-                        //Si le curseur est dans la zone de la  2ème tour alors
+                    } else if (valeurTargetLeft > (tourX[1] - distanceDivision) && valeurTargetLeft < tourX[2] - distanceDivision) {
+                        //Si le curseur est dans la zone de la 2ᵉ tour alors
                         zonnique = 2
                         limZonniqueB = tourX[2];
                         limZonniqueA = tourX[1] - distanceDivision;
 
-                    }
-                    else if (valeurTargetLeft > tourX[2] - distanceDivision ){//ici c'est la zone 3
+                    } else if (valeurTargetLeft > tourX[2] - distanceDivision) {//ici, c'est la zone 3
                         zonnique = 3;
                         limZonniqueB = 1400;
                         limZonniqueA = tourX[2] - distanceDivision;
-
-
-
                     }
-                    // apple de le fonction pour verifier si l'utilisateur ne deplace
+                    // apple de la fonction pour verifier si l'utilisateur ne deplace
                     //pas un disque superieur sur un inferieur
                     zonnique = verifmouseUp(target, elements, zonnique, lastZonnique, limZonniqueA, limZonniqueB);
 
-
                     // ON ACTIVE LE COMPTE A REBOURS MAINTENANT UNE FOIS
-                    if (rebours){
-                        // chaque 1 seconde on incremente le compte a rebours
+                    if (rebours) {
+                        // chaque 1 seconde on incrémente le compte a rebours
                         secondes += 1;
                         tempsCompte = tourHanoiMain.compteRebours(secondes);
                         tempsRebours.innerHTML = tempsCompte;
-                        intervalID = setInterval(function(){
+                        intervalID = setInterval(function () {
 
                             secondes += 1;
                             tempsCompte = tourHanoiMain.compteRebours(secondes);
                             tempsRebours.innerHTML = tempsCompte;
 
-                        },1000);
+                        }, 1000);
                     }
                     rebours = false;
                 }
             });
         }
-        // body...
-
         reset(nombreDisques);
-
-
     },
 
     supprimerDisques : function(){
-        var disquesClear = document.querySelectorAll('.disque');
-        for (var i = 0; i < disquesClear.length; i++){
+        const disquesClear = document.querySelectorAll('.disque');
+        for (let i = 0; i < disquesClear.length; i++){
             disquesClear[i].parentNode.removeChild(disquesClear[i])
         }
-
-
     },
     incrementDisques : function(){
 
         if (nombreDisques < nombreDisquesMax) {
-            var click_Sound = document.querySelector('#bouton');
+            const click_Sound = document.querySelector('#bouton');
             click_Sound.currentTime = 0.02;
             click_Sound.play();
 
             clearInterval(intervalID);//On annule le compte à rebours
-            nombreDisques += 1;//on augment le nombre de disques
-            tourHanoiMain.supprimerDisques();//on supprime tout les disques
+            nombreDisques += 1;//on augmente le nombre de disques
+            tourHanoiMain.supprimerDisques();//on supprime tous les disques
             tourHanoiMain.showVictoire(false);
             tourHanoiMain.launch();//on relance le programme principale
 
         }else{
-            var pasDeplacerSound = document.querySelector('#cramer');
+            const pasDeplacerSound = document.querySelector('#cramer');
             pasDeplacerSound.currentTime = 0;
             pasDeplacerSound.play();
         }
-
-
     },
     decrementDisques : function(){
-
         if (nombreDisques > nombreDisquesMin) {
-            var click_Sound = document.querySelector('#bouton');
+            const click_Sound = document.querySelector('#bouton');
             click_Sound.currentTime = 0.02;
             click_Sound.play();
 
             clearInterval(intervalID);//On annule le compte à rebours
-            nombreDisques -= 1;//on augment le nombre de disques
-            tourHanoiMain.supprimerDisques();//on supprime tout les disques
+            nombreDisques -= 1;//on augmente le nombre de disques
+            tourHanoiMain.supprimerDisques();//on supprime tous les disques
             tourHanoiMain.launch();//on relance le programme principale
 
         }else{
-            var pasDeplacerSound = document.querySelector('#cramer');
+            const pasDeplacerSound = document.querySelector('#cramer');
             pasDeplacerSound.currentTime = 0;
             pasDeplacerSound.play();
         }
-
-
     },
     compteRebours: function(temps){
-        var heures = Math.floor(temps / 3600);
-        var mins = Math.floor((temps % 3600) / 60);
-        var secs = Math.floor(temps % 60);
+        const heures = Math.floor(temps / 3600);
+        let mins = Math.floor((temps % 3600) / 60);
+        let secs = Math.floor(temps % 60);
 
         if (secs < 10){
             secs = "0" + secs;
@@ -655,37 +517,34 @@ var tourHanoiMain = {
             if (mins < 10){
                 mins = "0" + mins;
             }
-            return hours + ":" + mins + ":" + secs; //hh:mm:ss
+            return heures + ":" + mins + ":" + secs; //hh:mm:ss
         }else{
             return mins + ":" + secs;//mm:ss
         }
-
     },
 
     // LA COULEUR ALEATOIRE DES DISQUES
     change_color_aleat: function(){
 
-        var list = document.getElementById('list');
+        const list = document.getElementById('list');
         list.addEventListener('change', function(){
-            var couleur = list.options[list.selectedIndex].innerHTML;
+            const couleur = list.options[list.selectedIndex].innerHTML;
             alert(couleur);
         }, true);
 
-
-
-        // Avec une ligne on obtien toutes les couleurs du monde entier.
-        var disqueColor = document.querySelector('disque');
-        hexadeximal = new Array(0,1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'f');
+        // Avec une ligne, on obtient toutes les couleurs du monde entier.
+        const disqueColor = document.querySelector('disque');
+        let hexadeximal = new Array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'a', 'b', 'c', 'd', 'f');
         function change_color()
         {
-            alert('uuiiu');
-            couleur = '#';
-            max = hexadeximal.length;
-            min = 0;
-            for(i = 0; i < 6; i++)
-            {
+            alert('change_color');
+            let couleur = '#';
+            let max = hexadeximal.length;
+            let min = 0;
+            let entierAleatoire;
+            for (let i = 0; i < 6; i++) {
                 entierAleatoire = Math.floor(Math.random() * (max - min + 1)) + min;
-                // math.radom(..) renvoie un nombre a virgule
+                // math.random(..) renvoie un nombre à virgule
                 // math.floor prend que la partie entiere
                 couleur = couleur + hexadeximal[entierAleatoire];
             }
@@ -693,23 +552,76 @@ var tourHanoiMain = {
         }
         change_color();
     },
-
-
     showVictoire: function(args){
-        var victoireBloc = document.querySelector('.victoire');
+        const victoireBloc = document.querySelector('.victoire');
         if (args){
             victoireBloc.style.visibility = 'visible';
             victoireBloc.style.opacity = '1';
-
-
         }else{
             victoireBloc.style.visibility = 'hidden';
             victoireBloc.style.opacity = '0';
         }
     },
-
-
-
-
 };
+
+function handle(evnt){
+    tourHanoiMain.supprimerDisques();//on supprime tous les disques
+    tourHanoiMain.showVictoire(false);
+    tourHanoiMain.launch();//on relance le programme principale
+    return true;
+}
+window.onresize = handle;
+
+let nombreDisques = 3;//on commence avec 3 disques
+const nombreDisquesMax = 8;//le nombre minimum de disque
+const nombreDisquesMin = 3;//le nombre minimum de disque
+let intervalID;
+let jouer = true, jouer2 = true;
+let minDisqueTour, enablePosY = false, enable2PosY = false;
+
+const colorsDisques = ["green", "white", "orange", "blue", 'rgba(83,212,224,0.99)', "#ab3232", "darkblue", "#de38db"];
+
+function reprendre(){
+    const jeu = document.querySelector('.jeu');
+    const page2h = document.querySelector('.globalee');
+
+    jeu.style.display = 'block';
+    page2h.style.display = 'none';
+}
+
+const elem = document.documentElement;
+
+/* Function tour ouvrir fullscreen mode */
+function ouvrirPlienEcran() {
+    if (elem.requestFullscreen) {//ON OUVRE LE PLEIN ECRAN
+        elem.requestFullscreen().then(r => console.log("PLEIN ECRAN"));
+    }
+
+    if (document.exitFullscreen) {//ON FERME LE PLEIN ECRAN
+        document.exitFullscreen().then(r => console.log("FERME PLEIN ECRAN"));
+    }
+}
+
+function play(son){
+    if (son === 'music') {
+        const music2 = document.querySelector('#music2');//le son d
+        if (jouer2) {
+            jouer2 = false;
+            music2.pause();
+        }else{
+            music2.play();
+            jouer2 = true;
+        }
+        return jouer2;
+    }
+    else{
+        if (jouer) {
+            jouer = false;
+        }else{
+            jouer = true;
+        }
+        return jouer;
+    }
+}
+
 tourHanoiMain.launch();

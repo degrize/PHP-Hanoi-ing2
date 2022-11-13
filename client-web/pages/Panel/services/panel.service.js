@@ -115,7 +115,7 @@ class Player {
         this.joueur_pseudo.innerHTML = joueur.login;
         this.joueur_email.innerHTML = joueur.email;
         this.joueur_coin.innerHTML = joueur.piece;
-        this.joueur_photo.src = "./avatar/assets/img/" + joueur.photo + ".png"
+        this.joueur_photo.src = "../../../assets/images/avatars/" + joueur.photo + ".png"
     }
 
 }
@@ -313,7 +313,7 @@ let loginList;
             }
             if (result) {
                 if (!check_login_doublon() && !check_email_doublon()) {
-                    editPlayer();//On effecteur son enregistrement
+                    editPlayer();//On effectue son enregistrement
                 }
             }
 

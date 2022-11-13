@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="description" content="Jeux de tour d'hanoi">
-	<title></title>
+	<title> JOUER </title>
 	<link rel="stylesheet" type="text/css" href="css/laptop-game.css">
+	<link rel="stylesheet" type="text/css" href="css/profil.css">
+
+	<!--ICONS-->
+	<script src="../../../assets/icons/all.js"></script> <!-- Font Awesome-->
 </head>
 <body>
 
@@ -46,14 +50,51 @@
 			<div>
 				<div class="text">tour d’Hanoï</div>
 				<div class="niveau">Niveau</div>
-				<div class="coins">Coins</div>
-			</div>
-			<div class="imgMusic">
-				<a href="#sic1" onclick="play('sound')" title="SFX sound"> <img src="images/sound_effet.png"></a>
-				<a href="#sic2" onclick="play('music')" title="MUSIC"> <img src="images/musicPlayer.png"></a>
+				<div class="coins">
+					<h6 class="niveau">Coins :&nbsp;</h6>
+					<h3 class="joueur_coin niveau">0</h3> &nbsp;
+					<img src="../images/coin.png" class="imageCoins" alt="">
+				</div>
 
 			</div>
-			<div class="time">00:00</div>
+
+			<div>
+				<nav>
+					<ul>
+						<li>
+							<div class="imgMusic">
+								<a href="#sic2" onclick="play('music')" title="MUSIC"> <img src="../images/musicPlayer.png"></a>
+							</div>
+						</li>
+						<li>
+							<div class="time">00:00</div>
+						</li>
+						<li>
+							<img src="../../../assets/images/avatars/man8.png" class="profile joueur_photo" />
+							<ul>
+								<li class="sub-item">
+									<p class="joueur_pseudo">
+										@ speudo
+									</p>
+								</li>
+								<li class="sub-item">
+									<a href="#sss" onclick="goToPanel()">
+										<i class="fa fa-home" aria-hidden="true"></i>
+										<p>Menu</p>
+									</a>
+								</li>
+								<li class="sub-item">
+									<a href="">
+										<i class="fa fa-times-circle" aria-hidden="true"></i>
+										<p>Quitter</p>
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</nav>
+			</div>
+
 
 		</div>
 
@@ -90,7 +131,7 @@
 			<div class="winner">
 
 				<aside>
-					<img src="images/winner.jpg">
+					<img src="../images/winner.jpg">
 					<p class="message">
 						
 					</p>
@@ -98,13 +139,11 @@
 			</div>
 		</section>
 
-
 	</div>
-
 	
 	<script type="text/javascript" src="js/jeu.js">
 		/*
-			Vous decouvrez dans ce fichier javascript tout le coeur du programme
+			Vous decouvrez dans ce fichier javascript tout le cœur du programme
 		*/
 	</script>
 
@@ -113,5 +152,10 @@
 			Vous decouvrez dans ce fichier le script du text en cercle
 		*/
 	</script>
+
+	<!--Notre service -->
+	<script type="text/javascript" src="../services/hanoi-tower.service.js"></script>
+
+	<script src="../"></script>
 </body>
 </html>

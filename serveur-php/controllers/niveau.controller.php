@@ -27,6 +27,5 @@ switch ($mehode) {
 
 // echo "alert('$joueur')";
 
-
 ?>
 
