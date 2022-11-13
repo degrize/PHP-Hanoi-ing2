@@ -9,10 +9,6 @@
 	<link rel="stylesheet" type="text/css" href="css/laptop-game.css">
 	<link rel="stylesheet" type="text/css" href="css/profil.css">
 
-	<!--CSS de congratulations-->
-	<link rel="stylesheet" type="text/css" href="css/congratulations.css">
-
-
 	<!--ICONS-->
 	<script src="../../../assets/icons/all.js"></script> <!-- Font Awesome-->
 </head>
@@ -22,32 +18,27 @@
 
 	<audio id="music2" loop="" autoplay>
 		<!-- lorsqu l'utilisayeur place un disque -->
-		<source src="../../../assets/sounds/bg_music.mp3">
+		<source src="../../../assets/sounds/bg_music.mp3"></source>
 	</audio>
 	<audio id="disqueClick">
 		<!-- au click d'un disque -->
-		<source src="../../../assets/sounds/click_tap_button.mp3" >
+		<source src="../../../assets/sounds/click_tap_button.mp3" ></source>
 	</audio>
 	<audio id="bouton">
 		<!-- au click d'un bouton -->
-		<source src="../../../assets/sounds/click_tap_button.mp3">
+		<source src="../../../assets/sounds/click_tap_button.mp3"></source>
 	</audio>
 	<audio id="pasDeplacer">
 		<!-- lorsque essai de placer un disque superieur sur un inferieur  -->
-		<source src="../../../assets/sounds/pasDeplacer.mp3">
+		<source src="../../../assets/sounds/pasDeplacer.mp3"></source>
 	</audio>
 	<audio id="disqueMouseUp">
 		<!-- lorsqu l'utilisayeur place un disque -->
-		<source src="../../../assets/sounds/disqueMouseUp.mp3">
+		<source src="../../../assets/sounds/disqueMouseUp.mp3"></source>
 	</audio>
 	<audio id="cramer">
 		<!-- au click d'un disque -->
-		<source src="../../../assets/sounds/boutonNone.mp3" >
-	</audio>
-
-	<audio id="win">
-		<!-- lorsque le joueur gagne un niveau -->
-		<source src="../../../assets/sounds/win.m4a" >
+		<source src="../../../assets/sounds/boutonNone.mp3" ></source>
 	</audio>
 
 
@@ -134,19 +125,18 @@
 			</div>
 		</div>
 
-		<!-- modal -->
-		<div class="victoire">
-			<div class="box">
-				<div class="imgBox">
-					<img src="./logo.png" alt="" />
-				</div>
-				<h2 class="title">Félicitations, vous avez gagné ce niveau 🌟</h2>
-				<p class="message"></p>
-				<div class="btnContainer">
-					<button class="close">Fermer</button>
-				</div>
+		<section class="victoire">&times
+			<a href="#" class="modal_close" onclick="tourHanoiMain.incrementDisques()">&times;</a>
+			<div class="winner">
+
+				<aside>
+					<img src="../images/winner.jpg">
+					<p class="message">
+						
+					</p>
+				</aside>
 			</div>
-		</div>
+		</section>
 
 	</div>
 	
@@ -165,6 +155,6 @@
 	<!--Notre service -->
 	<script type="text/javascript" src="../services/hanoi-tower.service.js"></script>
 
-	<script src="../../../assets/confletti/confetti.min.js"></script>
+	<script src="../"></script>
 </body>
 </html>

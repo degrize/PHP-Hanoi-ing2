@@ -206,19 +206,19 @@ const tourHanoiMain = {
             const tour3disques = DisquesZone(tourX[2], 1400);
             const messageWin = document.querySelector('.message');
 
-            if (tour3disques.length === nombreDisques){
-                //si tous les disques sont dans la 3ᵉ tour alors vous avez Gagné
+            if (tour3disques.length == nombreDisques){
+                //si tous les disques sont dans la 3ᵉ tour alors Gagné
 
                 clearInterval(intervalID);
                 messageWin.innerHTML = "FELICITATION UTILISATEUR VOUS AVEZ TERMINE LA PARTIE AVEC\
-						<br> <u>deplacement</u>  : " + nombreDeplacement + "<br> <u>temps</u> : " + tempsRebours.innerHTML;
+						deplacement : " + nombreDeplacement + "<br> temps : " + tempsRebours.innerHTML;
                 setTimeout(function(){
                     tourHanoiMain.showVictoire(true);
                 }, 100);
             }
         }
 
-        let storage = {}; // contient l'objet div en cours de deplacement
+        let storage = {};//contient l'objet div en cours de deplacement
 
         //LE PROGRAMME PRINCIPAL
         function main(){
@@ -552,48 +552,13 @@ const tourHanoiMain = {
     },
     showVictoire: function(args){
         const victoireBloc = document.querySelector('.victoire');
-        jouer2 = true;
-        play("music");
         if (args){
             victoireBloc.style.visibility = 'visible';
             victoireBloc.style.opacity = '1';
-
-            const winSound = document.querySelector('#win');
-            winSound.currentTime = 0;
-            winSound.play();
-
-            const modal = document.querySelector('.box');
-            const closeBtn = document.querySelector('.close');
-
-            modal.classList.add('visible')
-            const startit = () => {
-                setTimeout(function () {
-                    confetti.start();
-                }, 500);
-            };
-            // Stops
-            const stopit = () => {
-                setTimeout(function () {
-                    confetti.stop();
-                }, 6000);
-            };
-            // playing start
-            startit();
-            // stoping it
-            stopit();
-            closeBtn.addEventListener('click', () => {
-                modal.classList.remove('visible');
-                victoireBloc.style.visibility = 'hidden';
-                victoireBloc.style.opacity = '0';
-                winSound.pause();
-                tourHanoiMain.incrementDisques();
-            })
-
         }else{
             victoireBloc.style.visibility = 'hidden';
             victoireBloc.style.opacity = '0';
         }
-
     },
 };
 
