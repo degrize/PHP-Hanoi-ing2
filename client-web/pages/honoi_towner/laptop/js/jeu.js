@@ -12,8 +12,6 @@ const tourHanoiMain = {
         const deplacement = document.querySelector('.deplacement');
         deplacement.innerHTML = nombreDeplacement;
 
-        tempsRebours = document.querySelector('.time');//pour le compte a rebous
-
         function ajouterDisque(nbreDisques){
             const ParentDisque = document.querySelector('.disk');
             let val = nombreDisques;
@@ -208,6 +206,8 @@ const tourHanoiMain = {
 
             if (tour3disques.length === nombreDisques){
                 //si tous les disques sont dans la 3ᵉ tour alors vous avez Gagné
+
+                updatePlayerLevel(nombreDisques, nombreDeplacement, secondes);
 
                 clearInterval(intervalID);
                 messageWin.innerHTML = "FELICITATION UTILISATEUR VOUS AVEZ TERMINE LA PARTIE AVEC\
@@ -553,7 +553,7 @@ const tourHanoiMain = {
     showVictoire: function(args){
         const victoireBloc = document.querySelector('.victoire');
         jouer2 = true;
-        play("music");
+        play();
         if (args){
             victoireBloc.style.visibility = 'visible';
             victoireBloc.style.opacity = '1';
@@ -635,26 +635,31 @@ function ouvrirPlienEcran() {
     }
 }
 
-function play(son){
-    if (son === 'music') {
-        const music2 = document.querySelector('#music2');//le son d
-        if (jouer2) {
-            jouer2 = false;
-            music2.pause();
-        }else{
-            music2.play();
-            jouer2 = true;
-        }
-        return jouer2;
+function play(){
+    const music2 = document.querySelector('#music2');//le son d
+    if (jouer2) {
+        jouer2 = false;
+        music2.pause();
+        console.log("ici")
+    }else{
+        music2.play();
+        jouer2 = true;
+        console.log("ici")
     }
-    else{
-        if (jouer) {
-            jouer = false;
-        }else{
-            jouer = true;
-        }
-        return jouer;
-    }
+    changeSound(jouer2); // on change dans la BD
+    return jouer2;
 }
 
-tourHanoiMain.launch();
+function soundInitValue(value) {
+    if (!parseInt(value)) {
+        jouer2 = false;
+        const music2 = document.querySelector('#music2');//le son d
+        music2.pause();
+    }
+
+}
+
+function changeNbreDique(value) {
+    nombreDisques = parseInt(value);
+    tourHanoiMain.launch();
+}

@@ -97,18 +97,16 @@ class NiveauJoueurRepository {
         return $niveauJoueurList;
     }
 
-    public function findByNiveauAndJoueur(Niveau $niveau, Joueur $joueur): NiveauJoueur
+    public function findByNiveauAndJoueur(Niveau $niveau, Joueur $joueur)
     {
-        $rep = false;
         $niveau_id = $niveau->getId();
         $joueur_id = $joueur->getId();
-        $niveauJoueur = new NiveauJoueur();
+        $niveauJoueur = null;
         if ($niveau_id && $joueur_id) {
             $req = self::$db->query("SELECT * FROM hanoi_rel_niveau_joueur 
                                         WHERE niveau_id = $niveau_id AND joueur_id = $joueur_id;");
             while ($donnees = $req->fetch()) {
-                $niveauJoueur->setNiveau((new NiveauRepository(self::$db ))->findById($donnees['niveau_id']));
-                $niveauJoueur->setJoueur((new JoueurRepository(self::$db ))->findById($donnees['joueur_id']));
+                $niveauJoueur = new NiveauJoueur();
                 $niveauJoueur->setDeplacement($donnees['deplacement']);
                 $niveauJoueur->setTemps($donnees['temps']);
             }
@@ -132,6 +130,38 @@ class NiveauJoueurRepository {
         }
         $req->closeCursor();
         return $niveauJoueurList;
+    }
+
+    public function updateNiveauJoueur(NiveauJoueur $niveauJoueurNew) {
+        $niveauJoueurLast = new NiveauJoueur();
+        $niveauJoueurLast = $this->findByNiveauAndJoueur($niveauJoueurNew->getNiveau(), $niveauJoueurNew->getJoueur());
+
+        $pointDeplacementMax = (int) $niveauJoueurNew->getNiveau()->getDeplacementMax();
+        $pointTempsMax = (int) $niveauJoueurNew->getNiveau()->getTempsMax();
+
+        // on calcule le pourcentage de ce qu'il vien de jouer [Après]
+        $joueurDeplacementNew = (int) $niveauJoueurNew->getDeplacement();
+        $joueurTempsNew = (float) $niveauJoueurNew->getTemps();
+        $pourcentageNew = $pointDeplacementMax - $joueurDeplacementNew; // pour le deplacement
+        $pourcentageNew += $pointTempsMax - $joueurTempsNew;
+
+        if ($niveauJoueurLast) {
+
+            // on calcule le pourcentage de ce qu'il avait joué [avant]
+            $joueurDeplacementLast = (int) $niveauJoueurLast->getDeplacement();
+            $joueurTempsLast = (float) $niveauJoueurLast->getTemps();
+            $pourcentageLast = $pointDeplacementMax - $joueurDeplacementLast; // pour le deplacement
+            $pourcentageLast += $pointTempsMax - $joueurTempsLast;
+
+            if ($pourcentageNew >= $pourcentageLast) {
+                $this->edit($niveauJoueurNew);
+            }
+        }else {
+            // Lorsque le joueur n'a pas encore joué ce niveau
+            $this->save($niveauJoueurNew);
+        }
+
+        return $pourcentageNew;
     }
 
 }

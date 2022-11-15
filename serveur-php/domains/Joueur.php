@@ -8,6 +8,9 @@ class Joueur {
     private $photo;
     private $est_suspendu;
     private $piece;
+    private $niveau_actuel;
+    private $musique;
+    private $last_login;
     private $cree_le;
     private $modifie_le;
     private $niveauJoueurs; // la relation entre joueur et Niveau
@@ -126,6 +129,53 @@ class Joueur {
         $this->piece = $piece;
     }
 
+    /**
+     * @return int
+     */
+    public function getNiveauActuel() : int
+    {
+        return $this->niveau_actuel;
+    }
+
+    /**
+     * @param mixed $niveau_actuel
+     */
+    public function setNiveauActuel($niveau_actuel)
+    {
+        $this->niveau_actuel = $niveau_actuel;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMusique()
+    {
+        return $this->musique;
+    }
+
+    /**
+     * @param mixed $musique
+     */
+    public function setMusique($musique)
+    {
+        $this->musique = $musique;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLastLogin()
+    {
+        return $this->last_login;
+    }
+
+    /**
+     * @param mixed $last_login
+     */
+    public function setLastLogin($last_login)
+    {
+        $this->last_login = $last_login;
+    }
 
 
     /**

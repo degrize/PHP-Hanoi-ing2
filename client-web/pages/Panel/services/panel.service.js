@@ -52,14 +52,13 @@ function showAllLevel() {
         let levelTitle = exampleLevel.cloneNode(true);
         levelTitle.querySelector('.level-title').innerText = level.titre;
         levelTitle.querySelector('img').src = "./images/level/" + level.nbre_disque + ".gif";
-
+        levelTitle.classList.add("no");
         // on passe maintenant à inserer la progression du joueur dans le level courant
         if (joueur.id != null) {
             let pourcentage = 0;
             (joueur.niveauJoueurs).forEach(niveauJoueur => {
-                pourcentage = 0;
-                levelTitle.classList.add("no");
-                if (niveauJoueur.niveau.id == level.id) {
+
+                if (parseInt(niveauJoueur.niveau.id) === parseInt(level.id)) {
                     levelTitle.classList.remove("no");
                     pourcentage = pointDeplacementMax - parseInt(niveauJoueur.deplacement); // pour le deplacement
                     pourcentage += pointTempsMax - parseFloat(niveauJoueur.temps);
@@ -67,6 +66,10 @@ function showAllLevel() {
                     if (pourcentage <= 0) {
                         pourcentage = 1;
                     }
+                    if (pourcentage >= 100) {
+                        pourcentage = 100;
+                    }
+                    console.log(niveauJoueur.deplacement)
                 }
                 levelTitle.querySelector('.progress-done').style.width = pourcentage + "%";
                 levelTitle.querySelector('.percentage').innerText = pourcentage + "%";
@@ -76,7 +79,6 @@ function showAllLevel() {
         profileProgression.appendChild(levelTitle);
     })
     exampleLevel.remove(); // on supprime notre example
-    console.log("ok");
 
 }
 
@@ -89,6 +91,14 @@ function choixAvatar(avatar) {
 choixAvatar();
 
 
+function updateUserStatus() {
+    let joueurSatus = new joueurClass();
+    joueurSatus.sendToPHP("updateUserStatus");
+}
+
+setInterval(function () {
+    updateUserStatus();
+}, 2000)
 
 function reponseServeur(reponse) {
     joueur = reponse;
@@ -154,7 +164,6 @@ let loginList;
         joueurEdit.mot_de_passe = joueur.mot_de_passe;
         joueurEdit.login = lastPwd; // on stock la saisie de l'utilisateur ici
         joueurEdit.sendToPHP("checkLastPwd");
-        console.log(var_checkLastPwd)
     }
 
     function check_email_doublon() {

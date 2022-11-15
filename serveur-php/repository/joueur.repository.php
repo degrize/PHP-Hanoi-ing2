@@ -79,6 +79,54 @@ class JoueurRepository {
         return $rep;
     }
 
+    public function editPlayerGame(Joueur $joueur): bool
+    {
+        $rep = false;
+        if ($joueur->getId()) {
+            $req = self::$db->prepare('
+            UPDATE hanoi_joueur SET piece = :piece, niveau_actuel = :niveau_actuel WHERE id = :id');
+            $req->execute(array(
+                'niveau_actuel' => $joueur->getNiveauActuel(),
+                'piece' => $joueur->getPiece(),
+                'id' => $joueur->getId(),
+            ));
+            $rep = true;
+        }
+        return $rep;
+    }
+
+
+    public function enableDisableSound(Joueur $joueur): string
+    {
+        $rep = false;
+        if ($joueur->getId()) {
+            $req = self::$db->prepare('UPDATE hanoi_joueur SET musique = :musique WHERE id = :id');
+            $req->execute(array(
+                'musique' => $joueur->getMusique(),
+                'id' => $joueur->getId()
+            ));
+            $rep = true;
+        }
+        return $rep;
+    }
+
+    public function updateUserStatus(Joueur $joueur): bool
+    {
+        $time = time() + 10;
+        $joueur->setLastLogin($time);
+        $rep = false;
+        if ($joueur->getId()) {
+            $req = self::$db->prepare('UPDATE hanoi_joueur SET last_login = :last_login WHERE id = :id');
+            $req->execute(array(
+                'last_login' => $joueur->getLastLogin(),
+                'id' => $joueur->getId()
+            ));
+            $rep = true;
+        }
+        return $rep;
+    }
+
+
     /*public function findJoueurById($id) {
         self::findById($id);
     }*/
@@ -95,6 +143,8 @@ class JoueurRepository {
             $joueur->setPhoto($donnees['photo']);
             $joueur->setEstSuspendu($donnees['est_suspendu']);
             $joueur->setPiece($donnees['piece']);
+            $joueur->setNiveauActuel($donnees['niveau_actuel']);
+            $joueur->setMusique($donnees['musique']);
             $joueur->setCreeLe($donnees['cree_le']);
             $joueur->setModifieLe($donnees['modifie_le']);
             $joueur->setNiveauJoueurs((new NiveauJoueurRepository(self::$db))->findAllByJoueur($joueur));
@@ -115,6 +165,8 @@ class JoueurRepository {
             $joueur->setPhoto($donnees['photo']);
             $joueur->setEstSuspendu($donnees['est_suspendu']);
             $joueur->setPiece($donnees['piece']);
+            $joueur->setNiveauActuel($donnees['niveau_actuel']);
+            $joueur->setMusique($donnees['musique']);
             $joueur->setCreeLe($donnees['cree_le']);
             $joueur->setModifieLe($donnees['modifie_le']);
         }
@@ -136,6 +188,8 @@ class JoueurRepository {
             $joueur->setPhoto($donnees['photo']);
             $joueur->setEstSuspendu($donnees['est_suspendu']);
             $joueur->setPiece($donnees['piece']);
+            $joueur->setNiveauActuel($donnees['niveau_actuel']);
+            $joueur->setMusique($donnees['musique']);
             $joueur->setCreeLe($donnees['cree_le']);
             $joueur->setModifieLe($donnees['modifie_le']);
 

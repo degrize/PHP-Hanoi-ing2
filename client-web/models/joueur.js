@@ -6,6 +6,8 @@ export class Joueur {
     photo = "";
     est_suspendu = false;
     piece = 0;
+    niveau_actuel = 3;
+    musique = true;
     cree_le = "";
     modifie_le = "";
     niveauJoueurs = [];

@@ -7,6 +7,7 @@ class NiveauJoueur {
     private $joueur;
     private $deplacement;
     private $temps;
+    private $nbre_disque;
 
     /**
      * @return Niveau
@@ -70,6 +71,22 @@ class NiveauJoueur {
     public function setTemps($temps)
     {
         $this->temps = $temps;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNbreDisque(): int
+    {
+        return $this->nbre_disque;
+    }
+
+    /**
+     * @param mixed $nbre_disque
+     */
+    public function setNbreDisque($nbre_disque)
+    {
+        $this->nbre_disque = $nbre_disque;
     }
 
     public function __toString()

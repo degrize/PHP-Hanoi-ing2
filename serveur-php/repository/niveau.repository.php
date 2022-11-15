@@ -82,6 +82,25 @@ class NiveauRepository {
         return $niveau;
     }
 
+    public function findByNbreDisque($nbreDisque): Niveau
+    {
+        $niveau = new Niveau();
+        $req = self::$db->query("SELECT * FROM hanoi_niveau where nbre_disque =" . $nbreDisque);
+        while ($donnees = $req->fetch()) {
+            $niveau->setId($donnees['id']);
+            $niveau->setTitre($donnees['titre']);
+            $niveau->setDescription($donnees['description']);
+            $niveau->setDeplacementMax($donnees['deplacement_max']);
+            $niveau->setTempsMax($donnees['temps_max']);
+            $niveau->setNbreDisque($donnees['nbre_disque']);
+            $niveau->setGain($donnees['gain']);
+            // A ne pas decommenter!
+            //$niveau->setJoueurs($this->findAllJoueurByNiveauId($niveau->getId()));
+        }
+        $req->closeCursor();
+        return $niveau;
+    }
+
     public function findAll(): array
     {
         $niveauList = array();

@@ -315,6 +315,9 @@ a:hover {
 }
 
 .level .percentage {
+    width: 50px;
+    padding-right: 5px;
+    text-align: right;
     font-weight: bold;
     background: var(--level-color);
     -webkit-background-clip: text;

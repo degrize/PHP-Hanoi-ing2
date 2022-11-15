@@ -9,7 +9,7 @@ include_once('../connection-db/con_db.php');
 
 $joueur = new Joueur();
 $joueurRepository = new JoueurRepository($pdo_db); // la variable exite
-$joueur = convertJsonToClass(json_decode($_GET['data']));
+$joueur = joueurMapper(json_decode($_GET['data']));
 
 // on recupere la tache que nous voulons executer
 $mehode = $_GET['methode'];
@@ -77,11 +77,27 @@ switch ($mehode) {
         echo "reponseServeur($rep);";
         break;
 
+    case "enableDisableSound":
+        $joueur->setId($_SESSION['joueur_id']);
+        $rep = $joueurRepository->enableDisableSound($joueur);
+        if ($rep) {
+            $rep = $joueurRepository->findById($joueur->getId());
+        }
+        echo "reponseServeurSound($rep);";
+        break;
+
+    case "updateUserStatus":
+        /* Les utilisateurs connectés au jeu */
+        $time = time();
+        $joueur->setId($_SESSION['joueur_id']);
+        $rep = $joueurRepository->updateUserStatus($joueur);
+        break;
+
     default:
         break;
 
-
 }
+
 
 // echo "alert('$joueur')";
 

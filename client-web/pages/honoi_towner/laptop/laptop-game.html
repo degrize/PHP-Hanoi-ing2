@@ -71,7 +71,7 @@
 					<ul>
 						<li>
 							<div class="imgMusic">
-								<a href="#sic2" onclick="play('music')" title="MUSIC"> <img src="../images/musicPlayer.png"></a>
+								<a href="#sic2" onclick="play()" title="MUSIC"> <img src="../images/musicPlayer.png"></a>
 							</div>
 						</li>
 						<li>
@@ -122,7 +122,7 @@
 		<div class="bottomGame">
 			<div class="nombreDisques">
 				<button class="plus" onclick="tourHanoiMain.incrementDisques()">+</button>
-				<span class="nombres">disques</span>
+				<span class="nombres"><!--Disque--></span>
 				<button class="moins" onclick="tourHanoiMain.decrementDisques()">-</button>
 			</div>
 
@@ -137,9 +137,6 @@
 		<!-- modal -->
 		<div class="victoire">
 			<div class="box">
-				<div class="imgBox">
-					<img src="./logo.png" alt="" />
-				</div>
 				<h2 class="title">Félicitations, vous avez gagné ce niveau 🌟</h2>
 				<p class="message"></p>
 				<div class="btnContainer">
@@ -149,7 +146,7 @@
 		</div>
 
 	</div>
-	
+
 	<script type="text/javascript" src="js/jeu.js">
 		/*
 			Vous decouvrez dans ce fichier javascript tout le cœur du programme

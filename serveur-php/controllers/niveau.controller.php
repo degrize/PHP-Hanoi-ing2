@@ -18,6 +18,10 @@ switch ($mehode) {
         $rep = $niveauRepository->findAll();
         echo 'showAllLevel();';
         break;
+    case "findByNbreDisque":
+        $rep = $niveauRepository->findByNbreDisque(3);
+        echo 'showAllLevel();';
+        break;
 
     default:
         break;
