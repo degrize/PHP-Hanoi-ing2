@@ -8,6 +8,7 @@ export class Joueur {
     piece = 0;
     niveau_actuel = 3;
     musique = true;
+    last_login = 0;
     cree_le = "";
     modifie_le = "";
     niveauJoueurs = [];

@@ -63,7 +63,7 @@ function reponseServeurlevelUp(reponse) {
 function changeSound(value) {
     let joueurI = new joueurClass();
     joueurI.musique = value;
-    joueurI.sendToPHP("enableDisableSound")
+    joueurI.sendToPHP("enableDisableSound");
 }
 
 
@@ -71,4 +71,15 @@ function goToPanel() {
     const music2 = document.querySelector('#music2');//le son d
     music2.pause();
     window.location.href="../../Panel/vue/index.html";
+}
+
+
+function logout() {
+    let joueurI = new joueurClass();
+    joueurI.sendToPHP("logout");
+}
+
+function reponseServeurLogout() {
+    alert("Déconnexion avec succès");
+    window.location.href="../../login/vue/login.html"
 }

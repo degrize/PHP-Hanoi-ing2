@@ -12,7 +12,7 @@ export class Niveau {
     sendToPHP(fonction) {
         let data = JSON.stringify(this);
         data = encodeURIComponent(data); // on encode notre niveau
-        fonction =  encodeURIComponent(fonction); // on precise que nous voulons l'enregistrer
+        fonction =  encodeURIComponent(fonction); // on précise que nous voulons l'enregistrer
         let script = document.createElement('script'); // on creer un semblant de script
         script.src = "../../../../serveur-php/controllers/niveau.controller.php?data="+ data + "&methode=" + fonction;
         document.body.appendChild(script); // on l'ajoute au DOM

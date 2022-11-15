@@ -145,6 +145,7 @@ class JoueurRepository {
             $joueur->setPiece($donnees['piece']);
             $joueur->setNiveauActuel($donnees['niveau_actuel']);
             $joueur->setMusique($donnees['musique']);
+            $joueur->setLastLogin($donnees['last_login']);
             $joueur->setCreeLe($donnees['cree_le']);
             $joueur->setModifieLe($donnees['modifie_le']);
             $joueur->setNiveauJoueurs((new NiveauJoueurRepository(self::$db))->findAllByJoueur($joueur));
@@ -190,6 +191,32 @@ class JoueurRepository {
             $joueur->setPiece($donnees['piece']);
             $joueur->setNiveauActuel($donnees['niveau_actuel']);
             $joueur->setMusique($donnees['musique']);
+            $joueur->setLastLogin($donnees['last_login']);
+            $joueur->setCreeLe($donnees['cree_le']);
+            $joueur->setModifieLe($donnees['modifie_le']);
+
+            $joueursList[] = $joueur;
+        }
+        $req->closeCursor();
+        return $joueursList;
+    }
+    public function findAllOnline(): array
+    {
+        $joueursList = array();
+
+        $req = self::$db->query("SELECT * FROM hanoi_joueur WHERE last_login is not null");
+        while ($donnees = $req->fetch()) {
+            $joueur = new Joueur();
+            $joueur->setId($donnees['id']);
+            $joueur->setLogin($donnees['login']);
+            $joueur->setEmail($donnees['email']);
+            $joueur->setMotDePasse($donnees['mot_de_passe']);
+            $joueur->setPhoto($donnees['photo']);
+            $joueur->setEstSuspendu($donnees['est_suspendu']);
+            $joueur->setPiece($donnees['piece']);
+            $joueur->setNiveauActuel($donnees['niveau_actuel']);
+            $joueur->setMusique($donnees['musique']);
+            $joueur->setLastLogin($donnees['last_login']);
             $joueur->setCreeLe($donnees['cree_le']);
             $joueur->setModifieLe($donnees['modifie_le']);
 
@@ -260,6 +287,23 @@ class JoueurRepository {
         }
         return $rep;
     }
+
+    public function logout(Joueur $joueur): bool {
+        $rep = false;
+        if ($joueur->getId() != null) {
+            $req = self::$db->prepare('
+            UPDATE hanoi_joueur SET last_login = :last_login WHERE id = :id');
+            $req->execute(array(
+                'last_login' => null,
+                'id' => $joueur->getId()
+            ));
+            $rep = true;
+            session_destroy();
+        }
+        return $rep;
+    }
+
+
 
     public function checkLastPwd(Joueur $joueur): bool
     {

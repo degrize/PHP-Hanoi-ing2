@@ -1,5 +1,10 @@
 let joueur;
 let joueurClass;
+
+let niveauList = [];
+let joueursOnline = [];
+let niveau;
+
 import("../../../models/joueur.js").then(Class => {
     joueurClass = Class.Joueur;
     joueur = new Class.Joueur;
@@ -9,16 +14,11 @@ import("../../../models/joueur.js").then(Class => {
     joueur.sendToPHP("findAllEmail");
 });
 
-let niveau;
 import("../../../models/niveau.js").then(Class => {
     niveau = new Class.Niveau;
     // On envoie les infos à notre controller-PHP
     niveau.sendToPHP("findAll")
 });
-
-
-let avatars = ["man1", "man2", "man3", "man4", "man5", "man6", "man7", "man8", "man9", "man10", "man11", "man12", "man13",
-        "woman1","woman2","woman3","woman4","woman5","woman6", "woman7"];
 
 const choose_avatar = document.getElementById("choose_avatar");
 choose_avatar.addEventListener('click', function () {
@@ -36,8 +36,6 @@ function changeAvatar() {
 
     joueurI.sendToPHP("changeAvatar");
 }
-
-let niveauList = [];
 
 function findAllNiveau(reponse) {
     niveauList.push(reponse);
@@ -100,6 +98,24 @@ setInterval(function () {
     updateUserStatus();
 }, 2000)
 
+function getUserStatus() {
+    let joueurSatus = new joueurClass();
+    joueurSatus.sendToPHP("getUserStatus");
+}
+setInterval(function () {
+    getUserStatus();
+}, 4000)
+
+
+function showPlayerSatus() {
+    console.log(joueursOnline)
+}
+
+
+function reponseServeurLogout() {
+    window.location.href="../../login/vue/login.html"
+}
+
 function reponseServeur(reponse) {
     joueur = reponse;
     if (joueur.id == null) {
@@ -110,7 +126,6 @@ function reponseServeur(reponse) {
     const playeur = new Player(joueur);
 }
 function reponseServeurEdit(reponse) {
-    /*window.location.href="../../Panel/vue/index.html"*/
     reponseServeur(reponse);
     showNotification(); // on affiche la notification
 }

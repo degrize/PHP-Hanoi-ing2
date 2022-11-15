@@ -47,7 +47,8 @@ switch ($mehode) {
         echo 'reponseServeur('.$joueur.');';
         break;
     case "findAll":
-        $rep = $joueurRepository->findAll();
+        $joueurList = $joueurRepository->findAll();
+        echo 'joueurList ='. json_encode($joueurList) .';';
         break;
     case "findAllEmail":
         $emailList = $joueurRepository->findAllEmail();
@@ -91,6 +92,22 @@ switch ($mehode) {
         $time = time();
         $joueur->setId($_SESSION['joueur_id']);
         $rep = $joueurRepository->updateUserStatus($joueur);
+        break;
+
+    case "getUserStatus":
+        /* Les utilisateurs connectés au jeu */
+        $joueursOnline = $joueurRepository->findAllOnline();
+        echo 'joueursOnline ='. json_encode($joueursOnline) .';';
+        echo 'showPlayerSatus();';
+        break;
+
+    case "logout":
+        /* Les utilisateurs connectés au jeu */
+        $joueur = $joueurRepository->findById($_SESSION['joueur_id']);
+        $rep = $joueurRepository->logout($joueur);
+        if ($rep) {
+            echo "reponseServeurLogout();";
+        }
         break;
 
     default:
