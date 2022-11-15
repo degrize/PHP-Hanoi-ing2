@@ -100,6 +100,7 @@ setInterval(function () {
 
 function getUserStatus() {
     let joueurSatus = new joueurClass();
+    joueursOnline = [];
     joueurSatus.sendToPHP("getUserStatus");
 }
 setInterval(function () {
@@ -109,6 +110,25 @@ setInterval(function () {
 
 function showPlayerSatus() {
     console.log(joueursOnline)
+
+    let playersOnlineLayout = document.getElementById("playersOnline");
+    let exampleplayerOnline = playersOnlineLayout.querySelector(".playersOnline");
+    let exampleplayerOnlineList = playersOnlineLayout.querySelectorAll(".playersOnline");
+
+    exampleplayerOnlineList.forEach(layout => {
+        layout.remove();
+    })
+
+    joueursOnline.forEach(player=> {
+        let playerOnline = exampleplayerOnline.cloneNode(true);
+        playerOnline.querySelector('.joueurOnline_pseudo').innerText = player.login;
+        playerOnline.querySelector('.joueurOnline_email').innerText = player.email;
+        playerOnline.querySelector('.joueurOnline_niveau').innerText = "Niveau : " + player.niveau_actuel;
+        playerOnline.querySelector('.joueurOnline_photo').src = "../../../assets/images/avatars/" + player.photo + ".png";
+
+        playersOnlineLayout.appendChild(playerOnline);
+    })
+    exampleplayerOnline.remove(); // on supprime notre example
 }
 
 

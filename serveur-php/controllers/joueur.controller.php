@@ -97,7 +97,6 @@ switch ($mehode) {
     case "getUserStatus":
         /* Les utilisateurs connectés au jeu */
         $joueursOnline = $joueurRepository->findAllOnline();
-        echo 'joueursOnline ='. json_encode($joueursOnline) .';';
         echo 'showPlayerSatus();';
         break;
 

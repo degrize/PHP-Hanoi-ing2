@@ -220,6 +220,7 @@ class JoueurRepository {
             $joueur->setCreeLe($donnees['cree_le']);
             $joueur->setModifieLe($donnees['modifie_le']);
 
+            echo 'joueursOnline.push('. $joueur .');';
             $joueursList[] = $joueur;
         }
         $req->closeCursor();
