@@ -299,90 +299,95 @@ const tourHanoiMain = {
                         erreur = true;//il faut deplacement donc erreur
                     }
                 }
-                // on autorise lorsque c'est l'utilisateur qui relache le disque
-                if (zonnique === 1){//lors du deplacement et le disque se trouve dans la 1ʳᵉ zone
+                if (enablePosY && enable2PosY) { // on autorise lorsque c'est l'utilisateur qui relache le disque
+                    if (zonnique === 1){//lors du deplacement et le disque se trouve dans la 1ʳᵉ zone
 
-                    if (differenceParcour > distanceDivision || differenceParcour < (-distanceDivision)){
-                        if (lastZonnique === 1){
-                            tourY[0] += 0;
-                        }else{
-                            tourY[0] -= 24;
+                        if (differenceParcour > distanceDivision || differenceParcour < (-distanceDivision)){
+                            if (lastZonnique === 1){
+                                tourY[0] += 0;
+                            }else{
+                                tourY[0] -= 24;
+                            }
+                            if (lastZonnique === 2){
+                                tourY[1] += 24;
+                            }
+                            if (lastZonnique === 3){
+                                tourY[2] +=24;
+                            }
+                            if (!erreur) {
+                                nombreDeplacement += 1;
+                            }
                         }
-                        if (lastZonnique === 2){
-                            tourY[1] += 24;
+                        posX = tourX[0];
+                        if ( tourY[0] >= minDisqueTour) {
+                            tourY[0] = minDisqueTour;
                         }
-                        if (lastZonnique === 3){
-                            tourY[2] +=24;
-                        }
-                        if (!erreur) {
-                            nombreDeplacement += 1;
-                        }
-                    }
-                    posX = tourX[0];
-                    if ( tourY[0] >= minDisqueTour) {
-                        tourY[0] = minDisqueTour;
-                    }
-                    posY = tourY[0];
-                    target.style.left = posX + 'px';
-                    target.style.top = posY + 'px';
+                        posY = tourY[0];
+                        target.style.left = posX + 'px';
+                        target.style.top = posY + 'px';
 
+                    }
+                    if (zonnique === 2){//lors du deplacement et le disque se trouve dans la 2ᵉ zone
+
+
+                        if (differenceParcour > distanceDivision || differenceParcour < (-distanceDivision)){
+
+                            if (lastZonnique === 1){
+                                tourY[0] += 24;
+                            }
+                            if (lastZonnique === 3){
+                                tourY[2] +=24;
+                            }
+                            if (lastZonnique === 2){
+                                tourY[1] += 0;
+                            }else{
+                                tourY[1] -= 24;
+                            }
+                            if (!erreur) {
+                                nombreDeplacement += 1;
+                            }
+                        }
+
+                        posX = tourX[1];
+                        if ( tourY[1] >= minDisqueTour) {
+                            tourY[1] = minDisqueTour;
+                        }
+                        posY = tourY[1];
+                        target.style.left = posX + 'px';
+                        target.style.top = posY + 'px';
+                    }
+                    if (zonnique === 3){//Ici, c'est la zone 3
+
+
+                        if (differenceParcour > distanceDivision || differenceParcour < (-distanceDivision)){
+
+                            if (lastZonnique === 1){
+                                tourY[0] += 24;
+                            }
+                            if (lastZonnique === 2){
+                                tourY[1] +=24;
+                            }
+                            if (lastZonnique === 3){
+                                tourY[2] += 0;
+                            }else{
+                                tourY[2] -= 24;
+                            }
+                            if (!erreur) {
+                                nombreDeplacement += 1;
+                            }
+                        }
+
+                        posX = tourX[2];
+                        if ( tourY[2] >= minDisqueTour) {
+                            tourY[2] = minDisqueTour;
+                        }
+                        posY = tourY[2];
+                        target.style.left = posX + 'px';
+                        target.style.top = posY + 'px';
+                    }
                 }
-                if (zonnique === 2){//lors du deplacement et le disque se trouve dans la 2ᵉ zone
-
-
-                    if (differenceParcour > distanceDivision || differenceParcour < (-distanceDivision)){
-
-                        if (lastZonnique === 1){
-                            tourY[0] += 24;
-                        }
-                        if (lastZonnique === 3){
-                            tourY[2] +=24;
-                        }
-                        if (lastZonnique === 2){
-                            tourY[1] += 0;
-                        }else{
-                            tourY[1] -= 24;
-                        }
-                        if (!erreur) {
-                            nombreDeplacement += 1;
-                        }
-                    }
-
-                    posX = tourX[1];
-                    if ( tourY[1] >= minDisqueTour) {
-                        tourY[1] = minDisqueTour;
-                    }
-                    posY = tourY[1];
-                    target.style.left = posX + 'px';
-                    target.style.top = posY + 'px';
-                }
-                if (zonnique === 3){//Ici, c'est la zone 3
-                    if (differenceParcour > distanceDivision || differenceParcour < (-distanceDivision)){
-
-                        if (lastZonnique === 1){
-                            tourY[0] += 24;
-                        }
-                        if (lastZonnique === 2){
-                            tourY[1] +=24;
-                        }
-                        if (lastZonnique === 3){
-                            tourY[2] += 0;
-                        }else{
-                            tourY[2] -= 24;
-                        }
-                        if (!erreur) {
-                            nombreDeplacement += 1;
-                        }
-                    }
-
-                    posX = tourX[2];
-                    if ( tourY[2] >= minDisqueTour) {
-                        tourY[2] = minDisqueTour;
-                    }
-                    posY = tourY[2];
-                    target.style.left = posX + 'px';
-                    target.style.top = posY + 'px';
-                }
+                enablePosY = false;
+                enable2PosY = false;
 
                 if (jouer) {
                     if (erreur){
