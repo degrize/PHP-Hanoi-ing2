@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOUR HANOI</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="images/leaf.png" alt="">
+            <h1>TOUR D'HANOI</h1>
+        </div>
+        <ul class="menu">
+            <li><a href="register.html">Accueil</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+        <div class="number">
+            <p>Se Connecter</p>
+        </div>
+        <div class="small_menu">
+            <span>
+                <div></div>
+                <div></div>
+            </span>
+            <span>
+                <div></div>
+                <div></div>
+            </span>
+        </div>
+
+    </header>
+
+
+<!-- home -->
+
+    <section class="home">
+        <div class="left">
+            <h1>TOUR<span>HANOI</span></h1>
+            <h4>Un jeu de reflexion</h4>
+            <p></p>
+            <p></p>
+            <p> </p>
+            <button class="button-link">
+                <a href="#">Projets </a>
+            </button>
+        </div>
+        <div class="right">
+                <video src="images/Ma_video.mp4" autoplay controls>
+
+                </video>
+        </div>
+    </section>
+
+
+    <!-- services -->
+    
+    <section class="services">
+        <h1 class="title">Les Niveaux</h1>
+        <p class="small_title"></p>
+        <div class="list_service">
+            <div class="serv">
+                <img src="images/N3.png" alt="">
+                <button class="button-link">
+                    <a href="#">Niveau 3</a>
+                </button>
+            </div>
+            <div class="serv">
+                <img src="images/N4.png" alt="">
+                <button class="button-link">
+                    <a href="#">Niveau 4</a>
+                </button>
+            </div>
+            <div class="serv">
+                <img src="images/N5.png" alt="">
+                <button class="button-link">
+                    <a href="#">Niveau 5</a>
+                </button>
+            </div>
+            <div class="serv">
+                <img src="images/N6.png" alt="">
+                <button class="button-link">
+                    <a href="#">Niveau 6</a>
+                </button>
+            </div>
+            <div class="serv">
+                <img src="images/N7.png" alt="">
+                <button class="button-link">
+                    <a href="#">Niveau 7</a>
+                </button>
+            </div>
+            <div class="serv">
+                <img src="images/N8.png" alt="">
+                <button class="button-link">
+                    <a href="#">Niveau 8</a>
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- about -->
+
+    <section class="about">
+        <h1 class="title">à propos de nous</h1>
+        <div class="list_about">
+            <h1>1</h1>
+            <div class="description">
+                <h3>BINI KASSOUM</h3>
+                <p> ELEVE INGENIEUR EN STIC 2</p>
+            </div>
+        </div>
+        <div class="list_about">
+            <h1>2</h1>
+            <div class="description">
+                <h3>BROU JUSTIN</h3>
+                <p> ELEVE INGENIEUR EN STIC 2</p>
+            </div>
+        </div>
+        <div class="list_about">
+            <h1>3</h1>
+            <div class="description">
+                <h3>KAKOU SERGES WILLIAMS</h3>
+                <p> ELEVE INGENIEUR EN STIC 2</p>
+            </div>
+        </div>
+        <div class="list_about">
+            <h1>4</h1>
+            <div class="description">
+                <h3>MEDA KECHIEDOU</h3>
+                <p>ELEVE INGENIEUR EN STIC 2</p>
+            </div>
+        </div>
+        <div class="list_about">
+            <h1>5</h1>
+            <div class="description">
+                <h3>TRAORE SIAKA</h3>
+                <p>ELEVE INGENIEUR EN STIC 2</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- contact -->
+    <section class="contact">
+        <h1 class="title">Contactez nous</h1>
+        <div class="form-image">
+            <form>
+                <input type="text" placeholder="Nom">
+                <input type="text" placeholder="Adresse Mail">
+                <input type="text" placeholder="Objet du Message">
+                <textarea  id="" cols="30" rows="10" placeholder="Votre Message"></textarea>
+                <button class="button-link form_btn">
+                    <a href="#">Envoyer Votre message</a>
+                </button>
+            </form>
+            <div class="image">
+                <img src="images/N9.png" >
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Site réalisé par BINI,BROU,KAKOU,MEDA,SIAKA | Tous les droits sont réservés.</p>
+    </footer>
+
+
+
+    <script>
+        var small_menu = document.querySelector(".small_menu");
+        var menu = document.querySelector(".menu");
+        small_menu.onclick = function(){
+            small_menu.classList.toggle('active');
+            menu.classList.toggle('small');
+        }
+    </script>
+
+</body>
+</html>
