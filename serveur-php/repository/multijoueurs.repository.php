@@ -64,7 +64,7 @@ class MultijoueursRepository {
         $rep = false;
         if ($multijoueurs->getId() != null) {
             $req = self::$db->prepare('
-            UPDATE hanoi_joueur SET victoire = :victoire WHERE id = :id');
+            UPDATE hanoi_multijoueurs SET victoire = :victoire WHERE id = :id');
             $req->execute(array(
                 'victoire' => 1,
                 'id' => $multijoueurs->getId()

@@ -212,6 +212,7 @@ const tourHanoiMain = {
                 playerFinishFirst();
 
                 clearInterval(intervalID);
+                titleWinDefaite.innerHTML = "Félicitations, vous avez gagné ce niveau 🌟";
                 messageWin.innerHTML = "FELICITATION UTILISATEUR VOUS AVEZ TERMINE LA PARTIE AVEC\
 						<br> <u>deplacement</u>  : " + nombreDeplacement + "<br> <u>temps</u> : " + tempsRebours.innerHTML;
                 setTimeout(function(){
@@ -652,7 +653,8 @@ const tourHanoiMain = {
                 victoireBloc.style.opacity = '0';
                 loseSound.pause();
                 tourHanoiMain.incrementDisques();
-            })
+            });
+            clearInterval(intervalMultiJoueur);
 
         }else{
             victoireBloc.style.visibility = 'hidden';
@@ -677,6 +679,7 @@ let intervalID;
 let jouer = true, jouer2 = true;
 let minDisqueTour, enablePosY = false, enable2PosY = false;
 const messageWin = document.querySelector('.message');
+const titleWinDefaite = document.querySelector('.titleWinDefaite');
 
 firstPlayerFinish = false;
 
@@ -739,6 +742,7 @@ function closeGameForAllPlayers() {
     if (!firstPlayerFinish) {
         closeMultijoueurJeu = true;
         messageWin.innerHTML = "DESOLE VOUS AVEZ PERDU LA PARTIE";
+        titleWinDefaite.innerHTML = "PERDU!! 😭😭";
         tourHanoiMain.showdefaite(true)
     }
 }

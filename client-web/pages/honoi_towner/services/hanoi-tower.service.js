@@ -18,6 +18,8 @@ let niveauJoueur;
 let niveauJoueurClass;
 let multijoueursClass;
 
+let intervalMultiJoueur;
+
 let multijoueurId;
 
 import("../../../models/joueur.js").then(Class => {
@@ -114,7 +116,7 @@ function reponseMultijoueurs() {
         alert("Vous jouez le jeu a plusieurs veuillez patientez que tous les joueurs soit prêts");
     }
 
-    setInterval(function () {
+    intervalMultiJoueur = setInterval(function () {
         let tempMultijoueursClass = new multijoueursClass();
 
         tempMultijoueursClass.id = multijoueurId;
