@@ -187,14 +187,18 @@
                                 </span>
                                 <div class="input-field">
                                     <i class="fas fa-users"></i>
-                                    <input type="number" placeholder="nombre de joueurs" id="nbreJoueur" required />
+                                    <input type="number" min="2" max="10" placeholder="nombre de joueurs" id="mp_nbreJoueur" required />
                                 </div>
                                 <span class="tooltip">
                                   Le nombre doit être supérieur à 1
                                 </span>
                                 <div class="input-field">
+                                    <i class="fas fa-podcast"></i>
+                                    <input type="number" min="3" max="8" placeholder="Le niveau du jeu" id="mp_niveau" required />
+                                </div>
+                                <div class="input-field">
                                     <i class="fas fa fa-key"></i>
-                                    <input type="password" placeholder="La clé de la salle" id="key" required />
+                                    <input type="password" placeholder="La clé de la salle" id="mp_key" required />
                                 </div>
                                 <span class="tooltip">
                                   La clé ne doit pas faire moins de 4 caractères

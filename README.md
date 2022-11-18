@@ -148,4 +148,27 @@ CREATE TABLE hanoi_contact_us(
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+
+CREATE TABLE hanoi_multijoueurs( 
+    id bigint, 
+    niveau_id int NOT NULL,
+    joueur_id bigint NOT NULL,
+    nom_salle varchar(255),
+    cle_salle varchar(255), 
+    nbre_joueur varchar(255), 
+    cree_le DATETIME,
+    CONSTRAINT hanoi_multijoueurs_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_hanoi_multijoueurs__niveau_id FOREIGN KEY (niveau_id)
+    	REFERENCES hanoi_niveau (id) MATCH SIMPLE
+    	ON UPDATE NO ACTION ON DELETE NO ACTION,
+    CONSTRAINT fk_hanoi_multijoueurs__joueur_id FOREIGN KEY (joueur_id)
+    	REFERENCES hanoi_joueur (id) MATCH SIMPLE
+    	ON UPDATE NO ACTION ON DELETE NO ACTION
+) 
+ENGINE=InnoDB DEFAULT CHARSET=utf8
+;
+
+ALTER TABLE `hanoi_joueur` ADD `multijoueur` BOOLEAN NOT NULL DEFAULT FALSE AFTER `last_login`;
+
+
 ```
