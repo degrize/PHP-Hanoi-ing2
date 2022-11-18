@@ -202,12 +202,14 @@ const tourHanoiMain = {
 
         function verifGagne(){
             const tour3disques = DisquesZone(tourX[2], 1400);
-            const messageWin = document.querySelector('.message');
 
             if (tour3disques.length === nombreDisques){
                 //si tous les disques sont dans la 3ᵉ tour alors vous avez Gagné
 
                 updatePlayerLevel(nombreDisques, nombreDeplacement, secondes);
+                firstPlayerFinish = true;
+
+                playerFinishFirst();
 
                 clearInterval(intervalID);
                 messageWin.innerHTML = "FELICITATION UTILISATEUR VOUS AVEZ TERMINE LA PARTIE AVEC\
@@ -626,6 +628,38 @@ const tourHanoiMain = {
         }
 
     },
+
+    showdefaite: function(args){
+        const victoireBloc = document.querySelector('.victoire');
+        jouer2 = true;
+        play();
+        if (args){
+            victoireBloc.style.visibility = 'visible';
+            victoireBloc.style.opacity = '1';
+
+            const loseSound = document.querySelector('#lose');
+            loseSound.currentTime = 0;
+            loseSound.play();
+
+            const modal = document.querySelector('.box');
+            const closeBtn = document.querySelector('.close');
+
+            modal.classList.add('visible')
+
+            closeBtn.addEventListener('click', () => {
+                modal.classList.remove('visible');
+                victoireBloc.style.visibility = 'hidden';
+                victoireBloc.style.opacity = '0';
+                loseSound.pause();
+                tourHanoiMain.incrementDisques();
+            })
+
+        }else{
+            victoireBloc.style.visibility = 'hidden';
+            victoireBloc.style.opacity = '0';
+        }
+
+    },
 };
 
 function handle(evnt){
@@ -642,6 +676,9 @@ const nombreDisquesMin = 3;//le nombre minimum de disque
 let intervalID;
 let jouer = true, jouer2 = true;
 let minDisqueTour, enablePosY = false, enable2PosY = false;
+const messageWin = document.querySelector('.message');
+
+firstPlayerFinish = false;
 
 const colorsDisques = ["green", "white", "orange", "blue", 'rgba(83,212,224,0.99)', "#ab3232", "darkblue", "#de38db"];
 
@@ -697,3 +734,14 @@ function changeNbreDique(value) {
         tourHanoiMain.launch();
     }
 }
+
+function closeGameForAllPlayers() {
+    if (!firstPlayerFinish) {
+        closeMultijoueurJeu = true;
+        messageWin.innerHTML = "DESOLE VOUS AVEZ PERDU LA PARTIE";
+        tourHanoiMain.showdefaite(true)
+    }
+}
+
+
+

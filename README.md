@@ -170,5 +170,5 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8
 
 ALTER TABLE `hanoi_joueur` ADD `multijoueur` BOOLEAN NOT NULL DEFAULT FALSE AFTER `last_login`;
 
-
+ALTER TABLE `hanoi_multijoueurs` ADD `victoire` BOOLEAN NOT NULL DEFAULT FALSE AFTER `nbre_joueur`;
 ```

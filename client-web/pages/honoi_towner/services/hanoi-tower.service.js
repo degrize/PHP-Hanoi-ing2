@@ -16,6 +16,9 @@ let joueurClass;
 const player = new Player();
 let niveauJoueur;
 let niveauJoueurClass;
+let multijoueursClass;
+
+let multijoueurId;
 
 import("../../../models/joueur.js").then(Class => {
     joueurClass = Class.Joueur;
@@ -27,6 +30,10 @@ import("../../../models/joueur.js").then(Class => {
 
 import("../../../models/niveau-joueur.js").then(Class => {
     niveauJoueurClass = Class.NiveauJoueur;
+});
+
+import("../../../models/multijoueurs.js").then(Class => {
+    multijoueursClass = Class.Multijoueurs;
 });
 
 function reponseServeur(reponse) {
@@ -82,4 +89,47 @@ function logout() {
 function reponseServeurLogout() {
     alert("Déconnexion avec succès");
     window.location.href="../../login/vue/login.html"
+}
+
+
+function $_GET(param) {
+    const vars = {};
+    window.location.href.replace( location.hash, '' ).replace(
+        /[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+        function( m, key, value ) { // callback
+            vars[key] = value !== undefined ? value : '';
+        }
+    );
+
+    if ( param ) {
+        return vars[param] ? vars[param] : null;
+    }
+    return vars;
+}
+
+function reponseMultijoueurs() {
+
+    if ($_GET("multijoueurClass")) {
+        multijoueurId = $_GET("multijoueurClass");
+        alert("Vous jouez le jeu a plusieurs veuillez patientez que tous les joueurs soit prêts");
+    }
+
+    setInterval(function () {
+        let tempMultijoueursClass = new multijoueursClass();
+
+        tempMultijoueursClass.id = multijoueurId;
+        tempMultijoueursClass.sendToPHP("checkIfGameFinish");
+    }, 100)
+
+
+}
+reponseMultijoueurs();
+
+function playerFinishFirst () {
+    if ($_GET("multijoueurClass")) {
+        let tempMultijoueursClass = new multijoueursClass();
+
+        tempMultijoueursClass.id = multijoueurId;
+        tempMultijoueursClass.sendToPHP("playerFinishFirst");
+    }
 }

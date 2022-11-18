@@ -178,12 +178,15 @@ function showAllMultiJoueurClass() {
     })
 
     multijoueurSalle.forEach(salle=> {
-        let m_multijoueurSalle = examplemultijoueurSalle.cloneNode(true);
-        m_multijoueurSalle.querySelector('.titleClasse').innerText =
-            "Titre : " + salle.nom_salle +
-            " | Nbre-joueurs : " + salle.nbre_joueur;
-        multijoueurSalleLayout.appendChild(m_multijoueurSalle);
-        m_multijoueurSalle.querySelector('a').href = "../../honoi_towner/laptop/laptop-game.html?multijoueurClass=" + salle.id + "";
+        if (salle.victoire == 0) {
+            let m_multijoueurSalle = examplemultijoueurSalle.cloneNode(true);
+            m_multijoueurSalle.querySelector('.titleClasse').innerText =
+                "Titre : " + salle.nom_salle +
+                " | Nbre-joueurs : " + salle.nbre_joueur;
+            multijoueurSalleLayout.appendChild(m_multijoueurSalle);
+            m_multijoueurSalle.querySelector('a').href = "../../honoi_towner/laptop/laptop-game.html?multijoueurClass=" + salle.id + "";
+        }
+
     });
     examplemultijoueurSalle.remove(); // on supprime notre example
 }

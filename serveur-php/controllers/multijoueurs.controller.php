@@ -35,9 +35,20 @@ switch ($methode) {
         break;
 
     case "findAll":
-            $rep = $multijoueursRepository->findAll();
-            echo "showAllMultiJoueurClass();";
-            break;
+        $rep = $multijoueursRepository->findAll();
+        echo "showAllMultiJoueurClass();";
+        break;
+
+    case "checkIfGameFinish":
+        $rep = $multijoueursRepository->checkIfGameFinish($multijoueurs);
+        if ($rep) {
+            echo "closeGameForAllPlayers();";
+        }
+        break;
+
+    case "playerFinishFirst":
+        $rep = $multijoueursRepository->fermeMultijoueur($multijoueurs);
+        break;
 
     default:
         break;

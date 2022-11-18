@@ -7,6 +7,7 @@ class Multijoueurs {
     private $nom_salle;
     private $cle_salle;
     private $nbre_joueur;
+    private $victoire;
     private $cree_le;
 
     /**
@@ -104,6 +105,23 @@ class Multijoueurs {
     {
         $this->nbre_joueur = $nbre_joueur;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getVictoire()
+    {
+        return $this->victoire;
+    }
+
+    /**
+     * @param mixed $victoire
+     */
+    public function setVictoire($victoire)
+    {
+        $this->victoire = $victoire;
+    }
+
 
     /**
      * @return mixed

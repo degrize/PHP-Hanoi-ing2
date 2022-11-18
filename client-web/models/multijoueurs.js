@@ -5,6 +5,7 @@ export class Multijoueurs {
     nom_salle = "";
     cle_salle = "";
     nbre_joueur = false;
+    victoire = false;
     cree_le = "";
 
     sendToPHP(fonction) {
