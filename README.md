@@ -26,7 +26,9 @@ Le projet php de la tour d'hanoi donné par M. Konan KAN 😎
 
 ![preview img](/preview.jpg)
 
+# NOTRE MODELISATION
 
+![preview img](/hanoi_MCD.PNG)
 
 # NOS REQUETES SQL
 ```
