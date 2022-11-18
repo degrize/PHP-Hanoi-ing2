@@ -109,6 +109,16 @@ switch ($mehode) {
         }
         break;
 
+    case "enableMultiplayer":
+        /* on lui autorise la fonctionnalité multiplayer */
+        $joueur = $joueurRepository->findById($_SESSION['joueur_id']);
+        $joueur->setMultijoueur(true);
+        $rep = $joueurRepository->enableMultiplayer($joueur);
+        if ($rep) {
+            echo "reponseServeurMultiplayer();";
+        }
+        break;
+
     default:
         break;
 

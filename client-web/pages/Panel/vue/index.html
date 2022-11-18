@@ -117,7 +117,6 @@
                                 </div>
                             </div>
                             <a class="button" href="../../payment/index.html">
-                                <i class="fa-solid fa-circle-notch icon spinner"></i>
                                 <span class="btn-text" user-selcect="none">Acheter</span>
                             </a>
                         </div>
@@ -129,7 +128,6 @@
                                 </div>
                             </div>
                             <a class="button" href="../../payment/index.html">
-                                <i class="fa-solid fa-circle-notch icon spinner"></i>
                                 <span class="btn-text" user-selcect="none">Acheter</span>
                             </a>
                         </div>
@@ -142,7 +140,6 @@
                                 </div>
                             </div>
                             <a class="button" href="../../payment/index.html">
-                                <i class="fa-solid fa-circle-notch icon spinner"></i>
                                 <span class="btn-text" user-selcect="none">Acheter</span>
                             </a>
                         </div>
@@ -172,39 +169,69 @@
                 </label>
 
                 <label for="multiJoueur">
-                    <div class="status">
-                        <h1>MULTI-JOUEURS</h1>
+                    <div class="">
+                        <section class="modal container">
+                            <button class="modal__button" id="open-modal">
+                                Créer une salle
+                                <i class='fa fa-users'></i>
+                            </button>
+
+                            <div class="modal__container" id="modal-container">
+                                <div class="modal__content">
+                                    <div class="modal__close close-modal" title="Close">
+                                        <i class='fa fa-window-close'></i>
+                                    </div>
+
+                                    <h1>Salle de jeu</h1>
+
+                                    <div>
+                                        <form action="#" id="multiplayerForm" class="sign-in-form">
+                                            <div class="input-field">
+                                                <i class="fas fa-keyboard" ></i>
+                                                <input type="text" placeholder="nom de la salle" id="mp_salle" required />
+                                            </div>
+                                            <span class="tooltip">
+                                              Le nom de votre salle ne peut pas faire moins de 4 caractères
+                                            </span>
+                                            <div class="input-field">
+                                                <i class="fas fa-users"></i>
+                                                <input type="number" min="2" max="10" placeholder="nombre de joueurs" id="mp_nbreJoueur" required />
+                                            </div>
+                                            <span class="tooltip">
+                                              Le nombre doit être supérieur à 1
+                                            </span>
+                                            <div class="input-field">
+                                                <i class="fas fa-podcast"></i>
+                                                <input type="number" min="3" max="8" placeholder="Le niveau du jeu" id="mp_niveau" required />
+                                            </div>
+                                            <div class="input-field">
+                                                <i class="fas fa fa-key"></i>
+                                                <input type="password" placeholder="La clé de la salle" id="mp_key" required />
+                                            </div>
+                                            <span class="tooltip">
+                                              La clé ne doit pas faire moins de 4 caractères
+                                            </span>
+                                            <br/>
+                                            <p class="modal__description">je clique pour créer ma salle</p>
+                                            <button type="submit" id="choose_avatar" class="modal__button modal__button-width">
+                                                Appliquer
+                                            </button>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </section>
                     </div>
-                    <div class="cards">
-                        <div class="card">
-                            <form action="#" id="multiplayerForm" class="sign-in-form">
-                                <div class="input-field">
-                                    <i class="fas fa-keyboard" ></i>
-                                    <input type="text" placeholder="nom de la salle" id="salle" required />
-                                </div>
-                                <span class="tooltip">
-                                  Le nom de votre salle ne peut pas faire moins de 4 caractères
-                                </span>
-                                <div class="input-field">
-                                    <i class="fas fa-users"></i>
-                                    <input type="number" min="2" max="10" placeholder="nombre de joueurs" id="mp_nbreJoueur" required />
-                                </div>
-                                <span class="tooltip">
-                                  Le nombre doit être supérieur à 1
-                                </span>
-                                <div class="input-field">
-                                    <i class="fas fa-podcast"></i>
-                                    <input type="number" min="3" max="8" placeholder="Le niveau du jeu" id="mp_niveau" required />
-                                </div>
-                                <div class="input-field">
-                                    <i class="fas fa fa-key"></i>
-                                    <input type="password" placeholder="La clé de la salle" id="mp_key" required />
-                                </div>
-                                <span class="tooltip">
-                                  La clé ne doit pas faire moins de 4 caractères
-                                </span>
-                                <input type="submit" class="btn" value="créer la salle" />
-                            </form>
+
+                    <div class="cards" id="multijoueurSalleList">
+                        <div class="card xamplemultijoueurSalle" id="examplemultijoueurSalle">
+                            <div class="card-info">
+                                <p class="titleClasse">Lorem ipsum dolor sit amet,  elit. Cum ipsam maxime mollitia quasi temporibus.</p>
+                            </div>
+                            <a class="button" href="../../choix_SE/index.html?multijoueurClass=1">
+                                <span class="btn-text" user-selcect="none">Adhérer</span>
+                            </a>
                         </div>
                     </div>
                 </label>

@@ -262,6 +262,18 @@ section {
     margin-top: 20px;
     cursor: pointer;
 }
+
+
+.form_btn.loaderBtn {
+    opacity: .7;
+    cursor: wait;
+}
+
+.form_btn.loaderBtn:hover {
+    background-color: var(--bg-color);
+}
+
+
 .image {
     width: 60%;
 }

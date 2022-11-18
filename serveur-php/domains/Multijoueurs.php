@@ -1,22 +1,13 @@
 <?php
 
-class Joueur {
+class Multijoueurs {
     private $id;
-    private $email;
-    private $login;
-    private $mot_de_passe;
-    private $photo;
-    private $est_suspendu;
-    private $piece;
-    private $niveau_actuel;
-    private $musique;
-    private $last_login;
-    private $multijoueur;
+    private $niveau;
+    private $joueur;
+    private $nom_salle;
+    private $cle_salle;
+    private $nbre_joueur;
     private $cree_le;
-    private $modifie_le;
-    private $niveauJoueurs; // la relation entre joueur et Niveau
-    private $logs; // la relation entre joueur et Logs
-    private $authorities; // la relation entre joueur et Authority
 
     /**
      * @return int
@@ -35,165 +26,84 @@ class Joueur {
     }
 
     /**
-     * @return mixed
+     * @return Niveau
      */
-    public function getEmail()
+    public function getNiveau(): Niveau
     {
-        return $this->email;
+        return $this->niveau;
     }
 
     /**
-     * @param mixed $email
+     * @param mixed $niveau
      */
-    public function setEmail($email)
+    public function setNiveau($niveau)
     {
-        $this->email = $email;
+        $this->niveau = $niveau;
     }
 
     /**
-     * @return mixed
+     * @return Joueur
      */
-    public function getLogin()
+    public function getJoueur(): Joueur
     {
-        return $this->login;
+        return $this->joueur;
     }
 
     /**
-     * @param mixed $login
+     * @param mixed $joueur
      */
-    public function setLogin($login)
+    public function setJoueur($joueur)
     {
-        $this->login = $login;
-    }
-
-    /**
-     * @return string
-     */
-    public function getMotDePasse(): string
-    {
-        return $this->mot_de_passe;
-    }
-
-    /**
-     * @param mixed $mot_de_passe
-     */
-    public function setMotDePasse($mot_de_passe)
-    {
-        $this->mot_de_passe = $mot_de_passe;
+        $this->joueur = $joueur;
     }
 
     /**
      * @return mixed
      */
-    public function getPhoto()
+    public function getNomSalle()
     {
-        return $this->photo;
+        return $this->nom_salle;
     }
 
     /**
-     * @param mixed $photo
+     * @param mixed $nom_salle
      */
-    public function setPhoto($photo)
+    public function setNomSalle($nom_salle)
     {
-        $this->photo = $photo;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getEstSuspendu()
-    {
-        return $this->est_suspendu;
-    }
-
-    /**
-     * @param mixed $est_suspendu
-     */
-    public function setEstSuspendu(bool $est_suspendu)
-    {
-        $this->est_suspendu = $est_suspendu;
-    }
-
-    /**
-     * @return double
-     */
-    public function getPiece(): float
-    {
-        return $this->piece;
-    }
-
-    /**
-     * @param mixed $piece
-     */
-    public function setPiece($piece)
-    {
-        $this->piece = $piece;
-    }
-
-    /**
-     * @return int
-     */
-    public function getNiveauActuel() : int
-    {
-        return $this->niveau_actuel;
-    }
-
-    /**
-     * @param mixed $niveau_actuel
-     */
-    public function setNiveauActuel($niveau_actuel)
-    {
-        $this->niveau_actuel = $niveau_actuel;
+        $this->nom_salle = $nom_salle;
     }
 
     /**
      * @return mixed
      */
-    public function getMusique()
+    public function getCleSalle()
     {
-        return $this->musique;
+        return $this->cle_salle;
     }
 
     /**
-     * @param mixed $musique
+     * @param mixed $cle_salle
      */
-    public function setMusique($musique)
+    public function setCleSalle($cle_salle)
     {
-        $this->musique = $musique;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getLastLogin()
-    {
-        return $this->last_login;
-    }
-
-    /**
-     * @param mixed $last_login
-     */
-    public function setLastLogin($last_login)
-    {
-        $this->last_login = $last_login;
+        $this->cle_salle = $cle_salle;
     }
 
     /**
      * @return mixed
      */
-    public function getMultijoueur()
+    public function getNbreJoueur()
     {
-        return $this->multijoueur;
+        return $this->nbre_joueur;
     }
 
     /**
-     * @param mixed $multijoueur
+     * @param mixed $nbre_joueur
      */
-    public function setMultijoueur($multijoueur)
+    public function setNbreJoueur($nbre_joueur)
     {
-        $this->multijoueur = $multijoueur;
+        $this->nbre_joueur = $nbre_joueur;
     }
-
 
     /**
      * @return mixed
@@ -209,70 +119,6 @@ class Joueur {
     public function setCreeLe($cree_le)
     {
         $this->cree_le = $cree_le;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getModifieLe()
-    {
-        return $this->modifie_le;
-    }
-
-    /**
-     * @param mixed $modifie_le
-     */
-    public function setModifieLe($modifie_le)
-    {
-        $this->modifie_le = $modifie_le;
-    }
-
-    /**
-     * @return array
-     */
-    public function getNiveauJoueurs(): array
-    {
-        return $this->niveauJoueurs;
-    }
-
-    /**
-     * @param mixed $niveauJoueurs
-     */
-    public function setNiveauJoueurs($niveauJoueurs)
-    {
-        $this->niveauJoueurs = $niveauJoueurs;
-    }
-
-    /**
-     * @return Logs[]
-     */
-    public function getLogs(): array
-    {
-        return $this->logs;
-    }
-
-    /**
-     * @param mixed $logs
-     */
-    public function setLogs($logs)
-    {
-        $this->logs = $logs;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAuthorities()
-    {
-        return $this->authorities;
-    }
-
-    /**
-     * @param mixed $authorities
-     */
-    public function setAuthorities($authorities)
-    {
-        $this->authorities = $authorities;
     }
 
 

@@ -79,7 +79,7 @@ function reponseServeur(reponse) {
       console.log("envoi de la requête au serveur");
       div_loader.style.display = "flex";
       btnSubmit.value = "Patienter...";
-      btnSubmit.classList.add("loaderBtn")
+      btnSubmit.classList.add("loaderBtn");
       sendEmail();
       /*location.href = form.getAttribute("action");*/
     }

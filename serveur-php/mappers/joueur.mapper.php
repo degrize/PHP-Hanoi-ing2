@@ -13,6 +13,7 @@ function joueurMapper($joueur): Joueur
     $joueurMapper->setPiece($joueur->{'piece'});
     $joueurMapper->setNiveauActuel($joueur->{'niveau_actuel'});
     $joueurMapper->setMusique($joueur->{'musique'});
+    $joueurMapper->setMultijoueur($joueur->{'multijoueur'});
     $joueurMapper->setCreeLe($joueur->{'cree_le'});
     $joueurMapper->setModifieLe($joueur->{'modifie_le'});
 

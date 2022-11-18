@@ -1,8 +1,10 @@
 let joueur;
 let joueurClass;
+let multijoueursClass;
 
 let niveauList = [];
 let joueursOnline = [];
+let multijoueurSalle = [];
 let niveau;
 
 import("../../../models/joueur.js").then(Class => {
@@ -18,6 +20,13 @@ import("../../../models/niveau.js").then(Class => {
     niveau = new Class.Niveau;
     // On envoie les infos à notre controller-PHP
     niveau.sendToPHP("findAll")
+});
+
+import("../../../models/multijoueurs.js").then(Class => {
+    multijoueursClass = Class.Multijoueurs;
+
+    let temp = new Class.Multijoueurs();
+    temp.sendToPHP("findAll");
 });
 
 const choose_avatar = document.getElementById("choose_avatar");
@@ -131,7 +140,6 @@ function showPlayerSatus() {
     exampleplayerOnline.remove(); // on supprime notre example
 }
 
-
 function reponseServeurLogout() {
     window.location.href="../../login/vue/login.html"
 }
@@ -149,6 +157,37 @@ function reponseServeurEdit(reponse) {
     reponseServeur(reponse);
     showNotification(); // on affiche la notification
 }
+
+function reponseServeurMultijoueurs(reponse) {
+    if (reponse) {
+        alert("La salle a bien été créé");
+        let temp = new multijoueursClass();
+        temp.sendToPHP("findAll");
+    }
+    else alert("erreur lors de la création de la salle");
+}
+
+function showAllMultiJoueurClass() {
+
+    let multijoueurSalleLayout = document.getElementById("multijoueurSalleList");
+    let examplemultijoueurSalle = document.querySelector(".xamplemultijoueurSalle");
+    let exampleplayerOnlineList = multijoueurSalleLayout.querySelectorAll(".xamplemultijoueurSalle");
+
+    exampleplayerOnlineList.forEach(layout => {
+        layout.remove();
+    })
+
+    multijoueurSalle.forEach(salle=> {
+        let m_multijoueurSalle = examplemultijoueurSalle.cloneNode(true);
+        m_multijoueurSalle.querySelector('.titleClasse').innerText =
+            "Titre : " + salle.nom_salle +
+            " | Nbre-joueurs : " + salle.nbre_joueur;
+        multijoueurSalleLayout.appendChild(m_multijoueurSalle);
+        m_multijoueurSalle.querySelector('a').href = "../../choix_SE/index.html?multijoueurClass=" + salle.id + "";
+    });
+    examplemultijoueurSalle.remove(); // on supprime notre example
+}
+
 
 
 class Player {
@@ -178,6 +217,14 @@ let loginList;
         confMdpInput = editForm.querySelector('#confPwd'),
         loginInput = editForm.querySelector('#login');
 
+    let multiplayerForm = document.getElementById('multiplayerForm'),
+        mp_salleInput = multiplayerForm.querySelector('#mp_salle'),
+        mp_nbreJoueurInput = multiplayerForm.querySelector('#mp_nbreJoueur'),
+        mp_niveauInput = multiplayerForm.querySelector('#mp_niveau'),
+        mp_keyInput = multiplayerForm.querySelector('#mp_key');
+
+
+
     function editPlayer() {
         let joueurEdit = new joueurClass();
         joueurEdit.id = parseInt(joueur.id);
@@ -190,6 +237,16 @@ let loginList;
         joueurEdit.cree_le = joueur.cree_le;
         // On envoie les infos à notre controller-PHP
         joueurEdit.sendToPHP("edit");
+
+    }
+
+    function creeSalleMultijoueur() {
+        let multiplayerClass = new multijoueursClass();
+        multiplayerClass.id = parseInt(joueur.id);
+        multiplayerClass.nom_salle = (mp_salleInput.value).toLowerCase();
+        multiplayerClass.nbre_joueur = (mp_nbreJoueurInput.value);
+        multiplayerClass.cle_salle = mp_keyInput.value;
+        multiplayerClass.sendToPHP("creeSalleMultijoueur");
 
     }
 
@@ -363,6 +420,12 @@ let loginList;
 
             return false;
         };
+
+        multiplayerForm.onsubmit = function() {
+            creeSalleMultijoueur();//On effectue son enregistrement
+            return false;
+        };
+
         editForm.onreset = function() {
             for (let i = 0 ; i < inputsLength ; i++) {
                 if (inputs[i].type === 'text' || inputs[i].type === 'email' || inputs[i].type === 'password') {

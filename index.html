@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TOUR HANOI</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="client-web/assets/css/loader.css">
 </head>
 <body>
     <header>
@@ -162,6 +163,7 @@
         <div class="form-image">
             <form id="contactForm">
                 <span class="contactUs_error__success"> <br /></span>
+                <div class="loader" id="loader"></div>
                 <label>
                     <input type="text" id="nom" placeholder="Nom">
                 </label>
@@ -172,8 +174,8 @@
                     <input type="text" id="objet" placeholder="Objet du Message">
                 </label>
                 <textarea id="message" cols="30" rows="10" placeholder="Votre Message"></textarea>
-                <button class="button-link form_btn" type="submit">
-                    <a>Envoyer Votre message</a>
+                <button class="button-link" type="submit">
+                    <a class="form_btn">Envoyer Votre message</a>
                 </button>
             </form>
             <div class="image">

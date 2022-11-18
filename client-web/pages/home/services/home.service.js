@@ -4,9 +4,14 @@ import("../../../models/contact-us.js").then(Class => {
 });
 
 const div_info = document.querySelector(".contactUs_error__success");
+let div_loader = document.getElementById("loader"),
+    btnSubmit = document.querySelector('.form_btn');
 
 function reponseServeur(reponse) {
-    console.log(reponse);
+
+    div_loader.style.display = "none";
+    btnSubmit.value="Envoyer Votre message";
+    btnSubmit.classList.remove("loaderBtn")
     if (reponse) {
         div_info.innerHTML = "votre requête a bien été envoyée";
         div_info.className = "login_error__success success_contactUs";
@@ -56,6 +61,12 @@ function reponseServeur(reponse) {
         }
 
         contactForm.onsubmit = function() {
+            div_info.style.display = "none";
+            div_info.innerHTML = "";
+            div_info.className = "login_error__success";
+            div_loader.style.display = "flex";
+            btnSubmit.value = "Patienter...";
+            btnSubmit.classList.add("loaderBtn");
             sendHelp();//On effectue son enregistrement
             return false;
         };

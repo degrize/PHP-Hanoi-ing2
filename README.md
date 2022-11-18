@@ -150,7 +150,7 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE hanoi_multijoueurs( 
-    id bigint, 
+    id bigint NOT NULL AUTO_INCREMENT, 
     niveau_id int NOT NULL,
     joueur_id bigint NOT NULL,
     nom_salle varchar(255),

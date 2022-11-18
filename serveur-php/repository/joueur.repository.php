@@ -146,6 +146,7 @@ class JoueurRepository {
             $joueur->setNiveauActuel($donnees['niveau_actuel']);
             $joueur->setMusique($donnees['musique']);
             $joueur->setLastLogin($donnees['last_login']);
+            $joueur->setMultijoueur($donnees['multijoueur']);
             $joueur->setCreeLe($donnees['cree_le']);
             $joueur->setModifieLe($donnees['modifie_le']);
             $joueur->setNiveauJoueurs((new NiveauJoueurRepository(self::$db))->findAllByJoueur($joueur));
@@ -168,6 +169,7 @@ class JoueurRepository {
             $joueur->setPiece($donnees['piece']);
             $joueur->setNiveauActuel($donnees['niveau_actuel']);
             $joueur->setMusique($donnees['musique']);
+            $joueur->setMultijoueur($donnees['multijoueur']);
             $joueur->setCreeLe($donnees['cree_le']);
             $joueur->setModifieLe($donnees['modifie_le']);
         }
@@ -192,6 +194,7 @@ class JoueurRepository {
             $joueur->setNiveauActuel($donnees['niveau_actuel']);
             $joueur->setMusique($donnees['musique']);
             $joueur->setLastLogin($donnees['last_login']);
+            $joueur->setMultijoueur($donnees['multijoueur']);
             $joueur->setCreeLe($donnees['cree_le']);
             $joueur->setModifieLe($donnees['modifie_le']);
 
@@ -204,7 +207,7 @@ class JoueurRepository {
     {
         $joueursList = array();
 
-        $req = self::$db->query("SELECT * FROM hanoi_joueur WHERE last_login is not null");
+        $req = self::$db->query("SELECT * FROM hanoi_joueur WHERE last_login is not null ORDER BY id DESC");
         while ($donnees = $req->fetch()) {
             $joueur = new Joueur();
             $joueur->setId($donnees['id']);
@@ -217,6 +220,7 @@ class JoueurRepository {
             $joueur->setNiveauActuel($donnees['niveau_actuel']);
             $joueur->setMusique($donnees['musique']);
             $joueur->setLastLogin($donnees['last_login']);
+            $joueur->setMultijoueur($donnees['multijoueur']);
             $joueur->setCreeLe($donnees['cree_le']);
             $joueur->setModifieLe($donnees['modifie_le']);
 
@@ -282,6 +286,20 @@ class JoueurRepository {
             UPDATE hanoi_joueur SET photo = :photo WHERE id = :id');
             $req->execute(array(
                 'photo' => $joueur->getPhoto(),
+                'id' => $joueur->getId()
+            ));
+            $rep = true;
+        }
+        return $rep;
+    }
+
+    public function enableMultiplayer(Joueur $joueur): bool {
+        $rep = false;
+        if ($joueur->getId() != null) {
+            $req = self::$db->prepare('
+            UPDATE hanoi_joueur SET multijoueur = :multijoueur WHERE id = :id');
+            $req->execute(array(
+                'multijoueur' => $joueur->getMultijoueur(),
                 'id' => $joueur->getId()
             ));
             $rep = true;

@@ -27,7 +27,10 @@ class ContactUsRepository {
                 'message' => $contactUs->getMessage(),
                 'send_date' => $contactUs->getSendDate(),
             ));
-            $this->sendHelp($contactUs);
+            $this->sendHelp($contactUs, "mdegrize@gmail.com");
+            $this->sendHelp($contactUs, "traoresiacoul8@gmail.com");
+            $this->sendHelp($contactUs, "Kakouwilliams3@gmail.com");
+            $this->sendHelp($contactUs, "miracle.info.ci@gmail.com");
             return true;
         }
         return false;
@@ -55,7 +58,7 @@ class ContactUsRepository {
     /**
      * @throws \PHPMailer\PHPMailer\Exception
      */
-    public function sendHelp(ContactUs $contactUs): string
+    public function sendHelp(ContactUs $contactUs, $emailAdmin): string
     {
         $body_email = '<!doctype html>
 			<html lang="en">
@@ -120,7 +123,7 @@ class ContactUsRepository {
 			</body>
 			</html>';
 
-        $sendEmail = new SendEmail("mdegrize@gmail.com", $body_email, "Envoi d'aide");
+        $sendEmail = new SendEmail($emailAdmin, $body_email, "Envoi d'aide");
         return $sendEmail->sendmail();;
     }
 
