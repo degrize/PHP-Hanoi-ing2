@@ -183,7 +183,7 @@ function showAllMultiJoueurClass() {
             "Titre : " + salle.nom_salle +
             " | Nbre-joueurs : " + salle.nbre_joueur;
         multijoueurSalleLayout.appendChild(m_multijoueurSalle);
-        m_multijoueurSalle.querySelector('a').href = "../../choix_SE/index.html?multijoueurClass=" + salle.id + "";
+        m_multijoueurSalle.querySelector('a').href = "../../honoi_towner/laptop/laptop-game.html?multijoueurClass=" + salle.id + "";
     });
     examplemultijoueurSalle.remove(); // on supprime notre example
 }
