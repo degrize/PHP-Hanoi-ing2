@@ -11,7 +11,7 @@ Le projet php de la tour d'hanoi donné par M. Konan KAN 😎
 - Rendre le jeu disponible sur un format adapter Web ou Mobile
 - Implémenter le système des historiques
 - Ajouter la fonctionnalité d'authentification &
-- Envoyer les identifications de connexions par e-mail lorsque celui ci a oublié son mot de passe
+- Envoyer les identifications de connexions par e-mail lorsque celui-ci a oublié son mot de passe
 - Envoyer un mail au joueur lorsqu'un autre joueur à dépasser son score (meilleur score)
 💙 
 
