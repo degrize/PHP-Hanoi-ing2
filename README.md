@@ -15,6 +15,15 @@ Le projet php de la tour d'hanoi donné par M. Konan KAN 😎
 - Envoyer un mail au joueur lorsqu'un autre joueur à dépasser son score (meilleur score)
 💙 
 
+
+![preview img](client-web/assets/images/git/level.PNG)
+
+![preview img](client-web/assets/images/git/changeAvatar.PNG)
+
+![preview img](client-web/assets/images/git/buyCoins.PNG)
+
+![preview img](client-web/assets/images/git/choix_SE.jpg)
+
 ![preview img](/preview.jpg)
 
 
