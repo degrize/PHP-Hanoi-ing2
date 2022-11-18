@@ -55,6 +55,13 @@
                             <h2>Joueurs (en ligne)</h2>
                         </div>
                     </a>
+
+                    <a class="nav_link" id="multiJoueur">
+                        <div class="link">
+                            <img src="images//library.png" alt="" />
+                            <h2>Multi-joueurs</h2>
+                        </div>
+                    </a>
                 </div>
                 <div class="pro">
                     <h2><u>Coins:</u> <span id="joueur_coin"></span></h2>
@@ -160,6 +167,40 @@
                             <div>
                                 <h5 class="joueurOnline_niveau">Niveau</h5>
                             </div>
+                        </div>
+                    </div>
+                </label>
+
+                <label for="multiJoueur">
+                    <div class="status">
+                        <h1>MULTI-JOUEURS</h1>
+                    </div>
+                    <div class="cards">
+                        <div class="card">
+                            <form action="#" id="multiplayerForm" class="sign-in-form">
+                                <div class="input-field">
+                                    <i class="fas fa-keyboard" ></i>
+                                    <input type="text" placeholder="nom de la salle" id="salle" required />
+                                </div>
+                                <span class="tooltip">
+                                  Le nom de votre salle ne peut pas faire moins de 4 caractères
+                                </span>
+                                <div class="input-field">
+                                    <i class="fas fa-users"></i>
+                                    <input type="number" placeholder="nombre de joueurs" id="nbreJoueur" required />
+                                </div>
+                                <span class="tooltip">
+                                  Le nombre doit être supérieur à 1
+                                </span>
+                                <div class="input-field">
+                                    <i class="fas fa fa-key"></i>
+                                    <input type="password" placeholder="La clé de la salle" id="key" required />
+                                </div>
+                                <span class="tooltip">
+                                  La clé ne doit pas faire moins de 4 caractères
+                                </span>
+                                <input type="submit" class="btn" value="créer la salle" />
+                            </form>
                         </div>
                     </div>
                 </label>

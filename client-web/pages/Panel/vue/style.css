@@ -92,8 +92,8 @@ a:hover {
 
 .glass {
     background: white;
-    max-height: 79vh;
-    min-height: 79vh;
+    max-height: 81vh;
+    min-height: 81vh;
     width: 60%;
     min-width: 320px;
     background: linear-gradient(
