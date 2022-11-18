@@ -190,8 +190,5 @@ function reponseServeur(reponse) {
 // Maintenant que tout est initialisé, on peut désactiver les « tooltips »
 deactivateTooltips();
 
-
-
-
 })();
 

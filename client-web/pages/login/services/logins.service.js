@@ -6,12 +6,10 @@ import("../../../models/joueur.js").then(Class => {
 const div_info = document.querySelector(".login_error__success");
 
 function reponseServeur(reponse) {
-    console.log(reponse);
     if (reponse) {
         window.location.href="../../Panel/vue/index.html"
     }
     else {
-        console.log("nonon")
         div_info.innerHTML = "erreur d'authentification verifier vos informations";
         div_info.className = "login_error__success error_login"
         div_info.style.display = "block";
@@ -70,6 +68,7 @@ reponsePanel();
     // Mise en place des événements
     (function() { // Utilisation d'une fonction anonyme pour éviter les variables globales.
         const myForm = document.getElementById('loginForm'),
+            inviteForm = document.getElementById('inviteForm'),
             inputs = document.getElementsByTagName('input'),
             inputsLength = inputs.length;
 
@@ -82,7 +81,7 @@ reponsePanel();
         }
 
         myForm.onsubmit = function() {
-            connection();//On effecteur son enregistrement
+            connection();//On effectue son enregistrement
             return false;
         };
         myForm.onreset = function() {
@@ -92,5 +91,12 @@ reponsePanel();
                 }
             }
         };
+
+        inviteForm.onsubmit = function() {
+            window.location.href="../../honoi_towner/laptop/laptop-game.html"
+            return false;
+        };
+
+
     })();
 }) ();
