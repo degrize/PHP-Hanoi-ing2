@@ -121,7 +121,6 @@ function reponseMultijoueurs() {
         tempMultijoueursClass.sendToPHP("checkIfGameFinish");
     }, 100)
 
-
 }
 reponseMultijoueurs();
 

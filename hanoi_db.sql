@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : ven. 18 nov. 2022 à 03:14
+-- Généré le : ven. 18 nov. 2022 à 07:54
 -- Version du serveur : 10.4.24-MariaDB
 -- Version de PHP : 7.4.29
 
@@ -56,7 +56,13 @@ INSERT INTO `hanoi_contact_us` (`id`, `email`, `nom`, `objet`, `message`, `send_
 (3, '', '', '', '', '2022-11-18 00:56:18'),
 (4, 'mdegrize@gmail.com', 'niche eletienne Borges', 'niche eletienne Borges', 'eeee', '2022-11-18 01:00:12'),
 (5, 'mdegrize@gmail.com', 'niche eletienne Borges', 'niche eletienne Borges', 'eeee', '2022-11-18 01:00:13'),
-(6, 'mdegrize@gmail.com', 'niche eletienne Borges', 'niche eletienne Borges', 'lzlzlmz', '2022-11-18 01:01:49');
+(6, 'mdegrize@gmail.com', 'niche eletienne Borges', 'niche eletienne Borges', 'lzlzlmz', '2022-11-18 01:01:49'),
+(7, 'mdegrize@gmail.com', 'Monsieur MEDA', 'Monsieur MEDA', 'je suis entrain de vous parler', '2022-11-18 03:42:59'),
+(8, 'mdegrize@gmail.com', 'Monsieur MEDA', 'Monsieur MEDA', 'je suis entrain de vous parler', '2022-11-18 03:48:32'),
+(9, 'mdegrize@gmail.com', ' N\'GUESSAN BRIGITTE', ' N\'GUESSAN BRIGITTE', 'Salut la communauté je vous ecrit pour un test sur votre plateforme d\'envoi de mail de contact. SVP', '2022-11-18 03:56:45'),
+(10, 'mdegrize@gmail.com', 'niche eletienne Borges', 'niche eletienne Borges', 'jj', '2022-11-18 04:09:49'),
+(11, 'mdegrize@gmail.com', 'niche eletienne Borges', 'niche eletienne Borges', 'jj', '2022-11-18 04:10:09'),
+(12, 'mdegrize@gmail.com', 'niche eletienne Borges', 'niche eletienne Borges', 'eorpe ke rpze', '2022-11-18 04:11:00');
 
 -- --------------------------------------------------------
 
@@ -101,7 +107,7 @@ INSERT INTO `hanoi_joueur` (`id`, `email`, `login`, `mot_de_passe`, `photo`, `es
 (34, 'mdegrize@gmail.ci', 'degrize2', '$argon2id$v=19$m=65536,t=4,p=1$TEd2LndQL0VVSDBTMG5DaA$IldJ1XGB3RPZpaiWQR/rGPaMaZ6LFFtRIjPfGbxXgZ8', 'loginInput.value', 0, 0, 3, 1, NULL, 0, '2022-09-03 00:00:00', '2022-09-03 00:00:00'),
 (35, 'kakouwilliams@gmail.com', 'amenan01', '$argon2id$v=19$m=65536,t=4,p=1$OUJzU3FlejVrZG8waDZXOA$k3+Fb2Ip9rzVCAU+PRAw6yjLmqASyM3mR8eNRIZixm0', 'loginInput.value', 0, 0, 3, 1, NULL, 0, '2022-09-03 00:00:00', '2022-09-03 00:00:00'),
 (36, 'kmeda@ebenyx.co', 'root1', '$argon2id$v=19$m=65536,t=4,p=1$Z2dyeXNBb3VscUdNaFh5bQ$04V69fo0ZLzk71MgGeyykFQ8zrpgRChM/JYASQ+msBE', 'woman4', 0, 0, 3, 1, NULL, 0, '2022-09-03 00:00:00', '2022-09-03 00:00:00'),
-(37, 'mdegrize@gmail.com', 'luis-borges', '$argon2id$v=19$m=65536,t=4,p=1$VjNNRkVBb1N4cEpFYVZoMg$QI8ZxL8V8XL4KBb8xV/nUEakaTCslmrA9+TDdrR/1Go', 'man3', 0, 2817.92, 4, 0, 1668736961, 0, '2022-09-03 00:00:00', '2022-11-14 23:21:40'),
+(37, 'mdegrize@gmail.com', 'luis-borges', '$argon2id$v=19$m=65536,t=4,p=1$VjNNRkVBb1N4cEpFYVZoMg$QI8ZxL8V8XL4KBb8xV/nUEakaTCslmrA9+TDdrR/1Go', 'man8', 0, 2817.92, 4, 0, 1668753625, 0, '2022-09-03 00:00:00', '2022-11-14 23:21:40'),
 (38, 'kdegrize@gmail.ci', 'degrizea', '$argon2id$v=19$m=65536,t=4,p=1$S0t3S3ZWTjhLM0dlWEZtNQ$AmhJ8OxdCJdYk1metA52lvkHIglFCrHaO40CBHLfTqE', 'loginInput.value', 0, 0, 3, 1, NULL, 0, '2022-09-03 00:00:00', '2022-09-03 00:00:00'),
 (39, 'kdegrize@gmail.fr', 'degrizeb', '$argon2id$v=19$m=65536,t=4,p=1$dnA5d2N2Qmp1bEdMcVJPWg$DRAWTJAcWRYinXxht5FE+S0fpzNVctPWUjBt0zdFrXk', 'loginInput.value', 0, 0, 3, 1, NULL, 0, '2022-09-03 00:00:00', '2022-09-03 00:00:00'),
 (40, 'kdegrize@gmail.co', 'degrizec', '$argon2id$v=19$m=65536,t=4,p=1$TnRsNnl6eDJWeEpLenE5Ug$dF6gCKhKQ7hy8J2K2K+1qGaChFu/AOIx7IlJa8CwBJA', 'loginInput.value', 0, 0, 3, 1, NULL, 0, '2022-09-03 00:00:00', '2022-09-03 00:00:00'),
@@ -207,7 +213,17 @@ INSERT INTO `hanoi_logs` (`id`, `joueur_id`, `information`, `cree_le`) VALUES
 (69, 37, 'connexion au jeu', '2022-11-16 14:44:43'),
 (70, 37, 'connexion au jeu', '2022-11-18 01:18:09'),
 (71, 37, 'connexion au jeu', '2022-11-18 01:59:57'),
-(72, 37, 'connexion au jeu', '2022-11-18 02:04:41');
+(72, 37, 'connexion au jeu', '2022-11-18 02:04:41'),
+(73, 37, 'connexion au jeu', '2022-11-18 04:57:59'),
+(74, 37, 'connexion au jeu', '2022-11-18 04:58:02'),
+(75, 37, 'connexion au jeu', '2022-11-18 04:58:03'),
+(76, 37, 'connexion au jeu', '2022-11-18 04:58:04'),
+(77, 37, 'connexion au jeu', '2022-11-18 04:58:11'),
+(78, 37, 'connexion au jeu', '2022-11-18 04:59:22'),
+(79, 37, 'connexion au jeu', '2022-11-18 04:59:52'),
+(80, 37, 'connexion au jeu', '2022-11-18 05:00:08'),
+(81, 37, 'connexion au jeu', '2022-11-18 05:01:35'),
+(82, 37, 'connexion au jeu', '2022-11-18 05:02:15');
 
 -- --------------------------------------------------------
 
@@ -222,8 +238,22 @@ CREATE TABLE `hanoi_multijoueurs` (
   `nom_salle` varchar(255) DEFAULT NULL,
   `cle_salle` varchar(255) DEFAULT NULL,
   `nbre_joueur` varchar(255) DEFAULT NULL,
+  `victoire` tinyint(1) NOT NULL DEFAULT 0,
   `cree_le` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `hanoi_multijoueurs`
+--
+
+INSERT INTO `hanoi_multijoueurs` (`id`, `niveau_id`, `joueur_id`, `nom_salle`, `cle_salle`, `nbre_joueur`, `victoire`, `cree_le`) VALUES
+(1, 7, 37, 'feyt', 'ezerer', '2', 0, '2022-11-18 05:07:01'),
+(2, 7, 37, 'niche eletienne borges', '122323', '3', 0, '2022-11-18 05:10:17'),
+(3, 7, 37, 'niche eletienne borges', '122323', '3', 0, '2022-11-18 05:10:20'),
+(4, 7, 37, 'konan kouadio aka n\'guessan brigitte', '1234', '3', 0, '2022-11-18 05:22:58'),
+(5, 7, 37, 'monsieur meda', '1234', '2', 0, '2022-11-18 06:16:52'),
+(6, 7, 37, 'niche eletienne luis_borges', '33', '2', 0, '2022-11-18 06:18:25'),
+(7, 7, 37, 'bouii', '12', '2', 0, '2022-11-18 06:19:54');
 
 -- --------------------------------------------------------
 
@@ -342,7 +372,7 @@ ALTER TABLE `hanoi_rel_niveau_joueur`
 -- AUTO_INCREMENT pour la table `hanoi_contact_us`
 --
 ALTER TABLE `hanoi_contact_us`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT pour la table `hanoi_joueur`
@@ -354,7 +384,13 @@ ALTER TABLE `hanoi_joueur`
 -- AUTO_INCREMENT pour la table `hanoi_logs`
 --
 ALTER TABLE `hanoi_logs`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+
+--
+-- AUTO_INCREMENT pour la table `hanoi_multijoueurs`
+--
+ALTER TABLE `hanoi_multijoueurs`
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `hanoi_niveau`
