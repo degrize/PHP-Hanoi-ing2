@@ -139,4 +139,13 @@ CREATE TABLE hanoi_logs(
 )
 ENGINE=InnoDB DEFAULT CHARSET=utf8
 ;
+
+CREATE TABLE hanoi_contact_us(
+    id bigint AUTO_INCREMENT PRIMARY KEY, 
+    email varchar(255), nom varchar(255), 
+    objet varchar(255), message varchar(255), 
+    send_date DATETIME 
+)
+ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 ```
