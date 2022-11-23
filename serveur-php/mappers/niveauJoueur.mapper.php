@@ -11,6 +11,4 @@ function niveauJoueurMapper($niveauJoueur): NiveauJoueur
     $niveauJoueurMapper->setNbreDisque($niveauJoueur->{'nbre_disque'});
 
     return $niveauJoueurMapper;
-
 }
-

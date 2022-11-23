@@ -85,10 +85,4 @@ function reponseServeur(reponse) {
     }
   });
 
-
-
-
-
 })();
-
-

@@ -441,8 +441,4 @@ let loginList;
 
 // Maintenant que tout est initialisé, on peut désactiver les « tooltips »
     deactivateTooltips();
-
-
-
-
 })();

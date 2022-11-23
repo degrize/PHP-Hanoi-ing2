@@ -123,10 +123,3 @@ switch ($mehode) {
         break;
 
 }
-
-
-// echo "alert('$joueur')";
-
-
-?>
-
