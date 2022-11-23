@@ -4,7 +4,7 @@ export class Multijoueurs {
     joueur = "";
     nom_salle = "";
     cle_salle = "";
-    nbre_joueur = false;
+    nbre_joueur = 2;
     victoire = false;
     cree_le = "";
 
