@@ -1,6 +1,6 @@
 
 # 💼 PHP-Hanoi-ing2
-Le projet php de la tour d'hanoi donné par M. Konan KAN 😎
+Le projet php de la tour d'hanoi proposé par notre prof M. Konan KAN 😎
 
 ## [Contribuez au projet sur Github](https://github.com/degrize/PHP-Hanoi-ing2)
 ### 💼 Tour d'Hanoï 
@@ -10,9 +10,10 @@ Le projet php de la tour d'hanoi donné par M. Konan KAN 😎
 - L'utilisateur pourra utiliser la sourie de son ordinateur pour déplacer les disques et avoir la possibilité d'utiliser son doigt si celui ci possède un écran tactile
 - Rendre le jeu disponible sur un format adapter Web ou Mobile
 - Implémenter le système des historiques
-- Ajouter la fonctionnalité d'authentification &
+- Ajouter la fonctionnalité d'authentification
 - Envoyer les identifications de connexions par e-mail lorsque celui-ci a oublié son mot de passe
 - Envoyer un mail au joueur lorsqu'un autre joueur à dépasser son score (meilleur score)
+- Multiplayer : possibilité de jouer à plusieurs
 💙 
 
 
